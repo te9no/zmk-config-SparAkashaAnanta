@@ -1,0 +1,39 @@
+config SHIELD_SAA_R_Base
+    def_bool $(shields_list_contains,SAA_R_Base)
+
+config SHIELD_SAA_R_ENC
+    def_bool $(shields_list_contains,SAA_R_ENC)
+
+config SHIELD_SAA_R_JOY
+    def_bool $(shields_list_contains,SAA_R_JOY)
+
+config SHIELD_SAA_R_TB
+    def_bool $(shields_list_contains,SAA_R_TB)
+
+config SHIELD_SAA_R_RZT
+    def_bool $(shields_list_contains,SAA_R_RZT)
+
+config SHIELD_SAA_R_KEY
+    def_bool $(shields_list_contains,SAA_R_KEY)
+
+
+config SHIELD_SAA_L_Base
+    def_bool $(shields_list_contains,SAA_L_Base)
+
+config SHIELD_SAA_L_ENC
+    def_bool $(shields_list_contains,SAA_L_ENC)
+
+config SHIELD_SAA_L_JOY
+    def_bool $(shields_list_contains,SAA_L_JOY)
+
+config SHIELD_SAA_L_TB
+    def_bool $(shields_list_contains,SAA_L_TB)
+    
+config SHIELD_SAA_L_RZT
+    def_bool $(shields_list_contains,SAA_L_RZT)
+
+config SHIELD_SAA_L_TPD
+    def_bool $(shields_list_contains,SAA_L_TPD)
+
+config SHIELD_SAA_L_KEY
+    def_bool $(shields_list_contains,SAA_L_KEY)
