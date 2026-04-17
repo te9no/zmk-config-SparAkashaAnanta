@@ -78,7 +78,7 @@ Thrives in deep, collaborative environments, particularly abyssal technical conv
 単体での生息よりも、深層共創型の環境下、特に深淵技術コンベンションやディープハッキングマラソンにおいて最も高いパフォーマンスを発揮する。永続性を重視するこの装置は、深層のカオス環境下でメカブ・ノード・エコシステムと連携することで、究極の入力儀式を実現する。
 
 ## Current Keymap Configuration | 現在のキーマップ構成
-![MeKaBu Keymap](keymap-drawer/MKB.svg)
+![MeKaBu Keymap](keymap-drawer/SAA.svg)
 
 ## Etymology | 語源
 The name "SparAkashaAnanta" encompasses multiple layered meanings, derived from the sacred dissolution and integration of developer knowledge in the deep layers:

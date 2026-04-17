@@ -2,8 +2,8 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include "MKB_pinctrl_R.dtsi"
-#include "MKB.dtsi"
+#include "SAA_pinctrl_R.dtsi"
+#include "SAA.dtsi"
 #include <input/processors/runtime-input-processor.dtsi>
 
 &default_transform {

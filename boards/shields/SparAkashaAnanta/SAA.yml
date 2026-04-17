@@ -2,7 +2,7 @@ file_format: "1"
 id: MeKaBu
 name: MeKaBu
 type: shield
-url: https://github.com/Modulable-Keyboard-Developer/zmk-config-MKB
+url: https://github.com/Modulable-Keyboard-Developer/zmk-config-SAA
 requires: [seeeduino_xiao_ble]
 features:
   - keys
