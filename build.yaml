@@ -30,7 +30,7 @@ include:
   - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_TB rgbled_adapter nice_oled
     snippet: zmk-usb-logging studio-rpc-usb-uart
-    artifact-name: SAA_R_MODULE_TBv4
+    artifact-name: SAA_R_MODULE_TB
     
   - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
