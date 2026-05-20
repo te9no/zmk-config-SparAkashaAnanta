@@ -26,7 +26,7 @@ endif # LVGL
 
 if SHIELD_SparAkasha_L_Base
     config ZMK_KEYBOARD_NAME
-        default "SparAkasha"
+        default "Ananta"
 
     config ZMK_SPLIT_ROLE_CENTRAL
         default y
