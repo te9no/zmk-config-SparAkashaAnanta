@@ -1,3 +1,5 @@
 name: Default
 append:
   EXTRA_DTC_OVERLAY_FILE: Default.overlay
+  EXTRA_CONF_FILE: SAA_L_Base.conf
+  

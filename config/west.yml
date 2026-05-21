@@ -2,95 +2,110 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: caksoylar
-      url-base: https://github.com/caksoylar
-    - name: badjeff
-      url-base: https://github.com/badjeff
     - name: te9no
       url-base: https://github.com/te9no
-    - name: kot149
-      url-base: https://github.com/kot149
-    - name: mctechnology17
-      url-base: https://github.com/mctechnology17
-    - name: petejohanson
-      url-base: https://github.com/petejohanson
     - name: cormoran
       url-base: https://github.com/cormoran
   projects:
     - name: zmk
       # remote: zmkfirmware
-      # remote: te9no
-      # revision: v0.3-branch+dya
-      remote: cormoran
+      remote: te9no
       revision: v0.3-branch+dya
       import: app/west.yml
-    - name: zephyr
-      remote: cormoran
-      revision: v3.5.0+zmk-fixes+nrf-half-duplex-uart
-      clone-depth: 1
-      import:
-        name-blocklist:
-          - ci-tools
-          - hal_altera
-          - hal_cypress
-          - hal_infineon
-          - hal_microchip
-          - hal_nxp
-          - hal_openisa
-          - hal_silabs
-          - hal_xtensa
-          - hal_st
-          - hal_ti
-          - loramac-node
-          - mcuboot
-          - mcumgr
-          - net-tools
-          - openthread
-          - edtt
-          - trusted-firmware-m
-    - name: zmk-rgbled-widget
-      remote: caksoylar
-      revision: v0.3-branch
-    - name: zmk-pmw3610-driver
-      # remote: badjeff
-      # revision: zmk-0.3
-      remote: cormoran
-      revision: main
-    - name: zmk-analog-input-driver
-      remote: badjeff
-      revision: main
-    - name: zmk-nice-oled
-      remote: te9no
-      revision: main
-    - name: zmk-layout-shift
-      remote: kot149
-      revision: v1
-    - name: zmk-input-processor-keybind
-      remote: te9no
-      revision: main
-    - name: zmk-module-cirque-trackpad
-      remote: te9no
-      revision: main
-    - name: zmk-module-analoginput-rpc
-      remote: te9no
-      revision: main
-    - name: zmk-driver-MLX90393
-      remote: te9no
-      revision: main
 
+# ZMK RGB LED Widget
+    - name: zmk-rgbled-widget
+      url: https://github.com/caksoylar/zmk-rgbled-widget
+      revision: v0.3
+      path: modules/zmk-rgbled-widget
+
+# LED Animation
+    - name: zmk-driver-animation
+      url: https://github.com/cormoran/zmk-driver-animation
+      revision: main
+      path: modules/zmk-driver-animation
+
+    - name: zmk-driver-ext-power-transient
+      url: https://github.com/cormoran/zmk-driver-ext-power-transient
+      revision: main
+      path: modules/zmk-driver-ext-power-transient
+
+# ZMK Layout Shift
+    - name: zmk-layout-shift
+      revision: v1
+      url: https://github.com/kot149/zmk-layout-shift
+      path: modules/zmk-layout-shift
+
+#Custom input processors
+    - name: zmk-input-processor-keybind
+      revision: main
+      url: https://github.com/te9no/zmk-input-processor-keybind
+      path: modules/zmk-input-processor-keybind
+
+# DYA Studio Runtime Processors
     - name: zmk-module-runtime-input-processor
-      remote: cormoran
       revision: main
-    - name: zmk-module-ble-management
-      remote: cormoran
-      revision: main
-    - name: zmk-module-settings-rpc
-      remote: cormoran
-      revision: main
+      url: https://github.com/cormoran/zmk-module-runtime-input-processor
+      path: modules/zmk-module-runtime-input-processor
     - name: zmk-behavior-runtime-sensor-rotate
-      remote: cormoran
+      revision: main # or latest commit hash
+      url: https://github.com/cormoran/zmk-behavior-runtime-sensor-rotate
+      path: modules/zmk-behavior-runtime-sensor-rotate
+    - name: zmk-module-ble-management
       revision: main
+      url: https://github.com/cormoran/zmk-module-ble-management
+      path: modules/zmk-module-ble-management
+    - name: zmk-module-settings-rpc
+      revision: main
+      url: https://github.com/cormoran/zmk-module-settings-rpc
+      path: modules/zmk-module-settings-rpc
+
+# Trackball
+    - name: zmk-pmw3610-driver
+      url: https://github.com/efogdev/zmk-pmw3610-driver
+      revision: main
+      path: modules/zmk-pmw3610-driver
+
+# OLED
+    - name: zmk-nice-oled
+      # remote: mctechnology17
+      url: https://github.com/te9no/zmk-nice-oled
+      revision: main
+      path: modules/zmk-nice-oled
+
+# Trackpad
+    - name: zmk-module-cirque-trackpad
+      revision: main
+      url: https://github.com/te9no/zmk-module-cirque-trackpad
+      path: modules/zmk-module-cirque-trackpad
+    - name: zmk-driver-iqs9151-rpc
+      remote: te9no
+      revision: main
+      path: modules/zmk-driver-iqs9151-rpc
+    # - name: cirque-input-module
+    #   revision: main
+    #   url: https://github.com/petejohanson/cirque-input-module
+    #   path: modules/cirque-input-module
+
+# Analog input
+    - name: zmk-analog-input-driver
+      url: https://github.com/badjeff/zmk-analog-input-driver
+      revision: main
+      path: modules/zmk-analog-input-driver
+    - name: zmk-module-analoginput-rpc
+      revision: main
+      url: https://github.com/te9no/zmk-module-analoginput-rpc
+      path: modules/zmk-module-analoginput-rpc
+
+# ZMK fix for Analog input driver
+    - name: zmk-module-battery-nrf-vddh-oversampling
+      revision: main
+      url: https://github.com/te9no/zmk-module-battery-nrf-vddh-oversampling
+      path: modules/zmk-module-battery-nrf-vddh-oversampling
+    # - name: zmk-feature-cdc-acm-bootloader-trigger
+    #   revision: main
+    #   url: https://github.com/cormoran/zmk-feature-cdc-acm-bootloader-trigger
+    #   path: modules/zmk-feature-cdc-acm-bootloader-trigger
   self:
     path: config
 
-    
