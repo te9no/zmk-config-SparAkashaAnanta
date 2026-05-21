@@ -1,5 +1,5 @@
 &pinctrl {
-    spi0_default: spi0_default {
+    saa_tb_spi_default: saa_tb_spi_default {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
                     <NRF_PSEL(SPIM_MOSI, 0, 3)>,
@@ -7,7 +7,7 @@
         };
     };
 
-    spi0_sleep: spi0_sleep {
+    saa_tb_spi_sleep: saa_tb_spi_sleep {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
                     <NRF_PSEL(SPIM_MOSI, 0, 3)>,
@@ -27,11 +27,11 @@
     };
 };
 
-&spi0 {
+&spi2 {
     status = "okay";
     compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-0 = <&saa_tb_spi_default>;
+    pinctrl-1 = <&saa_tb_spi_sleep>;
     pinctrl-names = "default", "sleep";
     cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
 
@@ -44,7 +44,6 @@
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
-        disable-burst-read;
     };
 };
 
