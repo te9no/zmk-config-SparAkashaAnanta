@@ -60,6 +60,11 @@ manifest:
       url: https://github.com/cormoran/zmk-module-settings-rpc
       path: modules/zmk-module-settings-rpc
 
+# Module for physical layout
+    - name: zmk-feature-module-physical-layout
+      remote: cormoran
+      revision: main
+
 # Trackball
     - name: zmk-pmw3610-driver
       url: https://github.com/efogdev/zmk-pmw3610-driver

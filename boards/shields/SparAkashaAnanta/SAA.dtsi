@@ -47,96 +47,142 @@
 		transform = <&default_transform>;
 		kscan = <&kscan0>;
 
-      keys  //                     w   h    x    y     rot    rx    ry
-         = <&key_physical_attrs 100 100  149 (-183)    1500   149 (-183)>
-         , <&key_physical_attrs 100 100  252 (-200)    1500   152 (-200)>
-         , <&key_physical_attrs 100 100  454 (-209)    1500   254 (-209)>
-         , <&key_physical_attrs 100 100  358 (-243)    1500    58 (-243)>
-         , <&key_physical_attrs 100 100  566 (-235)    1500   166 (-235)>
-         , <&key_physical_attrs 100 100  671 (-235)    1500   171 (-235)>
-         , <&key_physical_attrs 100 100  987  205 (-1500) (-113)   205>
-         , <&key_physical_attrs 100 100 1090  205 (-1500) (-110)   205>
-         , <&key_physical_attrs 100 100 1190  205 (-1500) (-110)   205>
-         , <&key_physical_attrs 100 100 1293  222 (-1500) (-107)   222>
-         , <&key_physical_attrs 100 100 1396  239 (-1500) (-104)   239>
-         , <&key_physical_attrs 100 100 1499  256 (-1500) (-101)   256>
-         , <&key_physical_attrs 100 100  129 (-69)     500   129 (-169)>
-         , <&key_physical_attrs 100 100  229 (-69)     500   129 (-169)>
-         , <&key_physical_attrs 100 100  428 (-60)     500   228 (-160)>
-         , <&key_physical_attrs 100 100  329 (-78)     500    29 (-178)>
-         , <&key_physical_attrs 100 100  533 (-52)     500   133 (-152)>
-         , <&key_physical_attrs 100 100  636 (-35)     500   136 (-135)>
-         , <&key_physical_attrs 100 100  971  113  (-500) (-129)    13>
-         , <&key_physical_attrs 100 100 1071   96  (-500) (-129)  (-4)>
-         , <&key_physical_attrs 100 100 1168   79  (-500) (-132) (-21)>
-         , <&key_physical_attrs 100 100 1268   79  (-500) (-132) (-21)>
-         , <&key_physical_attrs 100 100 1368   79  (-500) (-132) (-21)>
-         , <&key_physical_attrs 100 100 1468   79  (-500) (-132) (-21)>
-         , <&key_physical_attrs 100 100   94   48  (-500)    94 (-152)>
-         , <&key_physical_attrs 100 100  194   66  (-500)    94 (-134)>
-         , <&key_physical_attrs 100 100  294   83  (-500)    94 (-117)>
-         , <&key_physical_attrs 100 100  394  101  (-500)    94 (-99)>
-         , <&key_physical_attrs 100 100  499  135  (-500)    99 (-65)>
-         , <&key_physical_attrs 100 100  601  170  (-500)   101 (-30)>
-         , <&key_physical_attrs 100 100 1006   22     500 (-94) (-178)>
-         , <&key_physical_attrs 100 100 1106 (-13)     500 (-94) (-213)>
-         , <&key_physical_attrs 100 100 1203 (-48)     500 (-97) (-248)>
-         , <&key_physical_attrs 100 100 1303 (-65)     500 (-97) (-265)>
-         , <&key_physical_attrs 100 100 1403 (-83)     500 (-97) (-283)>
-         , <&key_physical_attrs 100 100 1503 (-100)     500 (-97) (-300)>
-         , <&key_physical_attrs 100 100   45  192 (-1500)    45 (-108)>
-         , <&key_physical_attrs 100 100  142  227 (-1500)    42 (-73)>
-         , <&key_physical_attrs 100 100  251  261 (-1500)    51 (-39)>
-         , <&key_physical_attrs 100 100  525  225       0    50 (-75)>
-         , <&key_physical_attrs 100 100 1075  225       0 (-50) (-75)>
-         , <&key_physical_attrs 100 100 1397 (-179)    1500  (-3) (-479)>
-         , <&key_physical_attrs 100 100 1500 (-214)    1500     0 (-514)>
-         , <&key_physical_attrs 100 100 1603 (-248)    1500     3 (-548)>
-         , <&key_physical_attrs 100 100  625  225       0    50 (-100)>
-         , <&key_physical_attrs  50  50  725  325       0     0     0>
-         , <&key_physical_attrs  50  50  925  325       0     0     0>
-         , <&key_physical_attrs 100 100  975  225       0 (-50) (-100)>
-         , <&key_physical_attrs  50  50  675  375       0     0     0>
-         , <&key_physical_attrs  50  50  725  375       0     0     0>
-         , <&key_physical_attrs  50  50  775  375       0     0     0>
-         , <&key_physical_attrs  50  50  875  375       0     0     0>
-         , <&key_physical_attrs  50  50  925  375       0     0     0>
-         , <&key_physical_attrs  50  50  975  375       0     0     0>
-         , <&key_physical_attrs  50  50  725  425       0     0     0>
-         , <&key_physical_attrs  50  50  925  425       0     0     0>
-         , <&key_physical_attrs 100 100  335  300       0     0     0>
-         , <&key_physical_attrs 100 100 1260  300       0     0     0>
-         ;
-   };
+		keys  //                     w   h    x    y     rot    rx    ry
+			= <&key_physical_attrs 100 100  149 (-183)    1500   149 (-183)>
+			, <&key_physical_attrs 100 100  252 (-200)    1500   152 (-200)>
+			, <&key_physical_attrs 100 100  454 (-209)    1500   254 (-209)>
+			, <&key_physical_attrs 100 100  358 (-243)    1500    58 (-243)>
+			, <&key_physical_attrs 100 100  566 (-235)    1500   166 (-235)>
+			, <&key_physical_attrs 100 100  671 (-235)    1500   171 (-235)>
+			, <&key_physical_attrs 100 100  987  205 (-1500) (-113)   205>
+			, <&key_physical_attrs 100 100 1090  205 (-1500) (-110)   205>
+			, <&key_physical_attrs 100 100 1190  205 (-1500) (-110)   205>
+			, <&key_physical_attrs 100 100 1293  222 (-1500) (-107)   222>
+			, <&key_physical_attrs 100 100 1396  239 (-1500) (-104)   239>
+			, <&key_physical_attrs 100 100 1499  256 (-1500) (-101)   256>
+			, <&key_physical_attrs 100 100  129 (-69)     500   129 (-169)>
+			, <&key_physical_attrs 100 100  229 (-69)     500   129 (-169)>
+			, <&key_physical_attrs 100 100  428 (-60)     500   228 (-160)>
+			, <&key_physical_attrs 100 100  329 (-78)     500    29 (-178)>
+			, <&key_physical_attrs 100 100  533 (-52)     500   133 (-152)>
+			, <&key_physical_attrs 100 100  636 (-35)     500   136 (-135)>
+			, <&key_physical_attrs 100 100  971  113  (-500) (-129)    13>
+			, <&key_physical_attrs 100 100 1071   96  (-500) (-129)  (-4)>
+			, <&key_physical_attrs 100 100 1168   79  (-500) (-132) (-21)>
+			, <&key_physical_attrs 100 100 1268   79  (-500) (-132) (-21)>
+			, <&key_physical_attrs 100 100 1368   79  (-500) (-132) (-21)>
+			, <&key_physical_attrs 100 100 1468   79  (-500) (-132) (-21)>
+			, <&key_physical_attrs 100 100   94   48  (-500)    94 (-152)>
+			, <&key_physical_attrs 100 100  194   66  (-500)    94 (-134)>
+			, <&key_physical_attrs 100 100  294   83  (-500)    94 (-117)>
+			, <&key_physical_attrs 100 100  394  101  (-500)    94 (-99)>
+			, <&key_physical_attrs 100 100  499  135  (-500)    99 (-65)>
+			, <&key_physical_attrs 100 100  601  170  (-500)   101 (-30)>
+			, <&key_physical_attrs 100 100 1006   22     500 (-94) (-178)>
+			, <&key_physical_attrs 100 100 1106 (-13)     500 (-94) (-213)>
+			, <&key_physical_attrs 100 100 1203 (-48)     500 (-97) (-248)>
+			, <&key_physical_attrs 100 100 1303 (-65)     500 (-97) (-265)>
+			, <&key_physical_attrs 100 100 1403 (-83)     500 (-97) (-283)>
+			, <&key_physical_attrs 100 100 1503 (-100)     500 (-97) (-300)>
+			, <&key_physical_attrs 100 100   45  192 (-1500)    45 (-108)>
+			, <&key_physical_attrs 100 100  142  227 (-1500)    42 (-73)>
+			, <&key_physical_attrs 100 100  251  261 (-1500)    51 (-39)>
+			, <&key_physical_attrs 100 100  625  225       0    50 (-75)>
+			, <&key_physical_attrs 100 100  725  225       0    50 (-100)>
+			, <&key_physical_attrs 100 100  875  225       0 (-50) (-100)>
+			, <&key_physical_attrs 100 100  975  225       0 (-50) (-75)>
+			, <&key_physical_attrs 100 100 1397 (-179)    1500  (-3) (-479)>
+			, <&key_physical_attrs 100 100 1500 (-214)    1500     0 (-514)>
+			, <&key_physical_attrs 100 100 1603 (-248)    1500     3 (-548)>
+			, <&key_physical_attrs  50  50  725  325       0     0     0>
+			, <&key_physical_attrs  50  50  925  325       0     0     0>
+			, <&key_physical_attrs  50  50  675  375       0     0     0>
+			, <&key_physical_attrs  50  50  725  375       0     0     0>
+			, <&key_physical_attrs  50  50  775  375       0     0     0>
+			, <&key_physical_attrs  50  50  875  375       0     0     0>
+			, <&key_physical_attrs  50  50  925  375       0     0     0>
+			, <&key_physical_attrs  50  50  975  375       0     0     0>
+			, <&key_physical_attrs  50  50  725  425       0     0     0>
+			, <&key_physical_attrs  50  50  925  425       0     0     0>
+			, <&key_physical_attrs 100 100  335  300       0     0     0>
+			, <&key_physical_attrs 100 100 1260  300       0     0     0>
+			;
+	};
 
-    position_map {
-        compatible = "zmk,physical-layout-position-map";
+	position_map {
+		compatible = "zmk,physical-layout-position-map";
 
-        layout_SAA {
-            physical-layout = <&layout_SAA>;
-            positions = <>;
-        };
-    };
+		layout_SAA {
+			physical-layout = <&layout_SAA>;
+			positions = <>;
+		};
+	};
 
-   aliases {
-      led-red = &led0;
-      led-green = &led1;
-      led-blue = &led2;
-   };
+	analog_stick_layout: analog_stick_layout {
+		compatible = "zmk,physical-layout-custom-module";
+		display-name = "Analog Stick";
+		type = "analog-stick";
+		width = <100>;
+		height = <100>;
+		x = <470>;
+		y = <260>;
+		linked-device-identifiers = "analog_input_0";
+		linked-subsystems = "dya__studio";
+	};
 
-   leds {
-      compatible = "gpio-leds";
-      status = "okay";
-      led0: led_0 {
-        gpios = <&gpio0 26 GPIO_ACTIVE_LOW>;  // red LED, connected to P0.26
-      };
-      led1: led_1 {
-        gpios = <&gpio0 30 GPIO_ACTIVE_LOW>;  // green LED, connected to P0.30
-      };
-      led2: led_2 {
-        gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;  // blue LED, connected to P0.06
-      };
-   };
+	trackball_layout: trackball_layout {
+		compatible = "zmk,physical-layout-trackball";
+		display-name = "Trackball";
+		size = <120>;
+		x = <1100>;
+		y = <260>;
+		linked-device-identifiers = "trackball";
+		linked-subsystems = "zmk__trackball";
+	};
+
+	oled_layout: oled_layout {
+		compatible = "zmk,physical-layout-custom-module";
+		display-name = "OLED";
+		type = "display";
+		width = <70>;
+		height = <220>;
+		x = <750>;
+		y = <0>;
+		linked-device-identifiers = "oled";
+		linked-subsystems = "zmk__display";
+	};
+	
+	oled2_layout: oled2_layout {
+		compatible = "zmk,physical-layout-custom-module";
+		display-name = "OLED";
+		type = "display";
+		width = <70>;
+		height = <220>;
+		x = <880>;
+		y = <0>;
+		linked-device-identifiers = "oled";
+		linked-subsystems = "zmk__display";
+	};
+
+	aliases {
+		led-red = &led0;
+		led-green = &led1;
+		led-blue = &led2;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		status = "okay";
+		led0: led_0 {
+		gpios = <&gpio0 26 GPIO_ACTIVE_LOW>;  // red LED, connected to P0.26
+		};
+		led1: led_1 {
+		gpios = <&gpio0 30 GPIO_ACTIVE_LOW>;  // green LED, connected to P0.30
+		};
+		led2: led_2 {
+		gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;  // blue LED, connected to P0.06
+		};
+	};
 
 
 	animation: animation {
