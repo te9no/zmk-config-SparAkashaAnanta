@@ -3,12 +3,16 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "config/*"
+      - "config/*.keymap"
+      - "config/*.json"
+      - "boards/**/*.dtsi"
+      - "boards/**/*.overlay"
+      - "snippets/**/*.overlay"
       - "keymap-drawer/config.yaml"
+      - ".github/workflows/draw-keymap.yml"
 
 jobs:
   draw-keymap-svg:
-    needs: draw
     uses: te9no/zmk-workspace/.github/workflows/draw-keymap-svg.yml@main
     permissions:
       contents: write
