@@ -1,0 +1,24 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+config ZMK_BEHAVIOR_DEBUG_TOGGLE
+    bool "Debug log toggle behavior"
+    depends on LOG
+    select LOG_RUNTIME_FILTERING
+    help
+      Adds a key behavior that toggles the Zephyr UART/USB CDC log backend at runtime.
+
+config ZMK_BEHAVIOR_DEBUG_TOGGLE_DEFAULT_ON
+    bool "Enable debug logs at boot"
+    depends on ZMK_BEHAVIOR_DEBUG_TOGGLE
+    default n
+    help
+      Keep disabled for lower battery consumption. Enable only when every boot should log.
+
+config ZMK_BEHAVIOR_DEBUG_TOGGLE_LEVEL
+    int "Runtime debug log level when enabled"
+    depends on ZMK_BEHAVIOR_DEBUG_TOGGLE
+    range 0 4
+    default 4
+    help
+      0=off, 1=error, 2=warning, 3=info, 4=debug.

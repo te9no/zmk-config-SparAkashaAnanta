@@ -18,6 +18,14 @@
 		zmk,animation-control = &animation_control;
 	};
 
+	behaviors {
+		dbg_tog: debug_toggle {
+			compatible = "zmk,behavior-debug-toggle";
+			#binding-cells = <0>;
+			display-name = "Debug Toggle";
+		};
+	};
+
 	default_transform: keymap_transform_0 {
 		compatible = "zmk,matrix-transform";
 		columns = <12>;
