@@ -116,9 +116,19 @@ jobs:
             ${{ env.base_dir }}/zephyr/
             ${{ env.base_dir }}/bootloader/
             ${{ env.base_dir }}/zmk/
-          key: ${{ runner.os }}-zmk-${{ hashFiles('config/west.yml', 'build.yaml') }}
+          key: ${{ runner.os }}-west-${{ hashFiles('config/west.yml') }}
           restore-keys: |
-            ${{ runner.os }}-zmk-
+            ${{ runner.os }}-west-
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        continue-on-error: true
+        with:
+          path: .ccache
+          key: ${{ runner.os }}-ccache-${{ github.ref_name }}-${{ hashFiles('config/west.yml', 'build.yaml', 'config/**/*.conf', 'config/**/*.keymap', 'boards/**/*.conf', 'boards/**/*.overlay', 'boards/**/*.dtsi', 'snippets/**/*.conf', 'snippets/**/*.overlay', 'zephyr/module.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-${{ github.ref_name }}-
+            ${{ runner.os }}-ccache-
 
       - name: West init
         working-directory: ${{ env.base_dir }}
@@ -132,6 +142,12 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: west zephyr-export
 
+      - name: Prepare ccache
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/.ccache"
+          ccache -z || true
+          ccache -s || true
+
       - name: West build (${{ env.display_name }})
         working-directory: ${{ env.base_dir }}
         shell: bash
@@ -140,6 +156,10 @@ jobs:
           SHIELD: ${{ matrix.shield }}
           SNIPPET: ${{ matrix.snippet }}
           CMAKE_ARGS: ${{ matrix['cmake-args'] }}
+          CCACHE_DIR: ${{ github.workspace }}/.ccache
+          CCACHE_MAXSIZE: 2G
+          CCACHE_COMPILERCHECK: content
+          CCACHE_IGNOREOPTIONS: --specs=picolibc.specs
         run: |
           set -euo pipefail
 
@@ -168,7 +188,13 @@ jobs:
             -DZMK_CONFIG="$base_dir/config" \
             "${shield_args[@]}" \
             "${zmk_load_args[@]}" \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             ${CMAKE_ARGS:-}
+
+      - name: ccache statistics
+        if: ${{ !cancelled() }}
+        run: ccache -s || true
 
       - name: Kconfig output (${{ env.display_name }})
         if: ${{ !cancelled() }}
