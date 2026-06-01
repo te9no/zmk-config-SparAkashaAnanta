@@ -2,7 +2,7 @@
     status = "okay";
 };
 
-#if defined(CONFIG_SHIELD_SAA_L_Base)
+#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 &left_encoder {
     a-gpios = ENCODER_A_GPIOS;
     b-gpios = ENCODER_B_GPIOS;
@@ -11,7 +11,7 @@
 };
 #endif
 
-#if defined(CONFIG_SHIELD_SAA_R_Base)
+#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 &right_encoder {
     a-gpios = ENCODER_A_GPIOS;
     b-gpios = ENCODER_B_GPIOS;
@@ -60,14 +60,14 @@
     };
 };
 
-#if defined(CONFIG_SHIELD_SAA_L_Base)
+#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 &stick_split {
     status = "okay";
     device = <&anin0>;
 };
 #endif
 
-#if defined(CONFIG_SHIELD_SAA_R_Base)
+#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 / {
     split_inputs {
         #address-cells = <1>;

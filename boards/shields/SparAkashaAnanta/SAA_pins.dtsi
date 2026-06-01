@@ -106,14 +106,14 @@
 #define P1_14_GPIOS(flags) <&gpio1 14 flags>
 #define P1_14_PSEL(fun) NRF_PSEL(fun, 1, 14)
 
-#define OLED_I2C1_SDA P1_14_PSEL(TWIM_SDA)
+#define OLED_I2C0_SDA P1_14_PSEL(TWIM_SDA)
 #define IQS_I2C1_SCL P1_14_PSEL(TWIM_SCL)
 
 /* D10 / P1.15 / MOSI / roles: OLED SCL, IQS IRQ */
 #define P1_15_GPIOS(flags) <&gpio1 15 flags>
 #define P1_15_PSEL(fun) NRF_PSEL(fun, 1, 15)
 
-#define OLED_I2C1_SCL P1_15_PSEL(TWIM_SCL)
+#define OLED_I2C0_SCL P1_15_PSEL(TWIM_SCL)
 #define IQS_IRQ_GPIOS P1_15_GPIOS((GPIO_ACTIVE_LOW | GPIO_PULL_UP))
 
 /* D11 / P0.15 / I2S_SD / roles: Matrix C0 */

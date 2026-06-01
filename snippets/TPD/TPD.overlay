@@ -35,14 +35,14 @@
     };
 };
 
-#if defined(CONFIG_SHIELD_SAA_L_Base)
+#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 &trackpad_split {
     status = "okay";
     device = <&glidepoint>;
 };
 #endif
 
-#if defined(CONFIG_SHIELD_SAA_R_Base)
+#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 / {
     split_inputs {
         #address-cells = <1>;

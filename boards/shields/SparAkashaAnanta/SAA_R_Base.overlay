@@ -4,17 +4,12 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include "SAA.dtsi"
 #include <input/processors/runtime-input-processor.dtsi>
-#include "SAA_pins.dtsi"
 
 &default_transform {
     col-offset = <6>;
 };
 
 / {
-    chosen {
-        zephyr,display = &oled;
-    };
-
     kscan0: kscan0 {
         compatible = "zmk,kscan-composite";
         matrix {
@@ -39,50 +34,6 @@
         columns = <0>;
         rows = <0>;
         events = <0>;
-    };
-};
-
-&pinctrl {
-    i2c1_default: i2c1_default {
-        group1 {
-            psels = <OLED_I2C1_SDA>,
-                    <OLED_I2C1_SCL>;
-            bias-pull-up;
-        };
-    };
-      
-    i2c1_sleep: i2c1_sleep {
-        group1 {
-            psels = <OLED_I2C1_SDA>,
-                    <OLED_I2C1_SCL>;
-            low-power-enable;
-            bias-pull-up;
-        };
-    };
-};
-
-&i2c1 {
-    status = "okay";
-    compatible = "nordic,nrf-twi";
-    pinctrl-0 = <&i2c1_default>;
-    pinctrl-1 = <&i2c1_sleep>;
-    pinctrl-names = "default", "sleep";
-    clock-frequency = <100000>; 
-    
-    oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        width = <128>;
-        height = <32>;
-        segment-offset = <0>;
-        page-offset = <0>;
-        display-offset = <0>;
-        multiplex-ratio = <31>;
-        segment-remap;
-        com-invdir;
-        com-sequential;
-        inversion-on;
-        prechargep = <0x22>;
     };
 };
 
