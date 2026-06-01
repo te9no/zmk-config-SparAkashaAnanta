@@ -9,6 +9,7 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
 #include <behaviors/rgbled_widget.dtsi>
+#include "SAA_pins.dtsi"
 
 / {
 	chosen {
@@ -173,14 +174,17 @@
 	leds {
 		compatible = "gpio-leds";
 		status = "okay";
+
 		led0: led_0 {
-		gpios = <&gpio0 26 GPIO_ACTIVE_LOW>;  // red LED, connected to P0.26
+			gpios = LED_RED_GPIOS;
 		};
+
 		led1: led_1 {
-		gpios = <&gpio0 30 GPIO_ACTIVE_LOW>;  // green LED, connected to P0.30
+			gpios = LED_GREEN_GPIOS;
 		};
+
 		led2: led_2 {
-		gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;  // blue LED, connected to P0.06
+			gpios = LED_BLUE_GPIOS;
 		};
 	};
 
@@ -255,7 +259,7 @@
    
 	led_power:led_power {
 		compatible = "zmk,ext-power-transient";
-		control-gpios = <&gpio0 4 (GPIO_ACTIVE_LOW)>;
+		control-gpios = LED_POWER_GPIOS;
 	};
 
    // Encoders
@@ -275,7 +279,7 @@
    };
 
     vbatt: vbatt {
-        io-channels = <&adc 0>;
+        io-channels = BATTERY_CHANNEL;
         power-gpios; // unset
         output-ohms = <470000>;
         full-ohms = <(1000000 + 470000)>;
@@ -295,13 +299,13 @@
 &pinctrl {
 	spi3_default: spi3_default {
 		group1 {
-			psels = <NRF_PSEL(SPIM_MOSI, 0, 10)>;// D1
+			psels = <LED_STRIP_SPI3_MOSI>;
 		};
 	};
 	
 	spi3_sleep: spi3_sleep {
 		group1 {
-			psels = <NRF_PSEL(SPIM_MOSI, 0, 10)>;
+			psels = <LED_STRIP_SPI3_MOSI>;
 			low-power-enable;
 		};
 	};
@@ -318,15 +322,6 @@
 	led_strip: ws2812@0 {
 		compatible = "worldsemi,ws2812-spi";
 		reg = <0>;
-		// Note: Frequency should be between 2.5MHz to 5MHz
-		// 2.5MHz := 1sec / 0.4us
-		//           where 0.4us is min (T0H max, T0L max, T1H max, T1L max)
-		//                 T0H max = 0.4us, T1H max = 1.0us, T0L,T1L max = 20us
-		// 5MHz := min(1sec / 0.2us, 1sec / 1.2us * 8bit)
-		//           where 0.2us is min (T0H min, T0L min, T1H min, T1L min)
-		//                               T0H min = 0.2us, T1L min = 0.2us, T1H min = 0.58us, T0L min = 0.8us
-		//                 1.2us is T min
-		//                 8bit is because this driver builds 1frame with 8bit (spi-one-frame, spi-zero-frame)
 		spi-max-frequency = <4000000>;// 4MHz = 0.25us
 		
 		chain-length = <4>; /* number of LEDs */

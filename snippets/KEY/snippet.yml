@@ -1,0 +1,3 @@
+name: KEY
+append:
+  EXTRA_DTC_OVERLAY_FILE: KEY.overlay

@@ -1,6 +1,8 @@
+#include "SAA_pins.dtsi"
+
 &right_encoder{
-    a-gpios = <&gpio1 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    b-gpios = <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    a-gpios = ENCODER_A_GPIOS;
+    b-gpios = ENCODER_B_GPIOS;
     steps = <24>;
     status = "okay";
 };

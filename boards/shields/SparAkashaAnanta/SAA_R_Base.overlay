@@ -2,9 +2,9 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include "SAA_pinctrl_R.dtsi"
 #include "SAA.dtsi"
 #include <input/processors/runtime-input-processor.dtsi>
+#include "SAA_pins.dtsi"
 
 &default_transform {
     col-offset = <6>;
@@ -28,14 +28,9 @@
 
     kscan1: kscan1 {
         compatible = "zmk,kscan-gpio-charlieplex";
-        interrupt-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH)>;
+        interrupt-gpios = R_MATRIX_INTERRUPT_GPIOS;
         gpios
-            = <&gpio0 15 (GPIO_ACTIVE_HIGH)>
-            , <&gpio0 19 (GPIO_ACTIVE_HIGH)>
-            , <&gpio1  1 (GPIO_ACTIVE_HIGH)>
-            , <&gpio0  9 (GPIO_ACTIVE_HIGH)>
-            , <&gpio1 11 (GPIO_ACTIVE_HIGH)>
-            , <&gpio0  5 (GPIO_ACTIVE_HIGH)>
+            = R_MATRIX_GPIOS
             ;
     };
     
@@ -44,6 +39,25 @@
         columns = <0>;
         rows = <0>;
         events = <0>;
+    };
+};
+
+&pinctrl {
+    i2c1_default: i2c1_default {
+        group1 {
+            psels = <OLED_I2C1_SDA>,
+                    <OLED_I2C1_SCL>;
+            bias-pull-up;
+        };
+    };
+      
+    i2c1_sleep: i2c1_sleep {
+        group1 {
+            psels = <OLED_I2C1_SDA>,
+                    <OLED_I2C1_SCL>;
+            low-power-enable;
+            bias-pull-up;
+        };
     };
 };
 

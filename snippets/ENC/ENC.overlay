@@ -1,0 +1,21 @@
+#if defined(CONFIG_SHIELD_SAA_L_Base)
+&left_encoder {
+    a-gpios = ENCODER_A_GPIOS;
+    b-gpios = ENCODER_B_GPIOS;
+    steps = <24>;
+    status = "okay";
+};
+#endif
+
+#if defined(CONFIG_SHIELD_SAA_R_Base)
+&right_encoder {
+    a-gpios = ENCODER_A_GPIOS;
+    b-gpios = ENCODER_B_GPIOS;
+    steps = <24>;
+    status = "okay";
+};
+#endif
+
+&sensors {
+   triggers-per-rotation = <10>;
+};

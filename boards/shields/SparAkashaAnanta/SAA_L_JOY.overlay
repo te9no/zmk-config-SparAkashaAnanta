@@ -2,14 +2,15 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <dt-bindings/zmk/keys.h>
+#include "SAA_pins.dtsi"
 
 &adc {
 	status = "okay";
 };
 
 &left_encoder {
-    a-gpios = <&gpio1 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    b-gpios = <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    a-gpios = ENCODER_A_GPIOS;
+    b-gpios = ENCODER_B_GPIOS;
     steps = <3>;
     status = "okay";
 };
@@ -24,7 +25,7 @@
         sampling-hz = <100>;
         report-interval-ms = <8>;
         x-ch {
-            io-channels = <&adc 1>;
+            io-channels = ANALOG_X_CHANNEL;
             mv-mid = <1600>;
             mv-min-max = <1600>;
             mv-deadzone = <88>;
@@ -38,7 +39,7 @@
             input-code = <INPUT_REL_X>;
         };
         y-ch {
-            io-channels = <&adc 4>;
+            io-channels = ANALOG_Y_CHANNEL;
             mv-mid = <1600>;
             mv-min-max = <1600>;
             mv-deadzone = <88>;

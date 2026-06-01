@@ -1,0 +1,4 @@
+name: TPD
+append:
+  EXTRA_DTC_OVERLAY_FILE: TPD.overlay
+  EXTRA_CONF_FILE: TPD.conf

@@ -1,0 +1,84 @@
+&adc {
+    status = "okay";
+};
+
+#if defined(CONFIG_SHIELD_SAA_L_Base)
+&left_encoder {
+    a-gpios = ENCODER_A_GPIOS;
+    b-gpios = ENCODER_B_GPIOS;
+    steps = <3>;
+    status = "okay";
+};
+#endif
+
+#if defined(CONFIG_SHIELD_SAA_R_Base)
+&right_encoder {
+    a-gpios = ENCODER_A_GPIOS;
+    b-gpios = ENCODER_B_GPIOS;
+    steps = <3>;
+    status = "okay";
+};
+#endif
+
+&sensors {
+    triggers-per-rotation = <1>;
+};
+
+/ {
+    anin0: analog_input_0 {
+        compatible = "dya,analog-input";
+        sampling-hz = <100>;
+        report-interval-ms = <8>;
+        x-ch {
+            io-channels = ANALOG_X_CHANNEL;
+            mv-mid = <1600>;
+            mv-min-max = <1600>;
+            mv-deadzone = <88>;
+            scale-multiplier = <1>;
+            scale-divisor = <1>;
+            invert;
+            output-min = <0>;
+            output-max = <24>;
+            response-curve = <2>;
+            evt-type = <INPUT_EV_REL>;
+            input-code = <INPUT_REL_X>;
+        };
+        y-ch {
+            io-channels = ANALOG_Y_CHANNEL;
+            mv-mid = <1600>;
+            mv-min-max = <1600>;
+            mv-deadzone = <88>;
+            scale-multiplier = <1>;
+            scale-divisor = <1>;
+            invert;
+            output-min = <0>;
+            output-max = <24>;
+            response-curve = <2>;
+            evt-type = <INPUT_EV_REL>;
+            input-code = <INPUT_REL_Y>;
+        };
+    };
+};
+
+#if defined(CONFIG_SHIELD_SAA_L_Base)
+&stick_split {
+    status = "okay";
+    device = <&anin0>;
+};
+#endif
+
+#if defined(CONFIG_SHIELD_SAA_R_Base)
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        stick_split: stick_split@2 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            device = <&anin0>;
+            reg = <2>;
+        };
+    };
+};
+#endif

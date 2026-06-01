@@ -22,7 +22,7 @@ manifest:
 # LED Animation
     - name: zmk-driver-animation
       url: https://github.com/cormoran/zmk-driver-animation
-      revision: main
+      revision: zmk-v0.3.0.0
       path: modules/zmk-driver-animation
 
     - name: zmk-driver-ext-power-transient
@@ -44,7 +44,7 @@ manifest:
 
 # DYA Studio Runtime Processors
     - name: zmk-module-runtime-input-processor
-      revision: main
+      revision: zmk-v0.3.0.0
       url: https://github.com/cormoran/zmk-module-runtime-input-processor
       path: modules/zmk-module-runtime-input-processor
     - name: zmk-behavior-runtime-sensor-rotate
@@ -52,7 +52,7 @@ manifest:
       url: https://github.com/cormoran/zmk-behavior-runtime-sensor-rotate
       path: modules/zmk-behavior-runtime-sensor-rotate
     - name: zmk-module-ble-management
-      revision: main
+      revision: zmk-v0.3.0.0
       url: https://github.com/cormoran/zmk-module-ble-management
       path: modules/zmk-module-ble-management
     - name: zmk-module-settings-rpc

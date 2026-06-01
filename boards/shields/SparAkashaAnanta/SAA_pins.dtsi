@@ -1,0 +1,210 @@
+#ifndef XIAO_PLUS_PINS_DTSI
+#define XIAO_PLUS_PINS_DTSI
+
+/*
+ * Central pin assignment table.
+ *
+ * Seeed Studio XIAO nRF52840 Plus connector order:
+ *   D0   P0.02  A0/AIN0
+ *   D1   P0.03  A1/AIN1
+ *   D2   P0.28  A2/AIN4
+ *   D3   P0.29  A3/AIN5
+ *   D4   P0.04  A4/AIN2
+ *   D5   P0.05  A5/AIN3
+ *   D6   P1.11  TX
+ *   D7   P1.12  RX
+ *   D8   P1.13  SCK
+ *   D9   P1.14  MISO
+ *   D10  P1.15  MOSI
+ *   D11  P0.15  I2S_SD
+ *   D12  P0.19  I2S_SCK
+ *   D13  P1.01  I2S_WS
+ *   D14  P0.09  RX1/NFC1
+ *   D15  P0.10  TX1/NFC2
+ *   D16  P0.31  BAT/AIN7
+ *   D17  P1.03  SCK1
+ *   D18  P1.05  MISO1
+ *   D19  P1.07  MOSI1
+ */
+
+/* -------------------------------------------------------------------------- */
+/* XIAO connector pins                                                        */
+/* -------------------------------------------------------------------------- */
+
+/* D0 / P0.02 / A0 / AIN0 / roles: Battery sense */
+#define P0_02_GPIOS(flags) <&gpio0 2 flags>
+#define P0_02_PSEL(fun) NRF_PSEL(fun, 0, 2)
+#define XIAO_D0_ADC_CHANNEL <&adc 0>
+
+#define BATTERY_CHANNEL XIAO_D0_ADC_CHANNEL
+
+/* D1 / P0.03 / A1 / AIN1 / roles: JOY X, TB SDIO, TPD SDA */
+#define P0_03_GPIOS(flags) <&gpio0 3 flags>
+#define P0_03_PSEL(fun) NRF_PSEL(fun, 0, 3)
+#define XIAO_D1_ADC_CHANNEL <&adc 1>
+
+#define ANALOG_X_CHANNEL XIAO_D1_ADC_CHANNEL
+#define TB_SPI_MISO P0_03_PSEL(SPIM_MISO)
+#define TB_SPI_MOSI P0_03_PSEL(SPIM_MOSI)
+#define TPD_I2C2_SDA P0_03_PSEL(TWIM_SDA)
+
+/* D2 / P0.28 / A2 / AIN4 / roles: JOY Y, IQS SDA, TB IRQ, TPD SCL */
+#define P0_28_GPIOS(flags) <&gpio0 28 flags>
+#define P0_28_PSEL(fun) NRF_PSEL(fun, 0, 28)
+#define XIAO_D2_ADC_CHANNEL <&adc 4>
+
+#define ANALOG_Y_CHANNEL XIAO_D2_ADC_CHANNEL
+#define TB_IRQ_GPIOS P0_28_GPIOS((GPIO_ACTIVE_LOW | GPIO_PULL_UP))
+#define TPD_I2C2_SCL P0_28_PSEL(TWIM_SCL)
+
+/* D3 / P0.29 / A3 / AIN5 / roles: Matrix C5 */
+#define P0_29_GPIOS(flags) <&gpio0 29 flags>
+#define P0_29_PSEL(fun) NRF_PSEL(fun, 0, 29)
+#define XIAO_D3_ADC_CHANNEL <&adc 5>
+
+#define MATRIX_INTERRUPT_GPIOS P0_29_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D4 / P0.04 / A4 / AIN2 */
+#define P0_04_GPIOS(flags) <&gpio0 4 flags>
+#define P0_04_PSEL(fun) NRF_PSEL(fun, 0, 4)
+#define XIAO_D4_ADC_CHANNEL <&adc 2>
+
+#define LED_POWER_GPIOS P0_04_GPIOS((GPIO_ACTIVE_LOW))
+
+/* D5 / P0.05 / A5 / AIN3 */
+#define P0_05_GPIOS(flags) <&gpio0 5 flags>
+#define P0_05_PSEL(fun) NRF_PSEL(fun, 0, 5)
+#define XIAO_D5_ADC_CHANNEL <&adc 3>
+
+#define MATRIX_COL_5_GPIOS P0_05_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D6 / P1.11 / TX / roles: Matrix IRQ */
+#define P1_11_GPIOS(flags) <&gpio1 11 flags>
+#define P1_11_PSEL(fun) NRF_PSEL(fun, 1, 11)
+
+#define MATRIX_COL_4_GPIOS P1_11_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D7 / P1.12 / RX / roles: ENC A, KEY direct, TB CS */
+#define P1_12_GPIOS(flags) <&gpio1 12 flags>
+#define P1_12_PSEL(fun) NRF_PSEL(fun, 1, 12)
+#define XIAO_D7_GPIOS(flags) <&xiao_d 7 flags>
+
+#define DIRECT_KEY_GPIOS P1_12_GPIOS((GPIO_ACTIVE_LOW | GPIO_PULL_UP))
+#define ENCODER_A_GPIOS P1_12_GPIOS((GPIO_ACTIVE_HIGH | GPIO_PULL_UP))
+#define TB_CS_GPIOS XIAO_D7_GPIOS(GPIO_ACTIVE_LOW)
+
+/* D8 / P1.13 / SCK / roles: ENC B, TB SCK, TPD DR */
+#define P1_13_GPIOS(flags) <&gpio1 13 flags>
+#define P1_13_PSEL(fun) NRF_PSEL(fun, 1, 13)
+#define XIAO_D8_GPIOS(flags) <&xiao_d 8 flags>
+
+#define ENCODER_B_GPIOS P1_13_GPIOS((GPIO_ACTIVE_HIGH | GPIO_PULL_UP))
+#define TB_SPI_SCK P1_13_PSEL(SPIM_SCK)
+#define TPD_DR_GPIOS XIAO_D8_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D9 / P1.14 / MISO / roles: OLED SDA, IQS SCL */
+#define P1_14_GPIOS(flags) <&gpio1 14 flags>
+#define P1_14_PSEL(fun) NRF_PSEL(fun, 1, 14)
+
+#define OLED_I2C1_SDA P1_14_PSEL(TWIM_SDA)
+#define IQS_I2C1_SCL P1_14_PSEL(TWIM_SCL)
+
+/* D10 / P1.15 / MOSI / roles: OLED SCL, IQS IRQ */
+#define P1_15_GPIOS(flags) <&gpio1 15 flags>
+#define P1_15_PSEL(fun) NRF_PSEL(fun, 1, 15)
+
+#define OLED_I2C1_SCL P1_15_PSEL(TWIM_SCL)
+#define IQS_IRQ_GPIOS P1_15_GPIOS((GPIO_ACTIVE_LOW | GPIO_PULL_UP))
+
+/* D11 / P0.15 / I2S_SD / roles: Matrix C0 */
+#define P0_15_GPIOS(flags) <&gpio0 15 flags>
+#define P0_15_PSEL(fun) NRF_PSEL(fun, 0, 15)
+
+#define MATRIX_COL_0_GPIOS P0_15_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D12 / P0.19 / I2S_SCK / roles: Matrix C2 */
+#define P0_19_GPIOS(flags) <&gpio0 19 flags>
+#define P0_19_PSEL(fun) NRF_PSEL(fun, 0, 19)
+
+#define MATRIX_COL_1_GPIOS P0_19_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D13 / P1.01 / I2S_WS / roles: Matrix C4 */
+#define P1_01_GPIOS(flags) <&gpio1 1 flags>
+#define P1_01_PSEL(fun) NRF_PSEL(fun, 1, 1)
+
+#define MATRIX_COL_2_GPIOS P1_01_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D14 / P0.09 / RX1 / NFC1 / roles: Matrix C1 */
+#define P0_09_GPIOS(flags) <&gpio0 9 flags>
+#define P0_09_PSEL(fun) NRF_PSEL(fun, 0, 9)
+
+#define MATRIX_COL_3_GPIOS P0_09_GPIOS((GPIO_ACTIVE_HIGH))
+
+/* D15 / P0.10 / TX1 / NFC2 / roles: Matrix C3 */
+#define P0_10_GPIOS(flags) <&gpio0 10 flags>
+#define P0_10_PSEL(fun) NRF_PSEL(fun, 0, 10)
+
+#define LED_STRIP_SPI3_MOSI P0_10_PSEL(SPIM_MOSI)
+
+/* D16 / P0.31 / BAT / AIN7 / roles: LED_EN */
+#define P0_31_GPIOS(flags) <&gpio0 31 flags>
+#define P0_31_PSEL(fun) NRF_PSEL(fun, 0, 31)
+#define XIAO_D16_ADC_CHANNEL <&adc 7>
+
+/* D17 / P1.03 / SCK1 / roles: IQS SDA */
+#define P1_03_GPIOS(flags) <&gpio1 3 flags>
+#define P1_03_PSEL(fun) NRF_PSEL(fun, 1, 3)
+
+#define IQS_I2C1_SDA P1_03_PSEL(TWIM_SDA)	
+
+/* D18 / P1.05 / MISO1 */
+#define P1_05_GPIOS(flags) <&gpio1 5 flags>
+#define P1_05_PSEL(fun) NRF_PSEL(fun, 1, 5)
+
+/* D19 / P1.07 / MOSI1 */
+#define P1_07_GPIOS(flags) <&gpio1 7 flags>
+#define P1_07_PSEL(fun) NRF_PSEL(fun, 1, 7)
+
+/* -------------------------------------------------------------------------- */
+/* Other nRF52840 pins                                                        */
+/* -------------------------------------------------------------------------- */
+
+/* P0.06 */
+#define P0_06_GPIOS(flags) <&gpio0 6 flags>
+
+#define LED_BLUE_GPIOS P0_06_GPIOS(GPIO_ACTIVE_LOW)
+
+/* P0.26 */
+#define P0_26_GPIOS(flags) <&gpio0 26 flags>
+
+#define LED_RED_GPIOS P0_26_GPIOS(GPIO_ACTIVE_LOW)
+
+/* P0.30 */
+#define P0_30_GPIOS(flags) <&gpio0 30 flags>
+
+#define LED_GREEN_GPIOS P0_30_GPIOS(GPIO_ACTIVE_LOW)
+
+/* -------------------------------------------------------------------------- */
+/* Aggregate aliases                                                          */
+/* -------------------------------------------------------------------------- */
+
+#define L_MATRIX_INTERRUPT_GPIOS MATRIX_INTERRUPT_GPIOS
+#define R_MATRIX_INTERRUPT_GPIOS MATRIX_INTERRUPT_GPIOS
+
+#define L_MATRIX_GPIOS \
+	MATRIX_COL_0_GPIOS, \
+	MATRIX_COL_1_GPIOS, \
+	MATRIX_COL_2_GPIOS, \
+	MATRIX_COL_3_GPIOS, \
+	MATRIX_COL_4_GPIOS, \
+	MATRIX_COL_5_GPIOS
+
+#define R_MATRIX_GPIOS \
+	MATRIX_COL_0_GPIOS, \
+	MATRIX_COL_1_GPIOS, \
+	MATRIX_COL_2_GPIOS, \
+	MATRIX_COL_3_GPIOS, \
+	MATRIX_COL_4_GPIOS, \
+	MATRIX_COL_5_GPIOS
+
+#endif /* XIAO_PLUS_PINS_DTSI */

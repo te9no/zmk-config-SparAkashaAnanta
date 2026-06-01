@@ -1,17 +1,19 @@
+#include "SAA_pins.dtsi"
+
 &pinctrl {
     saa_tb_spi_default: saa_tb_spi_default {
         group1 {
-            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
-                    <NRF_PSEL(SPIM_MOSI, 0, 3)>,
-                    <NRF_PSEL(SPIM_MISO, 0, 3)>;
+            psels = <TB_SPI_SCK>,
+                    <TB_SPI_MOSI>,
+                    <TB_SPI_MISO>;
         };
     };
 
     saa_tb_spi_sleep: saa_tb_spi_sleep {
         group1 {
-            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
-                    <NRF_PSEL(SPIM_MOSI, 0, 3)>,
-                    <NRF_PSEL(SPIM_MISO, 0, 3)>;
+            psels = <TB_SPI_SCK>,
+                    <TB_SPI_MOSI>,
+                    <TB_SPI_MISO>;
             low-power-enable;
         };
     };
@@ -45,14 +47,14 @@
     pinctrl-0 = <&saa_tb_spi_default>;
     pinctrl-1 = <&saa_tb_spi_sleep>;
     pinctrl-names = "default", "sleep";
-    cs-gpios =  <&xiao_d 7 GPIO_ACTIVE_LOW>;
+    cs-gpios = TB_CS_GPIOS;
 
     trackball: pd@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 28 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        irq-gpios = TB_IRQ_GPIOS;
         cpi = <800>;
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
