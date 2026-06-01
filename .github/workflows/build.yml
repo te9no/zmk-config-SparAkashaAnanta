@@ -56,11 +56,70 @@ jobs:
           echo "Selected ${count} build target(s)."
           printf '%s' "$matrix_json" | ruby -rjson -e 'JSON.parse(STDIN.read).fetch("include", []).each { |t| puts "- #{t["artifact-name"] || [t["shield"], t["board"]].compact.join("-")}" }'
 
-  build:
+  prepare-west:
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:stable
     needs: matrix
+    if: needs.matrix.outputs.has_targets == 'true'
+    name: Prepare west workspace
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare variables
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f zephyr/module.yml ]; then
+            base_dir="$GITHUB_WORKSPACE/.west-workspace"
+            rm -rf "$base_dir/config"
+            mkdir -p "$base_dir/config"
+            cp -R config/. "$base_dir/config/"
+          else
+            base_dir="$GITHUB_WORKSPACE"
+          fi
+
+          echo "base_dir=${base_dir}" >> "$GITHUB_ENV"
+
+      - name: Restore west workspace cache
+        id: west-cache
+        uses: actions/cache@v4
+        continue-on-error: true
+        with:
+          path: |
+            ${{ env.base_dir }}/.west/
+            ${{ env.base_dir }}/modules/
+            ${{ env.base_dir }}/tools/
+            ${{ env.base_dir }}/zephyr/
+            ${{ env.base_dir }}/bootloader/
+            ${{ env.base_dir }}/zmk/
+          key: ${{ runner.os }}-west-${{ hashFiles('config/west.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-west-
+
+      - name: West init
+        working-directory: ${{ env.base_dir }}
+        run: |
+          if [ ! -d .west ]; then
+            west init -l "${{ env.base_dir }}/config"
+          fi
+
+      - name: West update
+        working-directory: ${{ env.base_dir }}
+        run: west update --fetch-opt=--filter=tree:0
+
+      - name: West Zephyr export
+        working-directory: ${{ env.base_dir }}
+        run: west zephyr-export
+
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    needs:
+      - matrix
+      - prepare-west
     if: needs.matrix.outputs.has_targets == 'true'
     name: Build ${{ matrix['artifact-name'] || matrix.shield || matrix.board }}
     strategy:
@@ -85,9 +144,10 @@ jobs:
           set -euo pipefail
 
           if [ -f zephyr/module.yml ]; then
-            base_dir="${TMPDIR:-/tmp}/zmk-config"
+            base_dir="$GITHUB_WORKSPACE/.west-workspace"
+            rm -rf "$base_dir/config"
             mkdir -p "$base_dir/config"
-            cp -R config/* "$base_dir/config/"
+            cp -R config/. "$base_dir/config/"
             zmk_load_arg="-DZMK_EXTRA_MODULES=${GITHUB_WORKSPACE}"
           else
             base_dir="$GITHUB_WORKSPACE"
@@ -111,6 +171,7 @@ jobs:
         continue-on-error: true
         with:
           path: |
+            ${{ env.base_dir }}/.west/
             ${{ env.base_dir }}/modules/
             ${{ env.base_dir }}/tools/
             ${{ env.base_dir }}/zephyr/
@@ -132,7 +193,10 @@ jobs:
 
       - name: West init
         working-directory: ${{ env.base_dir }}
-        run: west init -l "${{ env.base_dir }}/config"
+        run: |
+          if [ ! -d .west ]; then
+            west init -l "${{ env.base_dir }}/config"
+          fi
 
       - name: West update
         working-directory: ${{ env.base_dir }}
