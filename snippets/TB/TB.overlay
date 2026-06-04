@@ -17,6 +17,10 @@
     };
 };
 
+&saa_module_detector {
+    expected-module = "POINTING";
+};
+
 &spi2 {
     status = "okay";
     compatible = "nordic,nrf-spim";

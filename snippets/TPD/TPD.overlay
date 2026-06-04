@@ -1,3 +1,7 @@
+&saa_module_detector {
+    expected-module = "POINTING";
+};
+
 &i2c2 {
     status = "okay";
     compatible = "nordic,nrf-twi";

@@ -32,6 +32,13 @@
 		sensors = <&left_encoder &right_encoder>;
 	};
 
+	saa_module_detector: module_detector {
+		compatible = "saa,module-detector";
+		status = "okay";
+		id-gpios = MODULE_ID0_GPIOS, MODULE_ID1_GPIOS;
+		module-names = "KEY", "ENC", "JOY", "POINTING";
+	};
+
 	vbatt: vbatt {
 		io-channels = BATTERY_CHANNEL;
 		power-gpios; // unset

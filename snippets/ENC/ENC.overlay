@@ -16,6 +16,10 @@
 };
 #endif
 
+&saa_module_detector {
+    expected-module = "ENC";
+};
+
 &sensors {
    triggers-per-rotation = <10>;
 };

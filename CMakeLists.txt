@@ -1,0 +1,3 @@
+zephyr_library()
+
+zephyr_library_sources_ifdef(CONFIG_SAA_MODULE_AUTODETECT src/saa_module_autodetect.c)

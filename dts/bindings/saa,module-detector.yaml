@@ -1,0 +1,18 @@
+description: SparAkashaAnanta module ID strap detector
+
+compatible: "saa,module-detector"
+
+properties:
+  id-gpios:
+    type: phandle-array
+    required: true
+    description: GPIO pins used as little-endian module ID bits.
+
+  module-names:
+    type: string-array
+    required: true
+    description: Names indexed by the detected module ID value.
+
+  expected-module:
+    type: string
+    description: Module class expected by the selected firmware snippet.

@@ -1,0 +1,21 @@
+menuconfig SAA_MODULE_AUTODETECT
+	bool "SparAkashaAnanta module auto detection"
+	default y
+	depends on DT_HAS_SAA_MODULE_DETECTOR_ENABLED
+	select GPIO
+	help
+	  Read SparAkashaAnanta module ID strap pins at boot and report the
+	  detected module class. This does not dynamically rewrite devicetree;
+	  it verifies that the flashed firmware matches the attached module.
+
+if SAA_MODULE_AUTODETECT
+
+config SAA_MODULE_AUTODETECT_INIT_PRIORITY
+	int "SparAkashaAnanta module auto detection init priority"
+	default 90
+
+module = SAA_MODULE_AUTODETECT
+module-str = saa_module_autodetect
+source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
+
+endif
