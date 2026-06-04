@@ -183,7 +183,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 ## Known Constraints
 
 - `config/west.yml` pins the Zephyr deferred-init revision on `te9no/zephyr`.
-- `config/west.yml` also references `te9no/zmk-input-module` on `main`; CI requires that standalone module repository/branch to exist.
+- `config/west.yml` also references `te9no/zmk-input-module` on `master`; CI requires that standalone module repository/branch to exist.
 - `build.yaml` is unified-firmware-only. `ModuleMux` is the supported path for normal SAA firmware.
 - `devices` are currently wired for `KEY`, `ENC`, `JOY`, `TB`, and `TPD` through the `ModuleMux` snippet. IQS is included with the unified firmware and remains independent from the mutually-exclusive base module profiles.
 - First boot initializes the `KEY` candidate by default. A non-key module can be selected through the behavior and then restored on the next boot, but the hardware behavior of that first boot still needs validation.
