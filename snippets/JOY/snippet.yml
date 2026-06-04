@@ -1,4 +1,0 @@
-name: JOY
-append:
-  EXTRA_DTC_OVERLAY_FILE: JOY.overlay
-  EXTRA_CONF_FILE: JOY.conf

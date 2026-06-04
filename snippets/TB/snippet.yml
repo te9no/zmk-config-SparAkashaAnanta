@@ -1,4 +1,0 @@
-name: TB
-append:
-  EXTRA_DTC_OVERLAY_FILE: TB.overlay
-  EXTRA_CONF_FILE: TB.conf

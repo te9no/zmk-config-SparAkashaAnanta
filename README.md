@@ -99,7 +99,7 @@ IQS is treated as an optional module that can coexist with every base profile. S
 
 The `ModuleMux` snippet is now the normal build path. `build.yaml` produces `SAA_L_UNIFIED` and `SAA_R_UNIFIED`, both with IQS included and `KEY` / `ENC` / `JOY` / `TB` / `TPD` wired as deferred candidates. On first boot, the unified firmware defaults to `KEY`; after the user selects another profile, the saved value is loaded early on the next boot before ZMK keymap, sensor, and physical layout initialization. Encoder candidates are routed through a sensor proxy so `ENC` and `JOY` can keep separate encoder step settings. `TPD` uses a deferred `gpio-i2c` bus in the unified path because XIAO nRF52840 does not provide `i2c2`.
 
-Legacy per-module builds are kept in `build.diagnostics.yaml` for comparison and debugging.
+Legacy per-module builds have been removed. `build.yaml` now treats `ModuleMux` as the only normal firmware path.
 
 ## Etymology | 語源
 The name "SparAkashaAnanta" encompasses multiple layered meanings, derived from the sacred dissolution and integration of developer knowledge in the deep layers:
