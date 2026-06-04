@@ -2,9 +2,9 @@
 
 SparAkashaAnanta does not have module ID pins. Because of that, firmware cannot reliably identify every attached module by itself.
 
-This repository provides a user-selected module profile instead. The reusable `zmk,input-module-mux` module stores the selected profile in Zephyr settings, and the value is restored on the next boot.
+This repository provides a user-selected module profile instead. The standalone `zmk-input-module` module stores the selected profile in Zephyr settings through `zmk,input-module-mux`, and the value is restored on the next boot.
 
-The implementation is intentionally not tied to SparAkashaAnanta. SAA provides the profile IDs, keymap binding, and `settings-key`; the reusable part is the `zmk,input-module-*` behavior, mux, capability flags, and public API.
+The reusable implementation is intentionally not tied to SparAkashaAnanta. SAA provides the profile IDs, candidate overlays, keymap binding, and `settings-key`; `zmk-input-module` provides the `zmk,input-module-*` behavior, mux, capability flags, proxies, and public API.
 
 ## Reusable Model
 
@@ -87,7 +87,7 @@ This does not dynamically switch Devicetree nodes from `disabled` to `okay`. ZMK
 
 The saved profile is intended as runtime state for future filtering, UI display, diagnostics, or driver gating where the hardware definition allows it. The mux loads its settings subtree at `CONFIG_ZMK_INPUT_MODULE_SETTINGS_INIT_PRIORITY` before ZMK's normal `CONFIG_APPLICATION_INIT_PRIORITY` app initializers, then calls `device_init()` for the selected candidate devices. This can make deferred `okay` devices available before ZMK keymap, sensor, and physical layout setup, but it still cannot rewrite Devicetree or enable nodes that were not compiled into the firmware.
 
-The current implementation is a generic mechanism living in this repository. The next cleanup step is moving it into a standalone ZMK module so SAA, GeaconPolaris, and future keyboards can consume the same implementation without copying source files.
+The generic implementation now lives in the standalone `zmk-input-module` ZMK module. SAA consumes it through `config/west.yml`, while keyboard-specific profile IDs, default profile, candidate overlays, and `settings-key` remain in this repository.
 
 `config/west.yml` pins Zephyr to `te9no/zephyr` revision `af6fff80212a92f56c6ca9a3a339ab4957a85334`. That revision provides `zephyr,deferred-init`, `device_init()`, and the DTS validation support needed for non-base ZMK bindings.
 
@@ -183,6 +183,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 ## Known Constraints
 
 - `config/west.yml` pins the Zephyr deferred-init revision on `te9no/zephyr`.
+- `config/west.yml` also references `te9no/zmk-input-module` on `main`; CI requires that standalone module repository/branch to exist.
 - `build.yaml` is unified-firmware-only. `ModuleMux` is the supported path for normal SAA firmware.
 - `devices` are currently wired for `KEY`, `ENC`, `JOY`, `TB`, and `TPD` through the `ModuleMux` snippet. IQS is included with the unified firmware and remains independent from the mutually-exclusive base module profiles.
 - First boot initializes the `KEY` candidate by default. A non-key module can be selected through the behavior and then restored on the next boot, but the hardware behavior of that first boot still needs validation.
@@ -283,8 +284,10 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 
 - 済: 再利用部分を SAA 専用名ではなく `zmk,input-module-*` 系の汎用名で実装。
 - 済: SAA 固有の profile ID は `dt-bindings/saa/module_select.h` に隔離。
-- 残: `src`、`dts/bindings`、`include/zmk` の input-module 関連を standalone な ZMK module として切り出す。
-- 残: 各キーボード固有の profile ID、default profile、`settings-key` は各 config 側に残す。
+- 済: `src`、`dts/bindings`、`include/zmk` の input-module 関連を standalone な `zmk-input-module` として切り出す。
+- 済: SAA は `config/west.yml` から `zmk-input-module` を参照し、汎用実装を config repo から削除。
+- 済: 各キーボード固有の profile ID、default profile、candidate overlay、`settings-key` は各 config 側に残す。
+- 残: standalone `zmk-input-module` を remote に公開し、CI から取得できる状態にする。
 - 残: GeaconPolaris や将来の modular input keyboard でも同じ module を再利用できるようにする。
 - 方針: Zephyr deferred-init patch は `te9no/zephyr` fork で維持する。現時点では upstream 提案しない。
 
@@ -299,5 +302,6 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 
 ## 次にやること
 
-1. 実機検証を `KEY`、`ENC`、`JOY`、`TB`、`TPD` の順で進める。
-2. SAA の実機検証後、汎用 `zmk,input-module-*` 部分を standalone module として切り出す。
+1. standalone `zmk-input-module` を remote に公開し、SAA の CI が `west update` で取得できることを確認する。
+2. 実機検証を `KEY`、`ENC`、`JOY`、`TB`、`TPD` の順で進める。
+3. GeaconPolaris など、他の modular input keyboard へ `zmk-input-module` を適用できる形に整理する。

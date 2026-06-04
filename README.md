@@ -83,7 +83,7 @@ Thrives in deep, collaborative environments, particularly abyssal technical conv
 ## Runtime Module Profile Selection | 実行時モジュールプロファイル選択
 SparAkashaAnanta has no hardware module ID pins. Instead of pretending that the firmware can auto-detect every module, this repository uses a user-selected module profile stored in Zephyr settings.
 
-The reusable part is implemented as `zmk,input-module-mux` and `zmk,behavior-input-module-select`. SAA only provides the profile IDs, keymap bindings, and the `saa/module` settings namespace.
+The reusable part is provided by the standalone `zmk-input-module` ZMK module through `config/west.yml`. SAA only provides the profile IDs, candidate overlays, keymap bindings, and the `saa/module` settings namespace.
 
 スパラカシャ・アナンタには、装着モジュールを識別する専用IDピンがありません。そのため、ファームウェアが完全な自動判別を行うのではなく、ユーザーが選択したモジュールプロファイルをZephyr settingsへ保存し、次回起動時にその前提で起動する構成を取ります。
 

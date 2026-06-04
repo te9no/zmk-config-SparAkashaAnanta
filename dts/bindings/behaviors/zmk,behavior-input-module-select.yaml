@@ -1,5 +1,0 @@
-description: Runtime input module profile selection behavior
-
-compatible: "zmk,behavior-input-module-select"
-
-include: one_param.yaml
