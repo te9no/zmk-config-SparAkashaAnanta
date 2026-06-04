@@ -12,10 +12,10 @@ if SAA_MODULE_SELECT
 config SAA_MODULE_SELECT_DEFAULT
 	int "Default SparAkashaAnanta module profile"
 	default 0
-	range 0 6
+	range 0 5
 	help
 	  Initial module profile when no persisted value exists.
-	  0=UNSPECIFIED, 1=KEY, 2=ENC, 3=JOY, 4=TB, 5=TPD, 6=IQS.
+	  0=UNSPECIFIED, 1=KEY, 2=ENC, 3=JOY, 4=TB, 5=TPD.
 
 module = SAA_MODULE_SELECT
 module-str = saa_module_select

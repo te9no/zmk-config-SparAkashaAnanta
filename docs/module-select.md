@@ -28,7 +28,8 @@ Available values:
 | `SAA_MODULE_JOY` | Joystick module |
 | `SAA_MODULE_TB` | Trackball module |
 | `SAA_MODULE_TPD` | Touchpad module |
-| `SAA_MODULE_IQS` | IQS module |
+
+IQS is not a mutually exclusive base module profile. It is treated as an optional module that can coexist with `KEY`, `ENC`, `JOY`, `TB`, and `TPD`, and is assumed to be available in builds that include the `IQS` snippet.
 
 ## What This Does
 

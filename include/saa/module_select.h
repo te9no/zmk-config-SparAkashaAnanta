@@ -9,7 +9,6 @@ enum saa_module_profile {
 	SAA_MODULE_PROFILE_JOY = 3,
 	SAA_MODULE_PROFILE_TB = 4,
 	SAA_MODULE_PROFILE_TPD = 5,
-	SAA_MODULE_PROFILE_IQS = 6,
 };
 
 enum saa_module_profile saa_module_select_get(void);

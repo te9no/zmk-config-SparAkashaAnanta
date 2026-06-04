@@ -103,8 +103,8 @@
              &saa_mod SAA_MODULE_ENC
                            &saa_mod SAA_MODULE_JOY
                                          &saa_mod SAA_MODULE_TB
-                                                       &saa_mod SAA_MODULE_TPD
-                                                                     &saa_mod SAA_MODULE_IQS
+                                                      &saa_mod SAA_MODULE_TPD
+                                                                     &saa_mod SAA_MODULE_UNSPECIFIED
                                                                                      &trans          &trans    &trans     &trans     &trans     &trans
 &trans      &trans        &trans        &trans        &trans        &trans            &trans          &trans    &trans     &trans     &trans     &trans
 &trans      &trans        &trans                      &trans        &trans            &trans          &trans               &trans     &trans     &trans

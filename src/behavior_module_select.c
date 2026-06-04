@@ -23,7 +23,7 @@ static struct k_work_delayable save_work;
 
 static bool saa_module_select_valid(enum saa_module_profile profile)
 {
-	return profile >= SAA_MODULE_PROFILE_UNSPECIFIED && profile <= SAA_MODULE_PROFILE_IQS;
+	return profile >= SAA_MODULE_PROFILE_UNSPECIFIED && profile <= SAA_MODULE_PROFILE_TPD;
 }
 
 const char *saa_module_select_name(enum saa_module_profile profile)
@@ -41,8 +41,6 @@ const char *saa_module_select_name(enum saa_module_profile profile)
 		return "TB";
 	case SAA_MODULE_PROFILE_TPD:
 		return "TPD";
-	case SAA_MODULE_PROFILE_IQS:
-		return "IQS";
 	default:
 		return "INVALID";
 	}
