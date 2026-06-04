@@ -1,9 +1,5 @@
 /delete-node/ &kscan2;
 
-&saa_module_detector {
-    expected-module = "KEY";
-};
-
 / {
     kscan2: kscan2 {
         compatible = "zmk,kscan-gpio-direct";

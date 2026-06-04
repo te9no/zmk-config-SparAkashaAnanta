@@ -157,16 +157,13 @@
 
 #define IQS_I2C1_SDA P1_03_PSEL(TWIM_SDA)	
 
-/* D18 / P1.05 / MISO1 / roles: Module ID0 */
+/* D18 / P1.05 / MISO1 */
 #define P1_05_GPIOS(flags) <&gpio1 5 flags>
 #define P1_05_PSEL(fun) NRF_PSEL(fun, 1, 5)
 
-/* D19 / P1.07 / MOSI1 / roles: Module ID1 */
+/* D19 / P1.07 / MOSI1 */
 #define P1_07_GPIOS(flags) <&gpio1 7 flags>
 #define P1_07_PSEL(fun) NRF_PSEL(fun, 1, 7)
-
-#define MODULE_ID0_GPIOS P1_05_GPIOS((GPIO_ACTIVE_LOW | GPIO_PULL_UP))
-#define MODULE_ID1_GPIOS P1_07_GPIOS((GPIO_ACTIVE_LOW | GPIO_PULL_UP))
 
 /* -------------------------------------------------------------------------- */
 /* Other nRF52840 pins                                                        */

@@ -2,10 +2,6 @@
     status = "okay";
 };
 
-&saa_module_detector {
-    expected-module = "JOY";
-};
-
 #if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 &left_encoder {
     a-gpios = ENCODER_A_GPIOS;
