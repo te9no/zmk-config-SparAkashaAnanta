@@ -183,7 +183,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 ## Known Constraints
 
 - `config/west.yml` pins the Zephyr deferred-init revision on `te9no/zephyr`.
-- `config/west.yml` also references `te9no/zmk-input-module` on `main`; CI requires that standalone module repository/branch to exist.
+- `config/west.yml` also references `te9no/zmk-input-module` on `main`; that remote branch is published and resolves from git.
 - `build.yaml` is unified-firmware-only. `ModuleMux` is the supported path for normal SAA firmware.
 - `devices` are currently wired for `KEY`, `ENC`, `JOY`, `TB`, and `TPD` through the `ModuleMux` snippet. IQS is included with the unified firmware and remains independent from the mutually-exclusive base module profiles.
 - First boot initializes the `KEY` candidate by default. A non-key module can be selected through the behavior and then restored on the next boot, but the hardware behavior of that first boot still needs validation.
@@ -257,6 +257,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: 最終 artifact 名は `SAA_L_UNIFIED` / `SAA_R_UNIFIED` のまま維持する。
 - 済: cleanup 後の push build は GitHub Actions で成功確認。
 - 済: `zmk,input-module-kscan-proxy` 追加後、ローカルで `SAA_L_UNIFIED`、`SAA_R_UNIFIED`、`settings_reset` が成功。
+- 済: `te9no/zmk-input-module` の `main` branch が remote に公開され、CI の `west update` で参照できる状態になっていることを確認。
 - 残: daily GitHub Actions build health は default branch へ workflow 反映後、初回 schedule run で確認。
 
 ### Phase 6: Runtime UX
@@ -287,7 +288,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: `src`、`dts/bindings`、`include/zmk` の input-module 関連を standalone な `zmk-input-module` として切り出す。
 - 済: SAA は `config/west.yml` から `zmk-input-module` を参照し、汎用実装を config repo から削除。
 - 済: 各キーボード固有の profile ID、default profile、candidate overlay、`settings-key` は各 config 側に残す。
-- 残: standalone `zmk-input-module` を remote に公開し、CI から取得できる状態にする。
+- 済: standalone `zmk-input-module` を remote に公開し、CI から取得できる状態にする。
 - 残: GeaconPolaris や将来の modular input keyboard でも同じ module を再利用できるようにする。
 - 方針: Zephyr deferred-init patch は `te9no/zephyr` fork で維持する。現時点では upstream 提案しない。
 
@@ -302,6 +303,6 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 
 ## 次にやること
 
-1. standalone `zmk-input-module` を remote に公開し、SAA の CI が `west update` で取得できることを確認する。
+1. GitHub Actions の最新 build で `SAA_L_UNIFIED`、`SAA_R_UNIFIED`、`settings_reset` が通ることを確認する。
 2. 実機検証を `KEY`、`ENC`、`JOY`、`TB`、`TPD` の順で進める。
 3. GeaconPolaris など、他の modular input keyboard へ `zmk-input-module` を適用できる形に整理する。
