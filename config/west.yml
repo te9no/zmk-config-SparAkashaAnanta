@@ -96,7 +96,7 @@ manifest:
 # Runtime input module profile selection
     - name: zmk-input-module
       remote: te9no
-      revision: master
+      revision: main
       path: modules/zmk-input-module
 
 # Trackball
