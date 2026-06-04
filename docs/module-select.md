@@ -170,7 +170,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: Zephyr deferred-init branch を `te9no/zephyr` に公開。
 - 済: `config/west.yml` で Zephyr revision `af6fff80212a92f56c6ca9a3a339ab4957a85334` を固定。
 - 済: ローカルビルドが Zephyr build `af6fff80212a` を使うことを確認。
-- 残: 現ブランチの GitHub Actions 実行後、ログで Zephyr `af6fff80212a` が使われていることを確認。
+- 済: GitHub Actions のログでも Zephyr build `af6fff80212a` が使われていることを確認。
 
 ### Phase 2: SAA Module Mux の実体化
 
@@ -218,7 +218,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 
 - 済: `BT` レイヤーに module profile 選択キーを追加。
 - 済: profile 変更時に「次回起動から有効」と分かるログを出す。
-- 残: OLED に現在選択されている profile を表示。
+- 方針: OLED への profile 表示は不要。表示系の変更は行わない。
 - 残: 必要なら Studio RPC から現在 profile を読めるようにする。
 - 残: profile 変更後の reboot 導線を behavior またはドキュメントとして用意。
 - 残: settings reset 後や片側だけ変更した場合に、central / peripheral の profile 設定が分岐し得ることを明示。
@@ -255,7 +255,6 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 
 ## 次にやること
 
-1. 現ブランチを push して GitHub Actions を実行し、ログで Zephyr `af6fff80212a` が使われていることを確認する。
-2. 実機検証を `KEY`、`ENC`、`JOY`、`TB`、`TPD` の順で進める。
-3. OLED に選択済み / 保存済み module profile を表示する。
-4. SAA の実機検証後、汎用 `zmk,input-module-*` 部分を standalone module として切り出す。
+1. 実機検証を `KEY`、`ENC`、`JOY`、`TB`、`TPD` の順で進める。
+2. Profile 変更後の reboot 導線を behavior またはドキュメントとして整理する。
+3. SAA の実機検証後、汎用 `zmk,input-module-*` 部分を standalone module として切り出す。
