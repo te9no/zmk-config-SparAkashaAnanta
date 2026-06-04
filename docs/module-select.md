@@ -258,6 +258,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: cleanup 後の push build は GitHub Actions で成功確認。
 - 済: `zmk,input-module-kscan-proxy` 追加後、ローカルで `SAA_L_UNIFIED`、`SAA_R_UNIFIED`、`settings_reset` が成功。
 - 済: `te9no/zmk-input-module` の `main` branch が remote に公開され、CI の `west update` で参照できる状態になっていることを確認。
+- 済: GitHub Actions run `26959256190`、head `483c242` で `SAA_L_UNIFIED`、`SAA_R_UNIFIED`、`settings_reset` が成功。
 - 残: daily GitHub Actions build health は default branch へ workflow 反映後、初回 schedule run で確認。
 
 ### Phase 6: Runtime UX
@@ -303,6 +304,6 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 
 ## 次にやること
 
-1. GitHub Actions の最新 build で `SAA_L_UNIFIED`、`SAA_R_UNIFIED`、`settings_reset` が通ることを確認する。
+1. daily GitHub Actions build health の初回 schedule run を確認する。
 2. 実機検証を `KEY`、`ENC`、`JOY`、`TB`、`TPD` の順で進める。
 3. GeaconPolaris など、他の modular input keyboard へ `zmk-input-module` を適用できる形に整理する。
