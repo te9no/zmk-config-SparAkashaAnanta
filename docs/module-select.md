@@ -229,7 +229,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: 旧排他 snippet である `snippets/KEY`、`snippets/ENC`、`snippets/JOY`、`snippets/TB`、`snippets/TPD` を削除。
 - 済: `build.diagnostics.yaml` と旧 per-module diagnostic target を削除。
 - 済: `IQS` は通常の左右 unified build に含める optional overlay として維持。
-- 残: 実機検証後、IQS を snippet として残すか、SAA base / module-mux 定義へ統合するかを決める。
+- 方針: `IQS` は snippet のまま残す。SAA base / ModuleMux 側へ統合しない。
 
 ### Phase 4: 入力経路の競合解消
 
@@ -264,8 +264,8 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: profile 変更時に「次回起動から有効」と分かるログを出す。
 - 方針: OLED への profile 表示は不要。表示系の変更は行わない。
 - 方針: profile 変更後の reboot 導線は不要。既存の電源再投入、reset 操作、settings reset で運用する。
+- 方針: Studio RPC で現在 profile を読む機能は実装しない。
 - 済: settings reset 後や片側だけ変更した場合に、central / peripheral の profile 設定が分岐し得ることを明示。
-- 残: 必要なら Studio RPC から現在 profile を読めるようにする。
 
 ### Phase 7: 実機検証
 
@@ -286,7 +286,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 残: `src`、`dts/bindings`、`include/zmk` の input-module 関連を standalone な ZMK module として切り出す。
 - 残: 各キーボード固有の profile ID、default profile、`settings-key` は各 config 側に残す。
 - 残: GeaconPolaris や将来の modular input keyboard でも同じ module を再利用できるようにする。
-- 残: Zephyr deferred-init patch を fork 前提で維持するか、upstream 提案するか判断。
+- 方針: Zephyr deferred-init patch は `te9no/zephyr` fork で維持する。現時点では upstream 提案しない。
 
 ## 現在の主なリスク
 
