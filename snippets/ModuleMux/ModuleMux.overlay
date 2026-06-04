@@ -78,6 +78,15 @@
 		zephyr,deferred-init;
 	};
 
+	key_kscan_proxy: key_kscan_proxy {
+		compatible = "zmk,input-module-kscan-proxy";
+
+		profile_key {
+			profile-id = <SAA_MODULE_KEY>;
+			kscan = <&kscan2>;
+		};
+	};
+
 	anin0: analog_input_0 {
 		compatible = "dya,analog-input";
 		sampling-hz = <100>;
@@ -113,6 +122,12 @@
 			evt-type = <INPUT_EV_REL>;
 			input-code = <INPUT_REL_Y>;
 		};
+	};
+};
+
+&kscan0 {
+	direct {
+		kscan = <&key_kscan_proxy>;
 	};
 };
 

@@ -17,6 +17,7 @@ For another keyboard, the same mechanism should be reusable with these pieces:
 - Bind the behavior in the keymap to let the user choose the next boot profile.
 - Optionally attach deferred candidate devices to each profile with `devices`.
 - Optionally use `zmk,input-module-sensor-proxy` when several profiles need to share one ZMK sensor slot.
+- Optionally use `zmk,input-module-kscan-proxy` when a static ZMK kscan graph needs to point at a profile-selected deferred kscan candidate.
 
 ## Behavior
 
@@ -53,6 +54,18 @@ IQS is not a mutually exclusive base module profile. It is treated as an optiona
 - Exposes the selected profile's required input path through `zmk_input_module_selected_capabilities()`.
 - Loads the selected profile early at `CONFIG_ZMK_INPUT_MODULE_SETTINGS_INIT_PRIORITY`.
 - Runs as a global behavior so split halves can receive the same selection command.
+
+## Split Persistence Notes
+
+The selected profile is stored in Zephyr settings on each MCU. `SAA_L_UNIFIED` and `SAA_R_UNIFIED` therefore each have their own `saa/module/selected` value.
+
+The profile selection behavior is global, but this module does not implement a separate central/peripheral reconciliation protocol. If only one half receives a profile selection, or if only one half is flashed with `settings_reset`, the two halves can boot with different selected profiles. This is expected behavior for now and must be handled operationally.
+
+When changing modules:
+
+- Select the intended profile while both halves are connected and able to receive the behavior.
+- If the halves appear to disagree, reset settings on both sides and select the profile again.
+- During hardware validation, record central and peripheral results separately.
 
 ## Module Capabilities
 
@@ -119,6 +132,31 @@ The local Zephyr deferred-init patch allows a candidate device with `zephyr,defe
 
 If the active profile has no sensor route, such as `KEY`, the proxy accepts ZMK's trigger registration without touching the raw encoder pins.
 
+## Kscan Proxy
+
+`zmk,input-module-kscan-proxy` is used by `ModuleMux` so ZMK's static `kscan-composite` graph does not directly reference the deferred direct-key candidate.
+
+The base SAA overlays still define `kscan0` as a composite of the normal matrix scanner and the optional direct-key module slot. In the unified firmware, `ModuleMux` rewires the direct child from raw `kscan2` to `key_kscan_proxy`:
+
+```dts
+key_kscan_proxy: key_kscan_proxy {
+    compatible = "zmk,input-module-kscan-proxy";
+
+    profile_key {
+        profile-id = <SAA_MODULE_KEY>;
+        kscan = <&kscan2>;
+    };
+};
+
+&kscan0 {
+    direct {
+        kscan = <&key_kscan_proxy>;
+    };
+};
+```
+
+When the active profile is `KEY`, the proxy forwards `kscan_config()`, `kscan_enable_callback()`, and key events to `kscan2`. For every other profile, the proxy accepts ZMK's kscan setup calls and returns without touching `kscan2`, so the shared direct-key pin is not configured as GPIO input by the kscan path.
+
 ## ModuleMux Snippet
 
 `snippets/ModuleMux` is the first unified-module snippet. The normal `build.yaml` now builds this firmware path instead of per-module firmware variants.
@@ -182,6 +220,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: `TB` 候補を deferred `spi2` + deferred PMW3610 trackball として定義。
 - 済: `TPD` 候補を deferred `gpio-i2c` + deferred Cirque Pinnacle touchpad として定義。
 - 済: 排他的な各候補経路に `zephyr,deferred-init` を付与。
+- 済: `KEY` kscan を `zmk,input-module-kscan-proxy` 経由に変更し、ZMK の `kscan-composite` から raw `kscan2` を直接触らない構成にした。
 
 ### Phase 3: Snippet 再設計
 
@@ -199,10 +238,13 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: `TB` の `spi2`、`TPD` の `tpd_i2c` など、必要な bus device も deferred 化。
 - 済: `ENC` と `JOY` は `zmk,input-module-sensor-proxy` 経由にして、ZMK 側の sensor slot を安定化。
 - 済: `KEY` の direct GPIO kscan 候補も deferred 化。
+- 済: `KEY` の direct GPIO kscan は `zmk,input-module-kscan-proxy` 経由にして、非 `KEY` profile では `kscan_config()` / `kscan_enable_callback()` が raw `kscan2` へ届かないようにした。
+- 済: 保存済み profile がない初回起動では、`default-profile = SAA_MODULE_KEY` が app / kscan init より前に apply されることを静的確認。
+- 済: generated DTS 上で `kscan0.direct -> key_kscan_proxy -> kscan2` の経路を確認。
+- 済: input-listener / input-split の `INPUT_CALLBACK_DEFINE` は callback table へ device pointer を置くだけで、未初期化 raw device の API を直接呼ばないことを静的確認。
 - 残: 未選択候補の pinctrl state が共有ピンに副作用を出さないか実機で確認。
-- 残: input-listener / input-split / kscan が未初期化候補を runtime で触らないか確認。
-- 残: deferred `gpio-i2c` bus を使った TPD split route を確認。
-- 残: 保存済み profile がない初回起動で、`KEY` fallback が正しく動くか確認。
+- 残: deferred `gpio-i2c` bus を使った TPD split route で、実際の touchpad event が split 経由で流れることを実機で確認。
+- 残: 保存済み profile がない初回起動で、`KEY` fallback が実機で正しく動くか確認。
 
 ### Phase 5: 単一ファーム build.yaml
 
@@ -212,16 +254,18 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 - 済: GitHub Actions build は reusable な `te9no/zmk-workspace` firmware workflow を使用。
 - 済: ローカルの clean `./just.sh build all` で `SAA_L_UNIFIED`、`SAA_R_UNIFIED`、`settings_reset` が成功。
 - 済: 最終 artifact 名は `SAA_L_UNIFIED` / `SAA_R_UNIFIED` のまま維持する。
-- 残: cleanup 後の daily GitHub Actions build health を確認。
+- 済: cleanup 後の push build は GitHub Actions で成功確認。
+- 済: `zmk,input-module-kscan-proxy` 追加後、ローカルで `SAA_L_UNIFIED`、`SAA_R_UNIFIED`、`settings_reset` が成功。
+- 残: daily GitHub Actions build health は default branch へ workflow 反映後、初回 schedule run で確認。
 
 ### Phase 6: Runtime UX
 
 - 済: `BT` レイヤーに module profile 選択キーを追加。
 - 済: profile 変更時に「次回起動から有効」と分かるログを出す。
 - 方針: OLED への profile 表示は不要。表示系の変更は行わない。
+- 方針: profile 変更後の reboot 導線は不要。既存の電源再投入、reset 操作、settings reset で運用する。
+- 済: settings reset 後や片側だけ変更した場合に、central / peripheral の profile 設定が分岐し得ることを明示。
 - 残: 必要なら Studio RPC から現在 profile を読めるようにする。
-- 残: profile 変更後の reboot 導線を behavior またはドキュメントとして用意。
-- 残: settings reset 後や片側だけ変更した場合に、central / peripheral の profile 設定が分岐し得ることを明示。
 
 ### Phase 7: 実機検証
 
@@ -247,7 +291,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 ## 現在の主なリスク
 
 - 固定している Zephyr revision が利用できなくなる、または CI が期待する branch と乖離する。
-- 既存の ZMK input-listener / input-split / kscan が、選択済み deferred path の初期化前に device を触る可能性がある。
+- 既存の ZMK input-listener / input-split は静的には未初期化 raw device を直接触らないが、実機 event path は profile ごとに確認が必要。
 - 未使用候補を deferred にしていても、共有ピンに対する devicetree / pinctrl の副作用が残る可能性がある。
 - 外部ドライバが deferred init 前提で十分に安全に書かれていない可能性がある。
 - 単一ファーム化により RAM / Flash 使用量が増え、将来の module 追加余地を圧迫する可能性がある。
@@ -256,5 +300,4 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 ## 次にやること
 
 1. 実機検証を `KEY`、`ENC`、`JOY`、`TB`、`TPD` の順で進める。
-2. Profile 変更後の reboot 導線を behavior またはドキュメントとして整理する。
-3. SAA の実機検証後、汎用 `zmk,input-module-*` 部分を standalone module として切り出す。
+2. SAA の実機検証後、汎用 `zmk,input-module-*` 部分を standalone module として切り出す。

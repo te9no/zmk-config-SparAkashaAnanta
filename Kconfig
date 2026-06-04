@@ -25,6 +25,15 @@ config ZMK_INPUT_MODULE_SENSOR_PROXY
 	  Provides a sensor device that delegates to the selected input module's
 	  deferred sensor candidate.
 
+config ZMK_INPUT_MODULE_KSCAN_PROXY
+	bool "ZMK input module kscan proxy"
+	default y
+	depends on KSCAN
+	depends on DT_HAS_ZMK_INPUT_MODULE_KSCAN_PROXY_ENABLED
+	help
+	  Provides a kscan device that delegates to the selected input module's
+	  deferred kscan candidate.
+
 config ZMK_INPUT_MODULE_SELECT_BEHAVIOR
 	bool "ZMK input module select behavior"
 	default y
