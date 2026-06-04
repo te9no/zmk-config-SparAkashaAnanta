@@ -1,0 +1,24 @@
+description: Runtime-selected input module sensor proxy
+
+compatible: "zmk,input-module-sensor-proxy"
+
+child-binding:
+  description: Sensor route for an input module profile
+
+  properties:
+    profile-id:
+      type: int
+      required: true
+      description: Numeric input module profile ID.
+
+    sensor:
+      type: phandle
+      required: true
+      description: Deferred sensor device used when this profile is selected.
+
+    triggers-per-rotation:
+      type: int
+      default: 0
+      description: >
+        If non-zero, normalize SENSOR_CHAN_ROTATION degrees into legacy
+        tick-style sensor values using this trigger count per rotation.

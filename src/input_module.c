@@ -4,6 +4,7 @@
 
 #include <zephyr/device.h>
 #include <zephyr/devicetree.h>
+#include <zephyr/init.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/settings/settings.h>
@@ -163,8 +164,12 @@ int zmk_input_module_apply(uint32_t profile_id)
 		return -EINVAL;
 	}
 
-	applied_profile = profile_id;
-	applied = true;
+	if (applied && applied_profile == profile_id) {
+		LOG_INF("input module profile already applied: %s",
+			zmk_input_module_profile_name(profile_id));
+		return 0;
+	}
+
 	log_capabilities(profile_id);
 
 	for (size_t i = 0; i < profile->devices_len; i++) {
@@ -178,6 +183,9 @@ int zmk_input_module_apply(uint32_t profile_id)
 
 		LOG_INF("initialized %s", dev->name);
 	}
+
+	applied_profile = profile_id;
+	applied = true;
 
 	return 0;
 }
@@ -251,6 +259,27 @@ static int input_module_settings_commit(void)
 
 SETTINGS_STATIC_HANDLER_DEFINE(zmk_input_module, SETTINGS_PATH, NULL, input_module_settings_set,
 			       input_module_settings_commit, NULL);
+
+static int input_module_settings_load_early(void)
+{
+	int ret = settings_subsys_init();
+
+	if (ret < 0) {
+		LOG_ERR("failed to initialize settings subsystem early: %d", ret);
+		return ret;
+	}
+
+	ret = settings_load_subtree(SETTINGS_PATH);
+	if (ret < 0) {
+		LOG_ERR("failed to load input module settings early: %d", ret);
+		return ret;
+	}
+
+	return 0;
+}
+
+SYS_INIT(input_module_settings_load_early, APPLICATION,
+	 CONFIG_ZMK_INPUT_MODULE_SETTINGS_INIT_PRIORITY);
 
 static int input_module_init(const struct device *dev)
 {

@@ -2,5 +2,7 @@ zephyr_library()
 zephyr_include_directories(include)
 
 zephyr_library_sources_ifdef(CONFIG_ZMK_INPUT_MODULE src/input_module.c)
+zephyr_library_sources_ifdef(CONFIG_ZMK_INPUT_MODULE_SENSOR_PROXY
+	src/input_module_sensor_proxy.c)
 zephyr_library_sources_ifdef(CONFIG_ZMK_INPUT_MODULE_SELECT_BEHAVIOR
 	src/behavior_input_module_select.c)

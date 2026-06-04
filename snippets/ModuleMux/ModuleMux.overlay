@@ -1,4 +1,75 @@
+#include <dt-bindings/saa/module_select.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
 /delete-node/ &kscan2;
+
+&pinctrl {
+	saa_tb_spi_default: saa_tb_spi_default {
+		group1 {
+			psels = <TB_SPI_SCK>,
+				<TB_SPI_MOSI>,
+				<TB_SPI_MISO>;
+		};
+	};
+
+	saa_tb_spi_sleep: saa_tb_spi_sleep {
+		group1 {
+			psels = <TB_SPI_SCK>,
+				<TB_SPI_MOSI>,
+				<TB_SPI_MISO>;
+			low-power-enable;
+		};
+	};
+};
+
+&spi2 {
+	status = "okay";
+	compatible = "nordic,nrf-spim";
+	pinctrl-0 = <&saa_tb_spi_default>;
+	pinctrl-1 = <&saa_tb_spi_sleep>;
+	pinctrl-names = "default", "sleep";
+	cs-gpios = TB_CS_GPIOS;
+	zephyr,deferred-init;
+
+	trackball: trackball@0 {
+		status = "okay";
+		compatible = "pixart,pmw3610";
+		reg = <0>;
+		spi-max-frequency = <2000000>;
+		irq-gpios = TB_IRQ_GPIOS;
+		cpi = <800>;
+		evt-type = <INPUT_EV_REL>;
+		x-input-code = <INPUT_REL_X>;
+		y-input-code = <INPUT_REL_Y>;
+		zephyr,deferred-init;
+#if defined(SAA_SPLIT_ROLE_PERIPHERAL)
+		force-awake;
+#endif
+	};
+};
+
+/ {
+	tpd_i2c: tpd_i2c {
+		compatible = "gpio-i2c";
+		status = "okay";
+		clock-frequency = <100000>;
+		sda-gpios = P0_03_GPIOS((GPIO_OPEN_DRAIN | GPIO_PULL_UP));
+		scl-gpios = P0_28_GPIOS((GPIO_OPEN_DRAIN | GPIO_PULL_UP));
+		#address-cells = <1>;
+		#size-cells = <0>;
+		zephyr,deferred-init;
+
+		glidepoint: glidepoint@2a {
+			compatible = "cirque,pinnacle";
+			reg = <0x2a>;
+			status = "okay";
+			dr-gpios = TPD_DR_GPIOS;
+			sensitivity = "2x";
+			no-taps;
+			zephyr,deferred-init;
+		};
+	};
+};
 
 / {
 	kscan2: kscan2 {
@@ -6,15 +77,119 @@
 		input-gpios = DIRECT_KEY_GPIOS;
 		zephyr,deferred-init;
 	};
+
+	anin0: analog_input_0 {
+		compatible = "dya,analog-input";
+		sampling-hz = <100>;
+		report-interval-ms = <8>;
+		zephyr,deferred-init;
+
+		x-ch {
+			io-channels = ANALOG_X_CHANNEL;
+			mv-mid = <1600>;
+			mv-min-max = <1600>;
+			mv-deadzone = <88>;
+			scale-multiplier = <1>;
+			scale-divisor = <1>;
+			invert;
+			output-min = <0>;
+			output-max = <24>;
+			response-curve = <2>;
+			evt-type = <INPUT_EV_REL>;
+			input-code = <INPUT_REL_X>;
+		};
+
+		y-ch {
+			io-channels = ANALOG_Y_CHANNEL;
+			mv-mid = <1600>;
+			mv-min-max = <1600>;
+			mv-deadzone = <88>;
+			scale-multiplier = <1>;
+			scale-divisor = <1>;
+			invert;
+			output-min = <0>;
+			output-max = <24>;
+			response-curve = <2>;
+			evt-type = <INPUT_EV_REL>;
+			input-code = <INPUT_REL_Y>;
+		};
+	};
+};
+
+&saa_module_mux {
+	default-profile = <SAA_MODULE_KEY>;
 };
 
 #if defined(SAA_SPLIT_ROLE_CENTRAL)
-&left_encoder {
-	a-gpios = ENCODER_A_GPIOS;
-	b-gpios = ENCODER_B_GPIOS;
-	steps = <24>;
+/ {
+	left_encoder_enc: left_encoder_enc {
+		compatible = "alps,ec11";
+		a-gpios = ENCODER_A_GPIOS;
+		b-gpios = ENCODER_B_GPIOS;
+		steps = <24>;
+		status = "okay";
+		zephyr,deferred-init;
+	};
+
+	left_encoder_joy: left_encoder_joy {
+		compatible = "alps,ec11";
+		a-gpios = ENCODER_A_GPIOS;
+		b-gpios = ENCODER_B_GPIOS;
+		steps = <3>;
+		status = "okay";
+		zephyr,deferred-init;
+	};
+
+	left_encoder_proxy: left_encoder_proxy {
+		compatible = "zmk,input-module-sensor-proxy";
+
+		profile_encoder {
+			profile-id = <SAA_MODULE_ENC>;
+			sensor = <&left_encoder_enc>;
+			triggers-per-rotation = <10>;
+		};
+
+		profile_joystick {
+			profile-id = <SAA_MODULE_JOY>;
+			sensor = <&left_encoder_joy>;
+			triggers-per-rotation = <1>;
+		};
+	};
+};
+
+&stick_split {
 	status = "okay";
-	zephyr,deferred-init;
+	device = <&anin0>;
+};
+
+&trackball_split {
+	status = "okay";
+	device = <&trackball>;
+};
+
+/ {
+	split_inputs {
+		tpd_split: tpd_split@4 {
+			compatible = "zmk,input-split";
+			reg = <4>;
+		};
+	};
+
+	tpd_listener: tpd_listener {
+		compatible = "zmk,input-listener";
+		status = "okay";
+		device = <&tpd_split>;
+	};
+};
+
+&tpd_split {
+	status = "okay";
+	device = <&glidepoint>;
+};
+
+&sensors {
+	sensors = <&left_encoder_proxy &right_encoder>;
+	triggers-per-rotation = <1>;
 };
 
 &saa_module_mux {
@@ -23,18 +198,101 @@
 	};
 
 	profile_encoder {
-		devices = <&left_encoder>;
+		devices = <&left_encoder_enc>;
+	};
+
+	profile_joystick {
+		devices = <&anin0 &left_encoder_joy>;
+	};
+
+	profile_trackball {
+		devices = <&spi2 &trackball>;
+	};
+
+	profile_touchpad {
+		devices = <&tpd_i2c &glidepoint>;
 	};
 };
 #endif
 
 #if defined(SAA_SPLIT_ROLE_PERIPHERAL)
-&right_encoder {
-	a-gpios = ENCODER_A_GPIOS;
-	b-gpios = ENCODER_B_GPIOS;
-	steps = <24>;
-	status = "okay";
-	zephyr,deferred-init;
+/ {
+	right_encoder_enc: right_encoder_enc {
+		compatible = "alps,ec11";
+		a-gpios = ENCODER_A_GPIOS;
+		b-gpios = ENCODER_B_GPIOS;
+		steps = <24>;
+		status = "okay";
+		zephyr,deferred-init;
+	};
+
+	right_encoder_joy: right_encoder_joy {
+		compatible = "alps,ec11";
+		a-gpios = ENCODER_A_GPIOS;
+		b-gpios = ENCODER_B_GPIOS;
+		steps = <3>;
+		status = "okay";
+		zephyr,deferred-init;
+	};
+
+	right_encoder_proxy: right_encoder_proxy {
+		compatible = "zmk,input-module-sensor-proxy";
+
+		profile_encoder {
+			profile-id = <SAA_MODULE_ENC>;
+			sensor = <&right_encoder_enc>;
+			triggers-per-rotation = <10>;
+		};
+
+		profile_joystick {
+			profile-id = <SAA_MODULE_JOY>;
+			sensor = <&right_encoder_joy>;
+			triggers-per-rotation = <1>;
+		};
+	};
+
+	split_inputs {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		stick_split: stick_split@2 {
+			compatible = "zmk,input-split";
+			status = "okay";
+			device = <&anin0>;
+			reg = <2>;
+		};
+
+		trackball_split: trackball_split@0 {
+			compatible = "zmk,input-split";
+			status = "okay";
+			device = <&trackball>;
+			reg = <0>;
+		};
+
+		tpd_split: tpd_split@4 {
+			compatible = "zmk,input-split";
+			status = "okay";
+			device = <&glidepoint>;
+			reg = <4>;
+		};
+	};
+
+	trackball_listener: trackball_listener {
+		compatible = "zmk,input-listener";
+		status = "okay";
+		device = <&trackball_split>;
+	};
+
+	tpd_listener: tpd_listener {
+		compatible = "zmk,input-listener";
+		status = "okay";
+		device = <&tpd_split>;
+	};
+};
+
+&sensors {
+	sensors = <&left_encoder &right_encoder_proxy>;
+	triggers-per-rotation = <1>;
 };
 
 &saa_module_mux {
@@ -43,11 +301,19 @@
 	};
 
 	profile_encoder {
-		devices = <&right_encoder>;
+		devices = <&right_encoder_enc>;
+	};
+
+	profile_joystick {
+		devices = <&anin0 &right_encoder_joy>;
+	};
+
+	profile_trackball {
+		devices = <&spi2 &trackball>;
+	};
+
+	profile_touchpad {
+		devices = <&tpd_i2c &glidepoint>;
 	};
 };
 #endif
-
-&sensors {
-	triggers-per-rotation = <10>;
-};

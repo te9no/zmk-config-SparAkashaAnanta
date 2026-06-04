@@ -1,3 +1,4 @@
 name: ModuleMux
 append:
   EXTRA_DTC_OVERLAY_FILE: ModuleMux.overlay
+  EXTRA_CONF_FILE: ModuleMux.conf

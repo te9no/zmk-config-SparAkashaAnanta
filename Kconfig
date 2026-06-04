@@ -9,6 +9,22 @@ menuconfig ZMK_INPUT_MODULE
 
 if ZMK_INPUT_MODULE
 
+config ZMK_INPUT_MODULE_SETTINGS_INIT_PRIORITY
+	int "ZMK input module settings init priority"
+	default 89
+	help
+	  Application init priority used to restore the selected input module
+	  profile before ZMK keymap, sensor, and physical layout initialization.
+
+config ZMK_INPUT_MODULE_SENSOR_PROXY
+	bool "ZMK input module sensor proxy"
+	default y
+	depends on SENSOR
+	depends on DT_HAS_ZMK_INPUT_MODULE_SENSOR_PROXY_ENABLED
+	help
+	  Provides a sensor device that delegates to the selected input module's
+	  deferred sensor candidate.
+
 config ZMK_INPUT_MODULE_SELECT_BEHAVIOR
 	bool "ZMK input module select behavior"
 	default y
