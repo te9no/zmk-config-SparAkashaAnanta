@@ -38,6 +38,11 @@
 		sensors = <&left_encoder &right_encoder>;
 	};
 
+	saa_module_mux: module_mux {
+		compatible = "saa,module-mux";
+		status = "okay";
+	};
+
 	vbatt: vbatt {
 		io-channels = BATTERY_CHANNEL;
 		power-gpios; // unset

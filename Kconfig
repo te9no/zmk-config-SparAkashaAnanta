@@ -17,6 +17,15 @@ config SAA_MODULE_SELECT_DEFAULT
 	  Initial module profile when no persisted value exists.
 	  0=UNSPECIFIED, 1=KEY, 2=ENC, 3=JOY, 4=TB, 5=TPD.
 
+config SAA_MODULE_MUX
+	bool "SparAkashaAnanta module mux"
+	default y
+	depends on DT_HAS_SAA_MODULE_MUX_ENABLED
+	help
+	  Applies the selected SparAkashaAnanta module profile after settings are
+	  loaded. This is the runtime entry point for future delayed initialization
+	  of the selected input path.
+
 module = SAA_MODULE_SELECT
 module-str = saa_module_select
 source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"

@@ -2,3 +2,4 @@ zephyr_library()
 zephyr_include_directories(include)
 
 zephyr_library_sources_ifdef(CONFIG_SAA_MODULE_SELECT src/behavior_module_select.c)
+zephyr_library_sources_ifdef(CONFIG_SAA_MODULE_MUX src/module_mux.c)

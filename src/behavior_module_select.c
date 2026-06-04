@@ -11,6 +11,9 @@
 #include <drivers/behavior.h>
 #include <zmk/behavior.h>
 
+#if IS_ENABLED(CONFIG_SAA_MODULE_MUX)
+#include <saa/module_mux.h>
+#endif
 #include <saa/module_select.h>
 
 LOG_MODULE_REGISTER(saa_module_select, CONFIG_SAA_MODULE_SELECT_LOG_LEVEL);
@@ -102,7 +105,8 @@ int saa_module_select_set(enum saa_module_profile profile)
 	}
 
 	active_profile = profile;
-	LOG_INF("SAA module profile selected: %s", saa_module_select_name(active_profile));
+	LOG_INF("SAA module profile selected for next boot: %s",
+		saa_module_select_name(active_profile));
 	k_work_reschedule(&save_work, K_MSEC(CONFIG_ZMK_SETTINGS_SAVE_DEBOUNCE));
 
 	return 0;
@@ -139,8 +143,18 @@ static int saa_module_select_settings_set(const char *name, size_t len, settings
 	return 0;
 }
 
+static int saa_module_select_settings_commit(void)
+{
+#if IS_ENABLED(CONFIG_SAA_MODULE_MUX)
+	return saa_module_mux_apply(active_profile);
+#else
+	return 0;
+#endif
+}
+
 SETTINGS_STATIC_HANDLER_DEFINE(saa_module_select, SETTINGS_PATH, NULL,
-			       saa_module_select_settings_set, NULL, NULL);
+			       saa_module_select_settings_set, saa_module_select_settings_commit,
+			       NULL);
 
 static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
 				     struct zmk_behavior_binding_event event)
