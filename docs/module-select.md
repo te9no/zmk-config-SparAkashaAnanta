@@ -58,3 +58,17 @@ IQS is separate from this table. It is treated as an optional module that coexis
 This does not dynamically switch Devicetree drivers. ZMK input devices are still built from snippets at compile time.
 
 The saved profile is intended as runtime state for future filtering, UI display, diagnostics, or driver gating where the hardware definition allows it. In standard ZMK/Zephyr initialization, `settings_load()` happens after device initialization, so this saved value cannot directly decide which Devicetree devices become `okay` during boot.
+
+## Module Mux
+
+`saa,module-mux` is the post-settings apply point. It can be wired to deferred candidate devices with phandles:
+
+| Property | Profile |
+| -------- | ------- |
+| `key-kscan` | `KEY` |
+| `left-encoder` / `right-encoder` | `ENC`, `JOY` |
+| `joystick-input` | `JOY` |
+| `trackball-input` | `TB` |
+| `touchpad-input` | `TPD` |
+
+The local Zephyr deferred-init patch allows a candidate device with `zephyr,deferred-init` to be skipped during normal boot and initialized later with `device_init()`. The mux calls `device_init()` only for the selected profile's candidate devices.
