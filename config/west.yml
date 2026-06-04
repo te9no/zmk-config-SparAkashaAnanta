@@ -18,7 +18,7 @@ manifest:
 
     - name: zephyr
       remote: te9no
-      revision: feature/deferred-device-init
+      revision: af6fff80212a92f56c6ca9a3a339ab4957a85334
       clone-depth: 1
       import:
         name-blocklist:
