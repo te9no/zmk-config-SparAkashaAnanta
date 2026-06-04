@@ -56,6 +56,29 @@ const char *saa_module_select_get_name(void)
 	return saa_module_select_name(active_profile);
 }
 
+struct saa_module_capabilities saa_module_select_capabilities(enum saa_module_profile profile)
+{
+	switch (profile) {
+	case SAA_MODULE_PROFILE_ENC:
+		return (struct saa_module_capabilities){.encoder = true};
+	case SAA_MODULE_PROFILE_JOY:
+		return (struct saa_module_capabilities){.adc = true, .encoder = true};
+	case SAA_MODULE_PROFILE_TB:
+		return (struct saa_module_capabilities){.spi = true};
+	case SAA_MODULE_PROFILE_TPD:
+		return (struct saa_module_capabilities){.i2c = true};
+	case SAA_MODULE_PROFILE_KEY:
+	case SAA_MODULE_PROFILE_UNSPECIFIED:
+	default:
+		return (struct saa_module_capabilities){0};
+	}
+}
+
+struct saa_module_capabilities saa_module_select_get_capabilities(void)
+{
+	return saa_module_select_capabilities(active_profile);
+}
+
 static void saa_module_select_save_work_handler(struct k_work *work)
 {
 	uint8_t persisted = active_profile;

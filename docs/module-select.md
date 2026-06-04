@@ -36,10 +36,25 @@ IQS is not a mutually exclusive base module profile. It is treated as an optiona
 - Saves the selected module profile under `saa/module/selected`.
 - Restores the selected module profile at boot.
 - Exposes the current profile through `saa_module_select_get()`.
+- Exposes the selected profile's required input path through `saa_module_select_get_capabilities()`.
 - Runs as a global behavior so split halves can receive the same selection command.
+
+## Module Capabilities
+
+The selected base module maps to these input paths:
+
+| Profile | SPI | I2C | ADC | Encoder A/B |
+| ------- | --- | --- | --- | ----------- |
+| `KEY` | no | no | no | no |
+| `ENC` | no | no | no | yes |
+| `JOY` | no | no | yes | yes |
+| `TB` | yes | no | no | no |
+| `TPD` | no | yes | no | no |
+
+IQS is separate from this table. It is treated as an optional module that coexists with every base module profile.
 
 ## What This Does Not Do Yet
 
 This does not dynamically switch Devicetree drivers. ZMK input devices are still built from snippets at compile time.
 
-The saved profile is intended as runtime state for future filtering, UI display, diagnostics, or driver gating where the hardware definition allows it.
+The saved profile is intended as runtime state for future filtering, UI display, diagnostics, or driver gating where the hardware definition allows it. In standard ZMK/Zephyr initialization, `settings_load()` happens after device initialization, so this saved value cannot directly decide which Devicetree devices become `okay` during boot.
