@@ -35,20 +35,20 @@
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
-#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
+#if defined(SAA_SPLIT_ROLE_PERIPHERAL)
         force-awake;
 #endif
     };
 };
 
-#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
+#if defined(SAA_SPLIT_ROLE_CENTRAL)
 &trackball_split {
     status = "okay";
     device = <&trackball>;
 };
 #endif
 
-#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
+#if defined(SAA_SPLIT_ROLE_PERIPHERAL)
 / {
     split_inputs {
         #address-cells = <1>;

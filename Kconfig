@@ -1,33 +1,23 @@
-menuconfig SAA_MODULE_SELECT
-	bool "SparAkashaAnanta module profile selection"
+menuconfig ZMK_INPUT_MODULE
+	bool "ZMK input module profile selection"
 	default y
-	depends on DT_HAS_SAA_BEHAVIOR_MODULE_SELECT_ENABLED
+	depends on DT_HAS_ZMK_INPUT_MODULE_MUX_ENABLED
 	select SETTINGS
 	help
-	  Provides a ZMK behavior that lets the user select the attached
-	  SparAkashaAnanta module profile and persist that choice in settings.
+	  Provides runtime selection and settings persistence for keyboards that
+	  support multiple mutually-exclusive input module profiles.
 
-if SAA_MODULE_SELECT
+if ZMK_INPUT_MODULE
 
-config SAA_MODULE_SELECT_DEFAULT
-	int "Default SparAkashaAnanta module profile"
-	default 0
-	range 0 5
-	help
-	  Initial module profile when no persisted value exists.
-	  0=UNSPECIFIED, 1=KEY, 2=ENC, 3=JOY, 4=TB, 5=TPD.
-
-config SAA_MODULE_MUX
-	bool "SparAkashaAnanta module mux"
+config ZMK_INPUT_MODULE_SELECT_BEHAVIOR
+	bool "ZMK input module select behavior"
 	default y
-	depends on DT_HAS_SAA_MODULE_MUX_ENABLED
+	depends on DT_HAS_ZMK_BEHAVIOR_INPUT_MODULE_SELECT_ENABLED
 	help
-	  Applies the selected SparAkashaAnanta module profile after settings are
-	  loaded. This is the runtime entry point for future delayed initialization
-	  of the selected input path.
+	  Enables a behavior that stores the selected input module profile.
 
-module = SAA_MODULE_SELECT
-module-str = saa_module_select
+module = ZMK_INPUT_MODULE
+module-str = zmk_input_module
 source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
 
 endif

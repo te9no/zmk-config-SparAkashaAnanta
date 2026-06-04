@@ -1,0 +1,3 @@
+name: ModuleMux
+append:
+  EXTRA_DTC_OVERLAY_FILE: ModuleMux.overlay

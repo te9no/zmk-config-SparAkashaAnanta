@@ -1,5 +1,6 @@
 zephyr_library()
 zephyr_include_directories(include)
 
-zephyr_library_sources_ifdef(CONFIG_SAA_MODULE_SELECT src/behavior_module_select.c)
-zephyr_library_sources_ifdef(CONFIG_SAA_MODULE_MUX src/module_mux.c)
+zephyr_library_sources_ifdef(CONFIG_ZMK_INPUT_MODULE src/input_module.c)
+zephyr_library_sources_ifdef(CONFIG_ZMK_INPUT_MODULE_SELECT_BEHAVIOR
+	src/behavior_input_module_select.c)

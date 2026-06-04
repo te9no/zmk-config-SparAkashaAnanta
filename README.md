@@ -80,6 +80,25 @@ Thrives in deep, collaborative environments, particularly abyssal technical conv
 ## Current Keymap Configuration | 現在のキーマップ構成
 ![Keymap](keymap-svg/SAA.svg)
 
+## Runtime Module Profile Selection | 実行時モジュールプロファイル選択
+SparAkashaAnanta has no hardware module ID pins. Instead of pretending that the firmware can auto-detect every module, this repository uses a user-selected module profile stored in Zephyr settings.
+
+The reusable part is implemented as `zmk,input-module-mux` and `zmk,behavior-input-module-select`. SAA only provides the profile IDs, keymap bindings, and the `saa/module` settings namespace.
+
+スパラカシャ・アナンタには、装着モジュールを識別する専用IDピンがありません。そのため、ファームウェアが完全な自動判別を行うのではなく、ユーザーが選択したモジュールプロファイルをZephyr settingsへ保存し、次回起動時にその前提で起動する構成を取ります。
+
+Available base profiles:
+
+- `SAA_MODULE_KEY`: direct key module
+- `SAA_MODULE_ENC`: rotary encoder module
+- `SAA_MODULE_JOY`: joystick module
+- `SAA_MODULE_TB`: trackball module
+- `SAA_MODULE_TPD`: touchpad module
+
+IQS is treated as an optional module that can coexist with every base profile. See [docs/module-select.md](docs/module-select.md) for the implementation details and current constraints.
+
+The experimental `ModuleMux` snippet starts the move toward a single firmware image. It currently wires `KEY` and `ENC` as deferred candidates. `JOY` needs an additional runtime sensor-slot strategy, while `TB` and `TPD` are intentionally left for later because their pin and bus conflicts are stronger.
+
 ## Etymology | 語源
 The name "SparAkashaAnanta" encompasses multiple layered meanings, derived from the sacred dissolution and integration of developer knowledge in the deep layers:
 スパラカシャ・アナンタの名は、深層における開発者知識の聖なる「解体と統合」に由来する、重層的な意味を内包している。

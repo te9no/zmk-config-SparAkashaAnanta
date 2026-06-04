@@ -1,0 +1,37 @@
+description: Runtime-selected input module profile mux
+
+compatible: "zmk,input-module-mux"
+
+properties:
+  default-profile:
+    type: int
+    default: 0
+    description: Profile ID used when no persisted setting exists.
+
+  settings-key:
+    type: string
+    default: "input_module"
+    description: Settings subtree used to persist the selected profile.
+
+child-binding:
+  description: Candidate input module profile
+
+  properties:
+    profile-id:
+      type: int
+      required: true
+      description: Numeric profile ID used by keymap behaviors and settings.
+
+    display-name:
+      type: string
+      required: true
+      description: Human-readable profile name for logs and UI.
+
+    capabilities:
+      type: int
+      default: 0
+      description: Bitmask of ZMK_INPUT_MODULE_CAP_* values.
+
+    devices:
+      type: phandles
+      description: Deferred devices initialized when this profile is applied.

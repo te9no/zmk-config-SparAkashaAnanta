@@ -2,6 +2,8 @@
 #include "SAA_layout.dtsi"
 #include "SAA_led.dtsi"
 #include "SAA_oled.dtsi"
+#include <dt-bindings/saa/module_select.h>
+#include <dt-bindings/zmk/input_module.h>
 
 / {
 	chosen {
@@ -16,9 +18,9 @@
 		};
 
 		saa_mod: saa_module_select {
-			compatible = "saa,behavior-module-select";
+			compatible = "zmk,behavior-input-module-select";
 			#binding-cells = <1>;
-			display-name = "SAA Module Select";
+			display-name = "Input Module Select";
 		};
 	};
 
@@ -39,8 +41,45 @@
 	};
 
 	saa_module_mux: module_mux {
-		compatible = "saa,module-mux";
+		compatible = "zmk,input-module-mux";
 		status = "okay";
+		settings-key = "saa/module";
+		default-profile = <SAA_MODULE_UNSPECIFIED>;
+
+		profile_unspecified {
+			profile-id = <SAA_MODULE_UNSPECIFIED>;
+			display-name = "UNSPECIFIED";
+		};
+
+		profile_key {
+			profile-id = <SAA_MODULE_KEY>;
+			display-name = "KEY";
+			capabilities = <ZMK_INPUT_MODULE_CAP_KSCAN>;
+		};
+
+		profile_encoder {
+			profile-id = <SAA_MODULE_ENC>;
+			display-name = "ENC";
+			capabilities = <ZMK_INPUT_MODULE_CAP_ENCODER>;
+		};
+
+		profile_joystick {
+			profile-id = <SAA_MODULE_JOY>;
+			display-name = "JOY";
+			capabilities = <(ZMK_INPUT_MODULE_CAP_ADC | ZMK_INPUT_MODULE_CAP_ENCODER)>;
+		};
+
+		profile_trackball {
+			profile-id = <SAA_MODULE_TB>;
+			display-name = "TB";
+			capabilities = <ZMK_INPUT_MODULE_CAP_SPI>;
+		};
+
+		profile_touchpad {
+			profile-id = <SAA_MODULE_TPD>;
+			display-name = "TPD";
+			capabilities = <ZMK_INPUT_MODULE_CAP_I2C>;
+		};
 	};
 
 	vbatt: vbatt {

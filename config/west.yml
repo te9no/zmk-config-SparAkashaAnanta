@@ -11,7 +11,35 @@ manifest:
       # remote: zmkfirmware
       remote: te9no
       revision: v0.3-branch+dya
-      import: app/west.yml
+      import:
+        file: app/west.yml
+        name-blocklist:
+          - zephyr
+
+    - name: zephyr
+      remote: te9no
+      revision: feature/deferred-device-init
+      clone-depth: 1
+      import:
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_silabs
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
 
 # ZMK RGB LED Widget
     - name: zmk-rgbled-widget

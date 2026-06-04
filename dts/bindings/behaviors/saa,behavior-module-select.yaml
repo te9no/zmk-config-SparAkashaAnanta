@@ -1,5 +1,0 @@
-description: SparAkashaAnanta module profile selection behavior
-
-compatible: "saa,behavior-module-select"
-
-include: one_param.yaml

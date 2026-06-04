@@ -26,6 +26,11 @@ include:
     snippet: Central KEY zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_KEY
 
+  - board: seeeduino_xiao_ble
+    shield: SAA_L_Base rgbled_adapter nice_oled
+    snippet: Central ModuleMux zmk-usb-logging studio-rpc-usb-uart
+    artifact-name: SAA_L_MODULE_MUX_KEY_ENC
+
 # Left Shields / with IQS Module
   - board: seeeduino_xiao_ble
     shield: SAA_L_Base rgbled_adapter nice_oled
@@ -57,6 +62,11 @@ include:
     shield: SAA_R_Base rgbled_adapter nice_oled
     snippet: Peripheral KEY zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_KEY
+
+  - board: seeeduino_xiao_ble
+    shield: SAA_R_Base rgbled_adapter nice_oled
+    snippet: Peripheral ModuleMux zmk-usb-logging studio-rpc-usb-uart
+    artifact-name: SAA_R_MODULE_MUX_KEY_ENC
 
 # Right Shields / with IQS Module
   - board: seeeduino_xiao_ble

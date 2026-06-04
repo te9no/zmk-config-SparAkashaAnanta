@@ -2,3 +2,4 @@ name: Central
 append:
   EXTRA_DTC_OVERLAY_FILE: Central.overlay
   EXTRA_CONF_FILE: Central.conf
+  DTS_EXTRA_CPPFLAGS: -DSAA_SPLIT_ROLE_CENTRAL

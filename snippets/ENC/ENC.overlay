@@ -1,4 +1,4 @@
-#if defined(CONFIG_SHIELD_SAA_L_Base)
+#if defined(SAA_SPLIT_ROLE_CENTRAL)
 &left_encoder {
     a-gpios = ENCODER_A_GPIOS;
     b-gpios = ENCODER_B_GPIOS;
@@ -7,7 +7,7 @@
 };
 #endif
 
-#if defined(CONFIG_SHIELD_SAA_R_Base)
+#if defined(SAA_SPLIT_ROLE_PERIPHERAL)
 &right_encoder {
     a-gpios = ENCODER_A_GPIOS;
     b-gpios = ENCODER_B_GPIOS;
