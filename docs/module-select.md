@@ -109,7 +109,7 @@ The local Zephyr deferred-init patch allows a candidate device with `zephyr,defe
 
 ## ModuleMux Snippet
 
-`snippets/ModuleMux` is the first experimental unified-module snippet. It is intended to replace per-module snippets step by step.
+`snippets/ModuleMux` is the first unified-module snippet. The normal `build.yaml` now builds this firmware path instead of per-module firmware variants.
 
 Current candidate coverage:
 
@@ -121,15 +121,18 @@ Current candidate coverage:
 | `TB` | TODO | TODO | Leave for later because it has stronger SPI/pin interaction. |
 | `TPD` | TODO | TODO | Leave for later because the current overlay references missing `&i2c2`. |
 
-Build targets:
+Normal build targets:
 
-- `SAA_L_MODULE_MUX_KEY_ENC`: `Central ModuleMux`
-- `SAA_R_MODULE_MUX_KEY_ENC`: `Peripheral ModuleMux`
+- `SAA_L_UNIFIED`: `Central ModuleMux IQS`
+- `SAA_R_UNIFIED`: `Peripheral ModuleMux IQS`
+
+Legacy per-module targets are kept in `build.diagnostics.yaml` for comparison and debugging.
 
 ## Known Constraints
 
 - `config/west.yml` expects `feature/deferred-device-init` to exist on `te9no/zephyr`.
-- `devices` are currently wired for `KEY` and `ENC` only through the `ModuleMux` snippet.
+- `build.yaml` is unified-firmware-first. Use `build.diagnostics.yaml` for legacy per-module diagnostics.
+- `devices` are currently wired for `KEY` and `ENC` only through the `ModuleMux` snippet. IQS is included with the unified firmware and remains independent from the mutually-exclusive base module profiles.
 - `JOY` cannot be completed by simply sharing the `ENC` encoder node because the existing snippets use different encoder `steps` and `triggers-per-rotation` values.
 - `snippets/TPD/TPD.overlay` currently references `&i2c2`, which is not provided by the XIAO nRF52840 DTS. With OLED on I2C0 and IQS on I2C1, TPD + IQS coexistence needs an explicit I2C strategy before the one-firmware target can be completed.
 
@@ -137,9 +140,8 @@ Build targets:
 
 1. Move the generic `zmk,input-module-*` implementation into a standalone reusable ZMK module.
 2. Publish and maintain the Zephyr deferred-init branch pinned by `west.yml`.
-3. Validate the `ModuleMux` snippet with KEY and ENC candidates on hardware.
-4. Add a runtime sensor-slot strategy, then wire JOY's ADC and encoder candidates.
+3. Validate `SAA_L_UNIFIED` and `SAA_R_UNIFIED` with KEY and ENC candidates on hardware.
+4. Add a runtime sensor-slot strategy, then wire JOY's ADC and encoder candidates into the unified firmware.
 5. Resolve the TPD/IQS/OLED I2C resource plan before wiring TPD into the unified firmware.
 6. Add TB and TPD candidates after their pin and bus conflicts are resolved.
-7. Convert the SAA build matrix from per-module firmware targets to one SAA firmware target with runtime profile selection.
-8. Keep snippet-based per-module builds only as diagnostics until the unified target is proven.
+7. Keep snippet-based per-module builds only as diagnostics until the unified target is proven.
