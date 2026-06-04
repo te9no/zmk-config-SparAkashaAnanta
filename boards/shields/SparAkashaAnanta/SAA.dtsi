@@ -14,6 +14,12 @@
 			#binding-cells = <0>;
 			display-name = "Debug Toggle";
 		};
+
+		saa_mod: saa_module_select {
+			compatible = "saa,behavior-module-select";
+			#binding-cells = <1>;
+			display-name = "SAA Module Select";
+		};
 	};
 
 	// Encoders

@@ -1,0 +1,24 @@
+menuconfig SAA_MODULE_SELECT
+	bool "SparAkashaAnanta module profile selection"
+	default y
+	depends on DT_HAS_SAA_BEHAVIOR_MODULE_SELECT_ENABLED
+	select SETTINGS
+	help
+	  Provides a ZMK behavior that lets the user select the attached
+	  SparAkashaAnanta module profile and persist that choice in settings.
+
+if SAA_MODULE_SELECT
+
+config SAA_MODULE_SELECT_DEFAULT
+	int "Default SparAkashaAnanta module profile"
+	default 0
+	range 0 6
+	help
+	  Initial module profile when no persisted value exists.
+	  0=UNSPECIFIED, 1=KEY, 2=ENC, 3=JOY, 4=TB, 5=TPD, 6=IQS.
+
+module = SAA_MODULE_SELECT
+module-str = saa_module_select
+source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
+
+endif
