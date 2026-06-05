@@ -13,6 +13,10 @@ svg.physical-layout { font-family: ui-monospace, SFMono-Regular, Consolas, monos
 .module text { text-anchor: middle; dominant-baseline: middle; fill: #24434a; }
 .module .module-label { font-size: 10px; font-weight: 700; }
 .module .module-type { font-size: 7.5px; fill: #527a82; }
+.combo polyline { fill: none; stroke: #d46f2c; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.92; }
+.combo .combo-dot { fill: #d46f2c; stroke: #ffffff; stroke-width: 1.2; }
+.combo .combo-label-bg { fill: #fff4df; stroke: #d46f2c; stroke-width: 1.1; }
+.combo .combo-label { font-size: 9px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; fill: #6f330f; }
 .title { font-size: 16px; font-weight: 700; text-anchor: start; dominant-baseline: hanging; fill: #1d2520; }
 .subtitle { font-size: 10px; fill: #69736c; text-anchor: start; dominant-baseline: hanging; }
 .origin { fill: #d1495b; opacity: 0.75; }
@@ -1390,53 +1394,65 @@ svg.physical-layout { font-family: ui-monospace, SFMono-Regular, Consolas, monos
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
 <text class="tap" x="26" y="26">TRANS</text>
 </g>
-<g class="key keypos-12 transparent" transform="translate(39.136 123.796) rotate(5 0 -52)">
+<g class="key keypos-12 " transform="translate(39.136 123.796) rotate(5 0 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_KEY</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-13 transparent" transform="translate(91.136 123.796) rotate(5 -52 -52)">
+<g class="key keypos-13 " transform="translate(91.136 123.796) rotate(5 -52 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_ENC</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-14 transparent" transform="translate(194.616 128.476) rotate(5 -104 -52)">
+<g class="key keypos-14 " transform="translate(194.616 128.476) rotate(5 -104 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_JOY</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-15 transparent" transform="translate(143.136 119.116) rotate(5 -156 -52)">
+<g class="key keypos-15 " transform="translate(143.136 119.116) rotate(5 -156 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_TB</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-16 transparent" transform="translate(249.216 132.636) rotate(5 -208 -52)">
+<g class="key keypos-16 " transform="translate(249.216 132.636) rotate(5 -208 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_TPD</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-17 transparent" transform="translate(302.776 141.476) rotate(5 -260 -52)">
+<g class="key keypos-17 " transform="translate(302.776 141.476) rotate(5 -260 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_UNSPECIFIED</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-18 transparent" transform="translate(476.976 218.436) rotate(-5 -572 -52)">
+<g class="key keypos-18 " transform="translate(476.976 218.436) rotate(-5 -572 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_KEY</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-19 transparent" transform="translate(528.976 209.596) rotate(-5 -624 -52)">
+<g class="key keypos-19 " transform="translate(528.976 209.596) rotate(-5 -624 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_ENC</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-20 transparent" transform="translate(579.416 200.756) rotate(-5 -676 -52)">
+<g class="key keypos-20 " transform="translate(579.416 200.756) rotate(-5 -676 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_JOY</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-21 transparent" transform="translate(631.416 200.756) rotate(-5 -728 -52)">
+<g class="key keypos-21 " transform="translate(631.416 200.756) rotate(-5 -728 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_TB</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-22 transparent" transform="translate(683.416 200.756) rotate(-5 -780 -52)">
+<g class="key keypos-22 " transform="translate(683.416 200.756) rotate(-5 -780 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_TPD</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
-<g class="key keypos-23 transparent" transform="translate(735.416 200.756) rotate(-5 -832 -52)">
+<g class="key keypos-23 " transform="translate(735.416 200.756) rotate(-5 -832 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="20">SAA_MODULE_UNSPECIFIED</text>
+<text class="hold" x="26" y="37">saa_mod</text>
 </g>
 <g class="key keypos-24 transparent" transform="translate(20.936 184.636) rotate(-5 0 -104)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
