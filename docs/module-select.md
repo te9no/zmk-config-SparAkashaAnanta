@@ -53,18 +53,22 @@ IQS is not a mutually exclusive base module profile. It is treated as an optiona
 - Exposes the current profile through `zmk_input_module_selected_get()`.
 - Exposes the selected profile's required input path through `zmk_input_module_selected_capabilities()`.
 - Loads the selected profile early at `CONFIG_ZMK_INPUT_MODULE_SETTINGS_INIT_PRIORITY`.
-- Runs as a global behavior so split halves can receive the same selection command.
+- Runs on the event source half, so the selected profile is saved on the MCU where the key event originated.
 
 ## Split Persistence Notes
 
 The selected profile is stored in Zephyr settings on each MCU. `SAA_L_UNIFIED` and `SAA_R_UNIFIED` therefore each have their own `saa/module/selected` value.
 
-The profile selection behavior is global, but this module does not implement a separate central/peripheral reconciliation protocol. If only one half receives a profile selection, or if only one half is flashed with `settings_reset`, the two halves can boot with different selected profiles. This is expected behavior for now and must be handled operationally.
+The profile selection behavior is event-source local. If the selection key is pressed on the central half, the central MCU stores the profile. If the selection key is pressed on the peripheral half, the peripheral MCU stores the profile through split behavior invocation.
+
+Left and right halves can intentionally use different modules. For example, one half can store `TB` while the other half stores `ENC`. This is not a mismatch as long as it matches the installed hardware.
 
 When changing modules:
 
-- Select the intended profile while both halves are connected and able to receive the behavior.
-- If the halves appear to disagree, reset settings on both sides and select the profile again.
+- Press the profile selection key on the physical half whose module you want to change.
+- The `BT` layer exposes the same `KEY` / `ENC` / `JOY` / `TB` / `TPD` / `UNSPECIFIED` profile selection keys on both halves.
+- If both halves should use the same module, select the same profile from both halves.
+- If the halves appear to disagree unintentionally, reset settings on both sides and select the profiles again.
 - During hardware validation, record central and peripheral results separately.
 
 ## Module Capabilities
@@ -264,6 +268,7 @@ Legacy per-module targets have been removed. `build.yaml` now treats `ModuleMux`
 ### Phase 6: Runtime UX
 
 - 済: `BT` レイヤーに module profile 選択キーを追加。
+- 済: 左右で別 module profile を保存できるよう、`saa_mod` behavior を event-source local に変更し、`BT` レイヤーの左右両側に profile 選択キーを配置。
 - 済: profile 変更時に「次回起動から有効」と分かるログを出す。
 - 方針: OLED への profile 表示は不要。表示系の変更は行わない。
 - 方針: profile 変更後の reboot 導線は不要。既存の電源再投入、reset 操作、settings reset で運用する。

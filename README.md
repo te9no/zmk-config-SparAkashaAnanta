@@ -99,9 +99,13 @@ IQS is treated as an optional module that can coexist with every base profile. S
 
 The `ModuleMux` snippet is now the normal build path. `build.yaml` produces `SAA_L_UNIFIED` and `SAA_R_UNIFIED`, both with IQS included and `KEY` / `ENC` / `JOY` / `TB` / `TPD` wired as deferred candidates. On first boot, the unified firmware defaults to `KEY`; after the user selects another profile, the saved value is loaded early on the next boot before ZMK keymap, sensor, and physical layout initialization. Encoder candidates are routed through a sensor proxy so `ENC` and `JOY` can keep separate encoder step settings. The direct-key candidate is routed through a kscan proxy so non-`KEY` profiles do not cause ZMK's static `kscan-composite` graph to touch the raw direct-key GPIO path. `TPD` uses a deferred `gpio-i2c` bus in the unified path because XIAO nRF52840 does not provide `i2c2`.
 
-Profile settings are stored on each half's MCU. The selection behavior is global, but there is currently no separate profile reconciliation protocol between central and peripheral. If only one side is reset or only one side receives a new selection, the halves can boot with different module profiles. When changing the installed module profile, treat the left and right halves as separate persistent devices and verify that both sides have the intended saved profile.
+Profile settings are stored on each half's MCU. The selection behavior runs on the event source half, so pressing a profile key on the left/central side stores that side's profile, and pressing it on the right/peripheral side stores that side's profile. Left and right can intentionally use different modules, such as `TB` on one half and `ENC` on the other. When changing the installed module profile, treat the halves as separate persistent devices and verify that each side has the intended saved profile.
 
-プロファイル設定は左右それぞれのMCUに保存されます。選択用 behavior は global ですが、central / peripheral 間で profile を別途照合・同期する仕組みはまだありません。片側だけ settings reset したり、片側だけが新しい選択を保存した場合、左右が異なる module profile で起動する可能性があります。装着モジュールの profile を変更するときは、左右を個別の永続設定を持つデバイスとして扱い、両側が意図した profile を保存していることを確認してください。
+プロファイル設定は左右それぞれのMCUに保存されます。選択用 behavior は event source 側で実行されるため、左/central 側のキーで選択するとその側に保存され、右/peripheral 側のキーで選択するとその側に保存されます。左右で別 module を使う構成も可能です。たとえば片側を `TB`、もう片側を `ENC` として保存できます。装着モジュールの profile を変更するときは、左右を個別の永続設定を持つデバイスとして扱い、それぞれが意図した profile を保存していることを確認してください。
+
+The `BT` layer places the same module profile selection keys on both halves. To configure different modules, press the intended profile key on each physical half: for example, select `TB` from the left half and `ENC` from the right half, then reboot both halves.
+
+`BT` レイヤーには、左右両側に同じ module profile 選択キーを配置しています。左右で別 module を設定する場合は、それぞれの物理 half で意図した profile を選択してください。たとえば左側で `TB`、右側で `ENC` を選択し、その後に左右を再起動します。
 
 Legacy per-module builds have been removed. `build.yaml` now treats `ModuleMux` as the only normal firmware path.
 
