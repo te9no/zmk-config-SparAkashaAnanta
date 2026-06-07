@@ -1,8 +1,10 @@
-&i2c2 {
+#include "SAA_pins.dtsi"
+
+&i2c1 {
     status = "okay";
     compatible = "nordic,nrf-twi";
-    pinctrl-0 = <&i2c2_default>;
-    pinctrl-1 = <&i2c2_sleep>;
+    pinctrl-0 = <&tpd_i2c1_default>;
+    pinctrl-1 = <&tpd_i2c1_sleep>;
     pinctrl-names = "default", "sleep";
     clock-frequency = <100000>;
 
@@ -17,7 +19,7 @@
 };
 
 &pinctrl {
-    i2c2_default: i2c2_default {
+    tpd_i2c1_default: tpd_i2c1_default {
         group1 {
             psels = <TPD_I2C2_SDA>,
                     <TPD_I2C2_SCL>;
@@ -25,7 +27,7 @@
         };
     };
 
-    i2c2_sleep: i2c2_sleep {
+    tpd_i2c1_sleep: tpd_i2c1_sleep {
         group1 {
             psels = <TPD_I2C2_SDA>,
                     <TPD_I2C2_SCL>;
@@ -35,31 +37,16 @@
     };
 };
 
-#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-&trackpad_split {
-    status = "okay";
-    device = <&glidepoint>;
-};
-#endif
-
-#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 / {
-    split_inputs {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        trackpad_split: trackpad_split@3 {
-            compatible = "zmk,input-split";
-            status = "okay";
-            device = <&glidepoint>;
-            reg = <3>;
-        };
-    };
-
-    trackpad_listener: trackpad_listener {
+    glidepoint_listener: glidepoint_listener {
         compatible = "zmk,input-listener";
         status = "okay";
-        device = <&trackpad_split>;
+        device = <&glidepoint>;
+
+        layer0 {
+            layers = <0>;
+            input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
+                               <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        };
     };
 };
-#endif

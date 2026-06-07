@@ -1,0 +1,62 @@
+#include "SAA_pins.dtsi"
+
+&pinctrl {
+    saa_tb_spi_default: saa_tb_spi_default {
+        group1 {
+            psels = <TB_SPI_SCK>,
+                    <TB_SPI_MOSI>,
+                    <TB_SPI_MISO>;
+        };
+    };
+
+    saa_tb_spi_sleep: saa_tb_spi_sleep {
+        group1 {
+            psels = <TB_SPI_SCK>,
+                    <TB_SPI_MOSI>,
+                    <TB_SPI_MISO>;
+            low-power-enable;
+        };
+    };
+};
+
+&spi2 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&saa_tb_spi_default>;
+    pinctrl-1 = <&saa_tb_spi_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = TB_CS_GPIOS;
+
+    trackball: trackball@0 {
+        status = "okay";
+        compatible = "pixart,pmw3610";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        irq-gpios = TB_IRQ_GPIOS;
+        cpi = <800>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        force-awake;
+    };
+};
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            device = <&trackball>;
+            reg = <0>;
+        };
+    };
+
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&trackball_split>;
+    };
+};

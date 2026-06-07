@@ -1,0 +1,12 @@
+#include "SAA_pins.dtsi"
+
+&right_encoder {
+    a-gpios = ENCODER_A_GPIOS;
+    b-gpios = ENCODER_B_GPIOS;
+    steps = <24>;
+    status = "okay";
+};
+
+&sensors {
+    triggers-per-rotation = <10>;
+};

@@ -2,66 +2,66 @@
 include:
 # Left Shields
   - board: seeeduino_xiao_ble
-    shield: SAA_L_Base rgbled_adapter nice_oled
-    snippet: Central TB zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_L_Base SAA_L_TB rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TB
 
   - board: seeeduino_xiao_ble
-    shield: SAA_L_Base rgbled_adapter nice_oled
-    snippet: Central JOY zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_JOY
 
   - board: seeeduino_xiao_ble
-    shield: SAA_L_Base rgbled_adapter nice_oled
-    snippet: Central ENC zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_L_Base SAA_L_ENC rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_ENC
 
   - board: seeeduino_xiao_ble
-    shield: SAA_L_Base rgbled_adapter nice_oled
-    snippet: Central TPD zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_L_Base SAA_L_TPD rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TPD
 
   - board: seeeduino_xiao_ble
-    shield: SAA_L_Base rgbled_adapter nice_oled
-    snippet: Central KEY zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_L_Base SAA_L_KEY rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_KEY
 
 # Left Shields / with IQS Module
   - board: seeeduino_xiao_ble
-    shield: SAA_L_Base rgbled_adapter nice_oled
-    snippet: Central TB IQS zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_L_Base SAA_L_TB rgbled_adapter nice_oled
+    snippet: IQS zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TB_IQS
 
   # Right Shields
   - board: seeeduino_xiao_ble
-    shield: SAA_R_Base rgbled_adapter nice_oled
-    snippet: Peripheral TB zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_R_Base SAA_R_TB rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_TB
-    
+
   - board: seeeduino_xiao_ble
-    shield: SAA_R_Base rgbled_adapter nice_oled
-    snippet: Peripheral JOY zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_JOY
 
   - board: seeeduino_xiao_ble
-    shield: SAA_R_Base rgbled_adapter nice_oled
-    snippet: Peripheral ENC zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_R_Base SAA_R_ENC rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_ENC
 
   - board: seeeduino_xiao_ble
-    shield: SAA_R_Base rgbled_adapter nice_oled
-    snippet: Peripheral TPD zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_R_Base SAA_R_TPD rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_TPD
 
   - board: seeeduino_xiao_ble
-    shield: SAA_R_Base rgbled_adapter nice_oled
-    snippet: Peripheral KEY zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_R_Base SAA_R_KEY rgbled_adapter nice_oled
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_KEY
 
 # Right Shields / with IQS Module
   - board: seeeduino_xiao_ble
-    shield: SAA_R_Base rgbled_adapter nice_oled
-    snippet: Peripheral TB IQS zmk-usb-logging studio-rpc-usb-uart
+    shield: SAA_R_Base SAA_R_TB rgbled_adapter nice_oled
+    snippet: IQS zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_TB_IQS
 
 # Settings Reset

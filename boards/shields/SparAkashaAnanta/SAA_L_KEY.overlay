@@ -1,3 +1,5 @@
+#include "SAA_pins.dtsi"
+
 /delete-node/ &kscan2;
 
 / {

@@ -1,24 +1,15 @@
+#include "SAA_pins.dtsi"
+
 &adc {
     status = "okay";
 };
 
-#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-&left_encoder {
-    a-gpios = ENCODER_A_GPIOS;
-    b-gpios = ENCODER_B_GPIOS;
-    steps = <3>;
-    status = "okay";
-};
-#endif
-
-#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 &right_encoder {
     a-gpios = ENCODER_A_GPIOS;
     b-gpios = ENCODER_B_GPIOS;
     steps = <3>;
     status = "okay";
 };
-#endif
 
 &sensors {
     triggers-per-rotation = <1>;
@@ -58,17 +49,7 @@
             input-code = <INPUT_REL_Y>;
         };
     };
-};
 
-#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-&stick_split {
-    status = "okay";
-    device = <&anin0>;
-};
-#endif
-
-#if !defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-/ {
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
@@ -81,4 +62,3 @@
         };
     };
 };
-#endif

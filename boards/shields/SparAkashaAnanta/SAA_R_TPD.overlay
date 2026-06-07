@@ -1,0 +1,58 @@
+#include "SAA_pins.dtsi"
+
+&i2c1 {
+    status = "okay";
+    compatible = "nordic,nrf-twi";
+    pinctrl-0 = <&tpd_i2c1_default>;
+    pinctrl-1 = <&tpd_i2c1_sleep>;
+    pinctrl-names = "default", "sleep";
+    clock-frequency = <100000>;
+
+    glidepoint: glidepoint@2a {
+        compatible = "cirque,pinnacle";
+        reg = <0x2a>;
+        status = "okay";
+        dr-gpios = TPD_DR_GPIOS;
+        sensitivity = "2x";
+        no-taps;
+    };
+};
+
+&pinctrl {
+    tpd_i2c1_default: tpd_i2c1_default {
+        group1 {
+            psels = <TPD_I2C2_SDA>,
+                    <TPD_I2C2_SCL>;
+            bias-pull-up;
+        };
+    };
+
+    tpd_i2c1_sleep: tpd_i2c1_sleep {
+        group1 {
+            psels = <TPD_I2C2_SDA>,
+                    <TPD_I2C2_SCL>;
+            low-power-enable;
+            bias-pull-up;
+        };
+    };
+};
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackpad_split: trackpad_split@3 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            device = <&glidepoint>;
+            reg = <3>;
+        };
+    };
+
+    trackpad_listener: trackpad_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&trackpad_split>;
+    };
+};
