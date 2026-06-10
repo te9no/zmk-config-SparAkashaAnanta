@@ -1,5 +1,6 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/zmk/zip_dynamic_scale.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <dt-bindings/zmk/keys.h>
 #include "SAA.dtsi"
@@ -93,6 +94,29 @@
             compatible = "zmk,input-split";
             reg = <3>;
         };
+
+        iqs_split: iqs_split@4 {
+            compatible = "zmk,input-split";
+            reg = <4>;
+        };
+    };
+
+    zip_dynamic_xy_scaler: zip_dynamic_xy_scaler {
+        compatible = "zmk,input-processor-dynamic-scaler";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_X INPUT_REL_Y>;
+        scale-group = <ZDS_XY>;
+        track-remainders;
+    };
+
+    zip_dynamic_scroll_scaler: zip_dynamic_scroll_scaler {
+        compatible = "zmk,input-processor-dynamic-scaler";
+        #input-processor-cells = <0>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        scale-group = <ZDS_SC>;
+        track-remainders;
     };
 
     trackball_listener: trackball_listener {
@@ -140,6 +164,24 @@
             layers = <5>;
             input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
                                <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        };
+    };
+
+    iqs_listener: iqs_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&iqs_split>;
+        input-processors = <&zip_xy_scaler 1 24>,
+                           <&zip_scroll_scaler 1 40>,
+                           <&zip_dynamic_xy_scaler>,
+                           <&zip_dynamic_scroll_scaler>;
+
+        lowspeedmode {
+            layers = <1>, <2>;
+            input-processors = <&zip_xy_scaler 1 36>,
+                               <&zip_scroll_scaler 1 70>,
+                               <&zip_dynamic_xy_scaler>,
+                               <&zip_dynamic_scroll_scaler>;
         };
     };
 };

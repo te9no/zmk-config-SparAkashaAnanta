@@ -29,7 +29,7 @@ include:
 # Left Shields / with IQS Module
   - board: seeeduino_xiao_ble
     shield: SAA_L_Base SAA_L_TB rgbled_adapter nice_oled
-    snippet: IQS_Receiver zmk-usb-logging studio-rpc-usb-uart
+    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TB_IQS
 
   # Right Shields
