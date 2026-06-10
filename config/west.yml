@@ -107,10 +107,10 @@ manifest:
       revision: main
       url: https://github.com/te9no/zmk-module-battery-nrf-vddh-oversampling
       path: modules/zmk-module-battery-nrf-vddh-oversampling
-    # - name: zmk-feature-cdc-acm-bootloader-trigger
-    #   revision: main
-    #   url: https://github.com/cormoran/zmk-feature-cdc-acm-bootloader-trigger
-    #   path: modules/zmk-feature-cdc-acm-bootloader-trigger
+    - name: zmk-feature-cdc-acm-bootloader-trigger
+      revision: saa-uf2-bootloader-trigger
+      url: https://github.com/te9no/zmk-feature-cdc-acm-bootloader-trigger
+      path: modules/zmk-feature-cdc-acm-bootloader-trigger
   self:
     path: config
 
