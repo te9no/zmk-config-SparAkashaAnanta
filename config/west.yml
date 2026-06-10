@@ -108,7 +108,7 @@ manifest:
       url: https://github.com/te9no/zmk-module-battery-nrf-vddh-oversampling
       path: modules/zmk-module-battery-nrf-vddh-oversampling
     - name: zmk-feature-cdc-acm-bootloader-trigger
-      revision: saa-uf2-bootloader-trigger
+      revision: main
       url: https://github.com/te9no/zmk-feature-cdc-acm-bootloader-trigger
       path: modules/zmk-feature-cdc-acm-bootloader-trigger
   self:
