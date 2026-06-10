@@ -1,0 +1,3 @@
+name: IQS_Receiver
+append:
+  EXTRA_DTC_OVERLAY_FILE: IQS_Receiver.overlay
