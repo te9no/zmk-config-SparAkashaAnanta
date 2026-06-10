@@ -19,7 +19,7 @@
     };
 };
 
-&pinctrl {    
+&pinctrl {
     i2c1_default: i2c1_default {
         group1 {
             psels = <IQS_I2C1_SDA>,
@@ -27,7 +27,7 @@
             bias-pull-up;
         };
     };
-      
+
     i2c1_sleep: i2c1_sleep {
         group1 {
             psels = <IQS_I2C1_SDA>,
@@ -43,15 +43,14 @@
         #address-cells = <1>;
         #size-cells = <0>;
 
-        trackpad_split: trackpad_split@3 {
+        iqs_split: iqs_split@4 {
             compatible = "zmk,input-split";
             status = "okay";
             device = <&iqs9151>;
-            reg = <3>;
+            reg = <4>;
         };
     };
 
-#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     zip_dynamic_xy_scaler: zip_dynamic_xy_scaler {
         compatible = "zmk,input-processor-dynamic-scaler";
         #input-processor-cells = <0>;
@@ -70,10 +69,10 @@
         track-remainders;
     };
 
-    trackpad_listener: trackpad_listener {
+    iqs_listener: iqs_listener {
         compatible = "zmk,input-listener";
         status = "okay";
-        device = <&trackpad_split>;
+        device = <&iqs_split>;
         input-processors = <&zip_xy_scaler 1 24>,
                            <&zip_scroll_scaler 1 40>,
                            <&zip_dynamic_xy_scaler>,
@@ -87,5 +86,4 @@
                                <&zip_dynamic_scroll_scaler>;
         };
     };
-#endif
 };
