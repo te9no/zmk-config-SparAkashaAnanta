@@ -6,6 +6,11 @@
 #include <input/processors/runtime-input-processor.dtsi>
 
 / {
+    bootloader_trigger: bootloader_trigger {
+        compatible = "zmk,cdc-acm-bootloader-trigger";
+        cdc-port = <&snippet_zmk_usb_logging_uart>;
+    };
+
     kscan0: kscan0 {
         compatible = "zmk,kscan-composite";
         matrix {
@@ -49,7 +54,7 @@
 
     right_trackball_runtime_input_processor: right_trackball_runtime_input_processor {
         compatible = "zmk,input-processor-runtime";
-        processor-label = "rtb";
+        processor-label = "rtb2c";
         type = <INPUT_EV_REL>;
         x-codes = <INPUT_REL_X>;
         y-codes = <INPUT_REL_Y>;
@@ -95,12 +100,12 @@
         status = "okay";
         device = <&trackball_split>;
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT|INPUT_TRANSFORM_Y_INVERT)>,
-                           <&right_trackball_runtime_input_processor &scroll_runtime_input_processor>;
+                           <&right_trackball_runtime_input_processor>;
 
         arrow {
             layers = <2>;
             input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT|INPUT_TRANSFORM_Y_INVERT)>,
-                               <&right_trackball_runtime_input_processor &scroll_runtime_input_processor>,
+                               <&right_trackball_runtime_input_processor>,
                                <&zip_keybind_keys>;
             process-next;
         };

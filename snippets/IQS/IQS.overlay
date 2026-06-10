@@ -51,6 +51,7 @@
         };
     };
 
+#if defined(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     zip_dynamic_xy_scaler: zip_dynamic_xy_scaler {
         compatible = "zmk,input-processor-dynamic-scaler";
         #input-processor-cells = <0>;
@@ -86,4 +87,5 @@
                                <&zip_dynamic_scroll_scaler>;
         };
     };
+#endif
 };
