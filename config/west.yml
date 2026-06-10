@@ -44,8 +44,8 @@ manifest:
 
 # DYA Studio Runtime Processors
     - name: zmk-module-runtime-input-processor
-      revision: zmk-v0.3.0.0
-      url: https://github.com/cormoran/zmk-module-runtime-input-processor
+      revision: main
+      url: https://github.com/te9no/zmk-module-runtime-input-processor
       path: modules/zmk-module-runtime-input-processor
     - name: zmk-behavior-runtime-sensor-rotate
       revision: main # or latest commit hash
