@@ -99,13 +99,11 @@
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&trackball_split>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT|INPUT_TRANSFORM_Y_INVERT)>,
-                           <&right_trackball_runtime_input_processor>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT|INPUT_TRANSFORM_Y_INVERT)>;
 
         arrow {
             layers = <2>;
             input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT|INPUT_TRANSFORM_Y_INVERT)>,
-                               <&right_trackball_runtime_input_processor>,
                                <&zip_keybind_keys>;
             process-next;
         };
@@ -136,8 +134,7 @@
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&trackpad_split>;
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
-                           <&scroll_runtime_input_processor>;
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>;
 
         scroller {
             layers = <5>;
