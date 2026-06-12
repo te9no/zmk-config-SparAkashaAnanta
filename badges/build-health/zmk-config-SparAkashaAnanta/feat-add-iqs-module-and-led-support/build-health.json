@@ -1,0 +1,13 @@
+{
+  "repository": "te9no/zmk-config-SparAkashaAnanta",
+  "branch": "feat/add-iqs-module-and-led-support",
+  "target": "all",
+  "status": "passing",
+  "raw_status": "success",
+  "color": "#2ea44f",
+  "sha": "df97bdaaf2a0d211100129c23900392e530e8704",
+  "run_id": "27406682707",
+  "run_number": "50",
+  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/27406682707",
+  "generated_at": "2026-06-12T09:33:00Z"
+}
