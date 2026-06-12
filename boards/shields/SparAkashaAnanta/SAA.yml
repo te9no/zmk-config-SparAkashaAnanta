@@ -1,8 +1,8 @@
 file_format: "1"
-id: MeKaBu
-name: MeKaBu
+id: Ananta
+name: Ananta
 type: shield
-url: https://github.com/Modulable-Keyboard-Developer/zmk-config-SAA
+url: https://github.com/te9no/zmk-config-SparAkashaAnanta
 requires: [seeeduino_xiao_ble]
 features:
   - keys
