@@ -71,36 +71,6 @@
         #input-processor-cells = <0>;
     };
 
-    split_inputs {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        trackball_split: trackball_split@0 {
-            compatible = "zmk,input-split";
-            reg = <0>;
-        };
-
-        magnet_split: magnet_split@1 {
-            compatible = "zmk,input-split";
-            reg = <1>;
-        };
-
-        stick_split: stick_split@2 {
-            compatible = "zmk,input-split";
-            reg = <2>;
-        };
-
-        trackpad_split: trackpad_split@3 {
-            compatible = "zmk,input-split";
-            reg = <3>;
-        };
-
-        iqs_split: iqs_split@4 {
-            compatible = "zmk,input-split";
-            reg = <4>;
-        };
-    };
-
     zip_dynamic_xy_scaler: zip_dynamic_xy_scaler {
         compatible = "zmk,input-processor-dynamic-scaler";
         #input-processor-cells = <0>;
@@ -119,69 +89,4 @@
         track-remainders;
     };
 
-    trackball_listener: trackball_listener {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&trackball_split>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT|INPUT_TRANSFORM_Y_INVERT)>;
-
-        arrow {
-            layers = <2>;
-            input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT|INPUT_TRANSFORM_Y_INVERT)>,
-                               <&zip_keybind_keys>;
-            process-next;
-        };
-
-        arrow-prevent-move {
-            layers = <2>;
-            input-processors = <&zip_xy_scaler 0 1>;
-        };
-    };
-
-    stick_listener: stick_listener {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&stick_split>;
-
-        layer0 {
-            layers = <0>;
-            input-processors = <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
-        };
-
-        layer1 {
-            layers = <1>;
-            input-processors = <&scroll_runtime_input_processor>;
-        };
-    };
-
-    trackpad_listener: trackpad_listener {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&trackpad_split>;
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>;
-
-        scroller {
-            layers = <5>;
-            input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
-                               <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
-        };
-    };
-
-    iqs_listener: iqs_listener {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&iqs_split>;
-        input-processors = <&zip_xy_scaler 1 24>,
-                           <&zip_scroll_scaler 1 40>,
-                           <&zip_dynamic_xy_scaler>,
-                           <&zip_dynamic_scroll_scaler>;
-
-        lowspeedmode {
-            layers = <1>, <2>;
-            input-processors = <&zip_xy_scaler 1 36>,
-                               <&zip_scroll_scaler 1 70>,
-                               <&zip_dynamic_xy_scaler>,
-                               <&zip_dynamic_scroll_scaler>;
-        };
-    };
 };
