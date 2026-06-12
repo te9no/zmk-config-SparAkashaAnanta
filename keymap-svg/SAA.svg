@@ -13,6 +13,10 @@ svg.physical-layout { font-family: ui-monospace, SFMono-Regular, Consolas, monos
 .module text { text-anchor: middle; dominant-baseline: middle; fill: #24434a; }
 .module .module-label { font-size: 10px; font-weight: 700; }
 .module .module-type { font-size: 7.5px; fill: #527a82; }
+.combo polyline { fill: none; stroke: #d46f2c; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.92; }
+.combo .combo-dot { fill: #d46f2c; stroke: #ffffff; stroke-width: 1.2; }
+.combo .combo-label-bg { fill: #fff4df; stroke: #d46f2c; stroke-width: 1.1; }
+.combo .combo-label { font-size: 9px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; fill: #6f330f; }
 .title { font-size: 16px; font-weight: 700; text-anchor: start; dominant-baseline: hanging; fill: #1d2520; }
 .subtitle { font-size: 10px; fill: #69736c; text-anchor: start; dominant-baseline: hanging; }
 .origin { fill: #d1495b; opacity: 0.75; }
