@@ -1,0 +1,13 @@
+{
+  "repository": "te9no/zmk-config-SparAkashaAnanta",
+  "branch": "feat/add-zmk-trace-module",
+  "target": "all",
+  "status": "passing",
+  "raw_status": "success",
+  "color": "#2ea44f",
+  "sha": "6988d012d7a64c06e50a9fa918a737da566f45d6",
+  "run_id": "27467915123",
+  "run_number": "53",
+  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/27467915123",
+  "generated_at": "2026-06-13T13:35:24Z"
+}
