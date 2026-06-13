@@ -1,0 +1,19 @@
+/ {
+    trace_iqs_raw: trace_iqs_raw {
+        compatible = "zmk,input-processor-trace";
+        stage = "iqs_raw";
+        #input-processor-cells = <0>;
+    };
+
+    trace_iqs_after_fixed_scale: trace_iqs_after_fixed_scale {
+        compatible = "zmk,input-processor-trace";
+        stage = "iqs_after_fixed_scale";
+        #input-processor-cells = <0>;
+    };
+
+    trace_iqs_after_dynamic_scale: trace_iqs_after_dynamic_scale {
+        compatible = "zmk,input-processor-trace";
+        stage = "iqs_after_dynamic_scale";
+        #input-processor-cells = <0>;
+    };
+};

@@ -1,0 +1,20 @@
+&iqs_listener {
+    input-processors = <&trace_iqs_raw>,
+                       <&zip_xy_scaler 1 24>,
+                       <&zip_scroll_scaler 1 40>,
+                       <&trace_iqs_after_fixed_scale>,
+                       <&zip_dynamic_xy_scaler>,
+                       <&zip_dynamic_scroll_scaler>,
+                       <&trace_iqs_after_dynamic_scale>;
+
+    lowspeedmode {
+        layers = <1>, <2>;
+        input-processors = <&trace_iqs_raw>,
+                           <&zip_xy_scaler 1 36>,
+                           <&zip_scroll_scaler 1 70>,
+                           <&trace_iqs_after_fixed_scale>,
+                           <&zip_dynamic_xy_scaler>,
+                           <&zip_dynamic_scroll_scaler>,
+                           <&trace_iqs_after_dynamic_scale>;
+    };
+};
