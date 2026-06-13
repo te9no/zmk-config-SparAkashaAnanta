@@ -85,6 +85,11 @@ include:
     artifact-name: SAA_R_MODULE_TB_IQS
 
   - board: seeeduino_xiao_ble
+    shield: SAA_R_Base SAA_R_TB rgbled_adapter nice_oled
+    snippet: IQS IQS_Local Trace IQS_Local_Trace zmk-usb-logging studio-rpc-usb-uart
+    artifact-name: SAA_R_MODULE_TB_IQS_TRACE
+
+  - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
     snippet: IQS IQS_Local zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_JOY_IQS
