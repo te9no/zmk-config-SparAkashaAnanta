@@ -38,15 +38,15 @@
 };
 
 / {
-    glidepoint_listener: glidepoint_listener {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&glidepoint>;
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
 
-        layer0 {
-            layers = <0>;
-            input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
-                               <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        trackpad_split: trackpad_split@3 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            device = <&glidepoint>;
+            reg = <3>;
         };
     };
 };

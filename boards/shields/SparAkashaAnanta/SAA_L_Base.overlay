@@ -40,6 +40,19 @@
 };
 
 / {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        iqs_split: iqs_split@4 {
+            compatible = "zmk,input-split";
+            status = "disabled";
+            reg = <4>;
+        };
+    };
+};
+
+/ {
     zip_keybind_keys: zip_keybind_keys {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;

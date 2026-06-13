@@ -40,11 +40,15 @@
 };
 
 / {
-    trackball_listener2: trackball_listener2 {
-        compatible = "zmk,input-listener";
-        status = "okay";
-        device = <&trackball2>;
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-                           <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            device = <&trackball2>;
+            reg = <0>;
+        };
     };
 };

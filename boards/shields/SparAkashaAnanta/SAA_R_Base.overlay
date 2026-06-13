@@ -44,6 +44,35 @@
 };
 
 / {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        left_trackball_split: left_trackball_split@0 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            reg = <0>;
+        };
+
+        left_stick_split: left_stick_split@2 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            reg = <2>;
+        };
+
+        left_trackpad_split: left_trackpad_split@3 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            reg = <3>;
+        };
+
+        iqs_split: iqs_split@4 {
+            compatible = "zmk,input-split";
+            status = "okay";
+            reg = <4>;
+        };
+    };
+
     zip_dynamic_xy_scaler: zip_dynamic_xy_scaler {
         compatible = "zmk,input-processor-dynamic-scaler";
         #input-processor-cells = <0>;
@@ -60,6 +89,60 @@
         codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
         scale-group = <ZDS_SC>;
         track-remainders;
+    };
+
+    left_trackball_listener: left_trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&left_trackball_split>;
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
+                           <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+    };
+
+    left_stick_listener: left_stick_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&left_stick_split>;
+
+        layer0 {
+            layers = <0>;
+            input-processors = <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        };
+
+        layer1 {
+            layers = <1>;
+            input-processors = <&mouse_runtime_input_processor>;
+        };
+    };
+
+    left_trackpad_listener: left_trackpad_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&left_trackpad_split>;
+
+        layer0 {
+            layers = <0>;
+            input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
+                               <&zip_xy_to_scroll_mapper &scroll_runtime_input_processor>;
+        };
+    };
+
+    left_iqs_listener: left_iqs_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&iqs_split>;
+        input-processors = <&zip_xy_scaler 1 24>,
+                           <&zip_scroll_scaler 1 40>,
+                           <&zip_dynamic_xy_scaler>,
+                           <&zip_dynamic_scroll_scaler>;
+
+        lowspeedmode {
+            layers = <1>, <2>;
+            input-processors = <&zip_xy_scaler 1 36>,
+                               <&zip_scroll_scaler 1 70>,
+                               <&zip_dynamic_xy_scaler>,
+                               <&zip_dynamic_scroll_scaler>;
+        };
     };
 };
 
