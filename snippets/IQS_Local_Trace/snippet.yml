@@ -1,3 +1,0 @@
-name: IQS_Local_Trace
-append:
-  EXTRA_DTC_OVERLAY_FILE: IQS_Local_Trace.overlay

@@ -111,11 +111,6 @@ manifest:
       revision: main
       url: https://github.com/te9no/zmk-feature-cdc-acm-bootloader-trigger
       path: modules/zmk-feature-cdc-acm-bootloader-trigger
-# Debug tracing
-    - name: zmk-trace-module
-      remote: te9no
-      revision: saa-zmk-v0.3-compat
-      path: modules/zmk-trace-module
   self:
     path: config
 

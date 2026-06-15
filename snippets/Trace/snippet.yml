@@ -1,4 +1,0 @@
-name: Trace
-append:
-  EXTRA_DTC_OVERLAY_FILE: Trace.overlay
-  EXTRA_CONF_FILE: Trace.conf
