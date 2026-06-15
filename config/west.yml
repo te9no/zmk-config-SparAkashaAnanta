@@ -114,7 +114,7 @@ manifest:
 # Debug tracing
     - name: zmk-trace-module
       remote: te9no
-      revision: main
+      revision: saa-zmk-v0.3-compat
       path: modules/zmk-trace-module
   self:
     path: config
