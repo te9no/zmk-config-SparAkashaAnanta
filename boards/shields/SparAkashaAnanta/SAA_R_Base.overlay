@@ -132,7 +132,7 @@
         status = "okay";
         device = <&iqs_split>;
         input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-                           <&zip_xy_scaler 1 12>,
+                           <&zip_xy_scaler 1 6>,
                            <&zip_scroll_scaler 1 40>,
                            <&zip_dynamic_xy_scaler>,
                            <&zip_dynamic_scroll_scaler>;
@@ -140,7 +140,7 @@
         lowspeedmode {
             layers = <1>, <2>;
             input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
-                               <&zip_xy_scaler 1 36>,
+                               <&zip_xy_scaler 1 12>,
                                <&zip_scroll_scaler 1 70>,
                                <&zip_dynamic_xy_scaler>,
                                <&zip_dynamic_scroll_scaler>;
