@@ -104,7 +104,7 @@ manifest:
 
 # ZMK fix for Analog input driver
     - name: zmk-module-battery-nrf-vddh-oversampling
-
+      revision: 59fc126f859d4e7700186c9906e4645379763c34
       url: https://github.com/te9no/zmk-module-battery-nrf-vddh-oversampling
       path: modules/zmk-module-battery-nrf-vddh-oversampling
     # - name: zmk-feature-cdc-acm-bootloader-trigger

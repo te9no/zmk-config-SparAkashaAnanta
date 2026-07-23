@@ -8,7 +8,7 @@ include:
 
   - board: seeeduino_xiao_ble
     shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
-
+    snippet: Default battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_JOY
 
   - board: seeeduino_xiao_ble
@@ -34,7 +34,7 @@ include:
     
   - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
-
+    snippet: battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_JOY
 
   - board: seeeduino_xiao_ble
