@@ -2,12 +2,12 @@
   "repository": "te9no/zmk-config-SparAkashaAnanta",
   "branch": "master",
   "target": "all",
-  "status": "passing",
-  "raw_status": "success",
-  "color": "#2ea44f",
-  "sha": "88f832c7c67ccc4e2c69583d2923a6af9611d2a3",
-  "run_id": "30126687814",
-  "run_number": "103",
-  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/30126687814",
-  "generated_at": "2026-07-24T21:16:49Z"
+  "status": "failing",
+  "raw_status": "failure",
+  "color": "#d73a49",
+  "sha": "1ca64c73fa66be20db0f757e31a43e33546899b4",
+  "run_id": "30174636367",
+  "run_number": "104",
+  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/30174636367",
+  "generated_at": "2026-07-25T21:05:27Z"
 }
