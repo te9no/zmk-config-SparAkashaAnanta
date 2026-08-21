@@ -1,0 +1,13 @@
+{
+  "repository": "te9no/zmk-config-SparAkashaAnanta",
+  "branch": "codex/revert-untested-zmk-0.4-master",
+  "target": "all",
+  "status": "passing",
+  "raw_status": "success",
+  "color": "#2ea44f",
+  "sha": "c082539d6168d2ae78550e05374e3c3b3b72c797",
+  "run_id": "32473105724",
+  "run_number": "147",
+  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/32473105724",
+  "generated_at": "2026-08-21T10:40:33Z"
+}
