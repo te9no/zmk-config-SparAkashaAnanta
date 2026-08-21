@@ -18,6 +18,8 @@ the IQS9151 driver implementation.
   APIs so the screen links on a split peripheral
 - Removed legacy Cirque idle-sleeper and Studio RPC Kconfig options that are
   not provided by the Zephyr 4.1 input driver
+- The animation driver is pinned to its ZMK 0.4 migration revision, which uses
+  the current endpoint selection API on the split central
 - Shared modules are pinned to the revisions already verified by Polaris;
   SAA-only animation, power, physical-layout, and IQS fork modules are pinned
   to their resolved commits for reproducible builds

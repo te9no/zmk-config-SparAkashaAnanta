@@ -22,7 +22,7 @@ manifest:
 # LED Animation
     - name: zmk-driver-animation
       url: https://github.com/cormoran/zmk-driver-animation
-      revision: f45bfbb876c233ab4087ac5e10daa07b7aeda12e
+      revision: fa0479ec3b2fe04a96d9244e620d3c5dd2cfb280
       path: modules/zmk-driver-animation
 
     - name: zmk-driver-ext-power-transient
