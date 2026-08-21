@@ -1,0 +1,13 @@
+{
+  "repository": "te9no/zmk-config-SparAkashaAnanta",
+  "branch": "fleet/zmk-0.4-compat",
+  "target": "all",
+  "status": "failing",
+  "raw_status": "failure",
+  "color": "#d73a49",
+  "sha": "ddef72cf91e73c96455c550f4d49cb901552d488",
+  "run_id": "32459445416",
+  "run_number": "133",
+  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/32459445416",
+  "generated_at": "2026-08-21T07:48:02Z"
+}
