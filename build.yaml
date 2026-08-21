@@ -1,105 +1,58 @@
 ---
 include:
-# Left Shields
-  - board: xiao_ble//zmk
+# Left Shields / Default - with AML
+  - board: seeeduino_xiao_ble
     shield: SAA_L_Base SAA_L_TB rgbled_adapter nice_oled
+    snippet: Default zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TB
 
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
-    snippet: battery-voltage-divider-oversampling
+    snippet: Default battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_JOY
 
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_L_Base SAA_L_ENC rgbled_adapter nice_oled
+    snippet: Default zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_ENC
 
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_L_Base SAA_L_TPD rgbled_adapter nice_oled
+    snippet: Default zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TPD
 
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_L_Base SAA_L_KEY rgbled_adapter nice_oled
+    snippet: Default zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_KEY
 
-# Left Shields / with IQS Module
-  - board: xiao_ble//zmk
-    shield: SAA_L_Base SAA_L_TB rgbled_adapter nice_oled
-    snippet: IQS IQS_Split
-    artifact-name: SAA_L_MODULE_TB_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
-    snippet: IQS IQS_Split battery-voltage-divider-oversampling
-    artifact-name: SAA_L_MODULE_JOY_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_L_Base SAA_L_ENC rgbled_adapter nice_oled
-    snippet: IQS IQS_Split
-    artifact-name: SAA_L_MODULE_ENC_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_L_Base SAA_L_TPD rgbled_adapter nice_oled
-    snippet: IQS IQS_Split
-    artifact-name: SAA_L_MODULE_TPD_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_L_Base SAA_L_KEY rgbled_adapter nice_oled
-    snippet: IQS IQS_Split
-    artifact-name: SAA_L_MODULE_KEY_IQS
-
 # Right Shields
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_TB rgbled_adapter nice_oled
     snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_TB
-
-  - board: xiao_ble//zmk
+    
+  - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
     snippet: battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_JOY
 
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_ENC rgbled_adapter nice_oled
     snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_ENC
 
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_TPD rgbled_adapter nice_oled
     snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_TPD
 
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: SAA_R_Base SAA_R_KEY rgbled_adapter nice_oled
     snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_KEY
 
-# Right Shields / with IQS Module
-  - board: xiao_ble//zmk
-    shield: SAA_R_Base SAA_R_TB rgbled_adapter nice_oled
-    snippet: IQS IQS_Local zmk-usb-logging studio-rpc-usb-uart
-    artifact-name: SAA_R_MODULE_TB_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
-    snippet: IQS IQS_Local battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
-    artifact-name: SAA_R_MODULE_JOY_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_R_Base SAA_R_ENC rgbled_adapter nice_oled
-    snippet: IQS IQS_Local zmk-usb-logging studio-rpc-usb-uart
-    artifact-name: SAA_R_MODULE_ENC_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_R_Base SAA_R_TPD rgbled_adapter nice_oled
-    snippet: IQS IQS_Local zmk-usb-logging studio-rpc-usb-uart
-    artifact-name: SAA_R_MODULE_TPD_IQS
-
-  - board: xiao_ble//zmk
-    shield: SAA_R_Base SAA_R_KEY rgbled_adapter nice_oled
-    snippet: IQS IQS_Local zmk-usb-logging studio-rpc-usb-uart
-    artifact-name: SAA_R_MODULE_KEY_IQS
-
 # Settings Reset
-  - board: xiao_ble//zmk
+  - board: seeeduino_xiao_ble
     shield: settings_reset
+
