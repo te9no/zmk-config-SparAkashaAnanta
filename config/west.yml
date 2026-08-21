@@ -16,67 +16,67 @@ manifest:
 # ZMK RGB LED Widget
     - name: zmk-rgbled-widget
       url: https://github.com/caksoylar/zmk-rgbled-widget
-      revision: v0.3
+      revision: e6b467792a1dabef8cfa5c9fd26bfefc9c16662b
       path: modules/zmk-rgbled-widget
 
 # LED Animation
     - name: zmk-driver-animation
       url: https://github.com/cormoran/zmk-driver-animation
-      revision: f45bfbb
+      revision: f45bfbb876c233ab4087ac5e10daa07b7aeda12e
       path: modules/zmk-driver-animation
 
     - name: zmk-driver-ext-power-transient
       url: https://github.com/cormoran/zmk-driver-ext-power-transient
-      revision: main
+      revision: 92b00e3acb438df77c374a2f79857a8406c41bed
       path: modules/zmk-driver-ext-power-transient
 
 # ZMK Layout Shift
     - name: zmk-layout-shift
-      revision: v1
+      revision: 4d71f7cb743256ac619873dd44f510e9e9562739
       url: https://github.com/kot149/zmk-layout-shift
       path: modules/zmk-layout-shift
 
 #Custom input processors
     - name: zmk-input-processor-keybind
-      revision: main
+      revision: 10ad463f2e3c7a7dfb4b7cffd6bddd0e9e8b5bae
       url: https://github.com/te9no/zmk-input-processor-keybind
       path: modules/zmk-input-processor-keybind
 
 # DYA Studio Runtime Processors
     - name: zmk-module-runtime-input-processor
-      revision: main
+      revision: 72387b5212264d26d704dbc43c765f6485470a77
       url: https://github.com/te9no/zmk-module-runtime-input-processor
       path: modules/zmk-module-runtime-input-processor
     - name: zmk-behavior-runtime-sensor-rotate
-      revision: main # or latest commit hash
+      revision: 8b1125ed676c1f5e14145d217984f33d0ebdcef4
       url: https://github.com/cormoran/zmk-behavior-runtime-sensor-rotate
       path: modules/zmk-behavior-runtime-sensor-rotate
     - name: zmk-module-ble-management
-      revision: zmk-v0.3.0.0
+      revision: 57738cc4fc6ba80e82a7ac57741a0339cb186cd4
       url: https://github.com/cormoran/zmk-module-ble-management
       path: modules/zmk-module-ble-management
     - name: zmk-module-settings-rpc
-      revision: main
+      revision: 083a299dd8d31c275809c5a249b12486be24a7d2
       url: https://github.com/cormoran/zmk-module-settings-rpc
       path: modules/zmk-module-settings-rpc
 
 # Module for physical layout
     - name: zmk-feature-module-physical-layout
       remote: cormoran
-      revision: main
+      revision: 4f18de45dc27820725d267916b4cdacc0e0b6cf9
 
 # OLED
     - name: zmk-nice-oled
       # remote: mctechnology17
       url: https://github.com/te9no/zmk-nice-oled
-      revision: main
+      revision: b5b55231e1d676b5bb8bc7a31f9042d0f16bed73
       path: modules/zmk-nice-oled
 
 # Trackpad
     # Zephyr 4.1 provides the pixart,pmw3610 and cirque,pinnacle input drivers.
     - name: zmk-driver-iqs9151-rpc
       remote: te9no
-      revision: main
+      revision: e9c4c8700cf86d1ed02d2f5dd1a0c3be941da0aa
       path: modules/zmk-driver-iqs9151-rpc
     # - name: cirque-input-module
     #   revision: main
@@ -86,20 +86,20 @@ manifest:
 # Analog input
     - name: zmk-analog-input-driver
       url: https://github.com/badjeff/zmk-analog-input-driver
-      revision: main
+      revision: 2684f22ee7e2168d4393f7e63676912210a796fc
       path: modules/zmk-analog-input-driver
     - name: zmk-module-analoginput-rpc
-      revision: main
+      revision: e065461e907fa924c0029e1d4c94cec1d9093e17
       url: https://github.com/te9no/zmk-module-analoginput-rpc
       path: modules/zmk-module-analoginput-rpc
 
 # ZMK fix for Analog input driver
     - name: zmk-module-battery-nrf-vddh-oversampling
-      revision: main
+      revision: 59fc126f859d4e7700186c9906e4645379763c34
       url: https://github.com/te9no/zmk-module-battery-nrf-vddh-oversampling
       path: modules/zmk-module-battery-nrf-vddh-oversampling
     - name: zmk-feature-cdc-acm-bootloader-trigger
-      revision: main
+      revision: 1850754d269aab9ba73e4639371bfe59a4130e65
       url: https://github.com/te9no/zmk-feature-cdc-acm-bootloader-trigger
       path: modules/zmk-feature-cdc-acm-bootloader-trigger
   self:
