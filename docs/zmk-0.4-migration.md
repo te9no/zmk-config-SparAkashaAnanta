@@ -14,7 +14,10 @@ the IQS9151 driver implementation.
 - The CDC bootloader trigger node is likewise limited to the split central
 - Nice! OLED uses its ZMK 0.4 battery-only screen on both split builds,
   avoiding legacy LVGL 8 animation assets while preserving the 90-degree
-  peripheral battery display
+  peripheral battery display; the pinned revision also guards central-only
+  APIs so the screen links on a split peripheral
+- Removed legacy Cirque idle-sleeper and Studio RPC Kconfig options that are
+  not provided by the Zephyr 4.1 input driver
 - Shared modules are pinned to the revisions already verified by Polaris;
   SAA-only animation, power, physical-layout, and IQS fork modules are pinned
   to their resolved commits for reproducible builds
