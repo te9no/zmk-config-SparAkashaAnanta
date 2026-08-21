@@ -1,0 +1,4 @@
+&iqs_split {
+    status = "okay";
+    device = <&iqs9151>;
+};

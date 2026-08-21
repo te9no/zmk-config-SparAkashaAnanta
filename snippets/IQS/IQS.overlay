@@ -1,0 +1,34 @@
+&i2c1 {
+    status = "okay";
+    compatible = "nordic,nrf-twi";
+    pinctrl-0 = <&i2c1_default>;
+    pinctrl-1 = <&i2c1_sleep>;
+    pinctrl-names = "default", "sleep";
+    clock-frequency = <100000>;
+
+    iqs9151: iqs9151@56 {
+        compatible = "azoteq,iqs9151";
+        reg = <0x56>;
+        status = "okay";
+        irq-gpios = IQS_IRQ_GPIOS;
+    };
+};
+
+&pinctrl {
+    i2c1_default: i2c1_default {
+        group1 {
+            psels = <IQS_I2C1_SDA>,
+                    <IQS_I2C1_SCL>;
+            bias-pull-up;
+        };
+    };
+
+    i2c1_sleep: i2c1_sleep {
+        group1 {
+            psels = <IQS_I2C1_SDA>,
+                    <IQS_I2C1_SCL>;
+            low-power-enable;
+            bias-pull-up;
+        };
+    };
+};
