@@ -11,6 +11,7 @@ the IQS9151 driver implementation.
 - PMW3610 and Cirque overlays use their Zephyr 4.1 devicetree properties
 - NFCT GPIO configuration is moved from deprecated Kconfig to the UICR node
 - USB logging and Studio UART snippets are limited to the split central
+- The CDC bootloader trigger node is likewise limited to the split central
 
 Keeping the IQS implementation unchanged makes this PR a reusable baseline
 for separating general ZMK 0.4 compatibility fixes from the subsequent
