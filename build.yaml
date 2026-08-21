@@ -3,53 +3,48 @@ include:
 # Left Shields
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_TB rgbled_adapter nice_oled
-    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TB
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
-    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_JOY
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_ENC rgbled_adapter nice_oled
-    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_ENC
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_TPD rgbled_adapter nice_oled
-    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_TPD
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_KEY rgbled_adapter nice_oled
-    snippet: zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_L_MODULE_KEY
 
 # Left Shields / with IQS Module
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_TB rgbled_adapter nice_oled
-    snippet: IQS IQS_Split zmk-usb-logging studio-rpc-usb-uart
+    snippet: IQS IQS_Split
     artifact-name: SAA_L_MODULE_TB_IQS
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
-    snippet: IQS IQS_Split zmk-usb-logging studio-rpc-usb-uart
+    snippet: IQS IQS_Split
     artifact-name: SAA_L_MODULE_JOY_IQS
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_ENC rgbled_adapter nice_oled
-    snippet: IQS IQS_Split zmk-usb-logging studio-rpc-usb-uart
+    snippet: IQS IQS_Split
     artifact-name: SAA_L_MODULE_ENC_IQS
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_TPD rgbled_adapter nice_oled
-    snippet: IQS IQS_Split zmk-usb-logging studio-rpc-usb-uart
+    snippet: IQS IQS_Split
     artifact-name: SAA_L_MODULE_TPD_IQS
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_KEY rgbled_adapter nice_oled
-    snippet: IQS IQS_Split zmk-usb-logging studio-rpc-usb-uart
+    snippet: IQS IQS_Split
     artifact-name: SAA_L_MODULE_KEY_IQS
 
 # Right Shields

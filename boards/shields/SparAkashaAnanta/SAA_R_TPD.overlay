@@ -12,9 +12,8 @@
         compatible = "cirque,pinnacle";
         reg = <0x2a>;
         status = "okay";
-        dr-gpios = TPD_DR_GPIOS;
+        data-ready-gpios = TPD_DR_GPIOS;
         sensitivity = "2x";
-        no-taps;
     };
 };
 
