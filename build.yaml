@@ -7,6 +7,7 @@ include:
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
+    snippet: battery-voltage-divider-oversampling
     artifact-name: SAA_L_MODULE_JOY
 
   - board: xiao_ble//zmk
@@ -29,7 +30,7 @@ include:
 
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_JOY rgbled_adapter nice_oled
-    snippet: IQS IQS_Split
+    snippet: IQS IQS_Split battery-voltage-divider-oversampling
     artifact-name: SAA_L_MODULE_JOY_IQS
 
   - board: xiao_ble//zmk
@@ -55,7 +56,7 @@ include:
 
   - board: xiao_ble//zmk
     shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
-    snippet: zmk-usb-logging studio-rpc-usb-uart
+    snippet: battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_JOY
 
   - board: xiao_ble//zmk
@@ -81,7 +82,7 @@ include:
 
   - board: xiao_ble//zmk
     shield: SAA_R_Base SAA_R_JOY rgbled_adapter nice_oled
-    snippet: IQS IQS_Local zmk-usb-logging studio-rpc-usb-uart
+    snippet: IQS IQS_Local battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA_R_MODULE_JOY_IQS
 
   - board: xiao_ble//zmk
