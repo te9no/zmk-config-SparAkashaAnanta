@@ -1,0 +1,13 @@
+{
+  "repository": "te9no/zmk-config-SparAkashaAnanta",
+  "branch": "codex/restore-joystick-oversampling",
+  "target": "all",
+  "status": "passing",
+  "raw_status": "success",
+  "color": "#2ea44f",
+  "sha": "9c817f80d4f66f4acc7e65c31c854f2a9a30d0b1",
+  "run_id": "32468025027",
+  "run_number": "143",
+  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/32468025027",
+  "generated_at": "2026-08-21T09:46:16Z"
+}

@@ -20,6 +20,8 @@ the IQS9151 driver implementation.
   not provided by the Zephyr 4.1 input driver
 - The animation driver is pinned to its ZMK 0.4 migration revision, which uses
   the current endpoint selection API on the split central
+- Joystick builds, including IQS combinations, enable the pinned battery
+  voltage-divider oversampling snippet on both halves
 - Shared modules are pinned to the revisions already verified by Polaris;
   SAA-only animation, power, physical-layout, and IQS fork modules are pinned
   to their resolved commits for reproducible builds
