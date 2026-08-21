@@ -1,0 +1,13 @@
+{
+  "repository": "te9no/zmk-config-SparAkashaAnanta",
+  "branch": "fleet/iqs9151-upstream-zmk-0.4",
+  "target": "all",
+  "status": "passing",
+  "raw_status": "success",
+  "color": "#2ea44f",
+  "sha": "fa6b9e5f46fe75c79bbd8fea9f96f7e547b7ccc3",
+  "run_id": "32464961583",
+  "run_number": "141",
+  "run_url": "https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/runs/32464961583",
+  "generated_at": "2026-08-21T09:05:50Z"
+}
