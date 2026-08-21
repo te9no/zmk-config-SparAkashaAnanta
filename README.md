@@ -1,5 +1,7 @@
 ﻿# SparAkashaAnanta - スパラカシャ・アナンタ
 
+[![Build Health](badges/build-health/zmk-config-SparAkashaAnanta/master/build-health.svg)](https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/workflows/build.yml?query=branch%3Amaster)
+
 ```
                                                 ########                                                                                                
                                               ##        ##                                                                                              
