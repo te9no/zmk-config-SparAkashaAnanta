@@ -12,6 +12,9 @@ the IQS9151 driver implementation.
 - NFCT GPIO configuration is moved from deprecated Kconfig to the UICR node
 - USB logging and Studio UART snippets are limited to the split central
 - The CDC bootloader trigger node is likewise limited to the split central
+- Nice! OLED uses its ZMK 0.4 battery-only screen on both split builds,
+  avoiding legacy LVGL 8 animation assets while preserving the 90-degree
+  peripheral battery display
 - Shared modules are pinned to the revisions already verified by Polaris;
   SAA-only animation, power, physical-layout, and IQS fork modules are pinned
   to their resolved commits for reproducible builds
