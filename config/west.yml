@@ -73,7 +73,15 @@ manifest:
       path: modules/zmk-nice-oled
 
 # Trackpad
-    # Zephyr 4.1 provides the pixart,pmw3610 and cirque,pinnacle input drivers.
+    # Zephyr 4.1 provides the cirque,pinnacle input driver.
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+      revision: c6a7fef3a3be3d3ace5de9a4b0628c6418cd1f3f
+      path: zmk-feature-custom-settings
+    - name: zmk-driver-pmw3610-with-custom-studio-rpc
+      remote: cormoran
+      revision: 5c34ea0eec246a1c986111417cd779b53144629a
+      path: modules/zmk-driver-pmw3610-with-custom-studio-rpc
     - name: zmk-driver-iqs9151-upstream
       url: https://github.com/ShiniNet/zmk-driver-iqs9151
       revision: 08a6fd19c5aa5ae7f11daf371b5a391cd8596783
