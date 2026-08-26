@@ -81,6 +81,10 @@ manifest:
       remote: cormoran
       revision: 5c34ea0eec246a1c986111417cd779b53144629a
       path: modules/zmk-driver-pmw3610-with-custom-studio-rpc
+    - name: zmk-driver-spi-three-wire
+      remote: te9no
+      revision: 4362133dbfbf66788b66b0a3e3c410b9232c06cb
+      path: modules/zmk-driver-spi-three-wire
     - name: zmk-driver-iqs9151-upstream
       url: https://github.com/ShiniNet/zmk-driver-iqs9151
       revision: 08a6fd19c5aa5ae7f11daf371b5a391cd8596783
