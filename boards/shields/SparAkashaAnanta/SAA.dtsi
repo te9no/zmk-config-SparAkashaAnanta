@@ -32,14 +32,29 @@
 		sensors = <&left_encoder &right_encoder>;
 	};
 
-	vbatt: vbatt {
-		io-channels = BATTERY_CHANNEL;
-		power-gpios; // unset
-		output-ohms = <470000>;
-		full-ohms = <(1000000 + 470000)>;
-		// For Ni-Mh 1U
-		mv-to-pct-thresholds = <1100 1150 1200 1220 1240 1260 1280 1300 1320 1350 1400>;
-	};
+};
+
+// Release the board-default buses; module overlays enable their own pinctrl.
+&xiao_serial {
+	status = "disabled";
+};
+
+&xiao_spi {
+	status = "disabled";
+};
+
+&xiao_i2c {
+	status = "disabled";
+};
+
+// Override the ZMK board variant's battery node with SAA's existing divider.
+&vbatt {
+	io-channels = BATTERY_CHANNEL;
+	/delete-property/ power-gpios;
+	output-ohms = <470000>;
+	full-ohms = <(1000000 + 470000)>;
+	// For Ni-Mh 1U
+	mv-to-pct-thresholds = <1100 1150 1200 1220 1240 1260 1280 1300 1320 1350 1400>;
 };
 
 &adc {
