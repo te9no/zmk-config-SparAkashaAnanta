@@ -68,7 +68,7 @@ manifest:
     - name: zmk-nice-oled
       # remote: mctechnology17
       url: https://github.com/te9no/zmk-nice-oled
-      revision: 537666b5aca8c04276f3d2e9d614eb31c6d5be7e
+      revision: c511d7f64ba0f186051943d027333d247ad8e206
       path: modules/zmk-nice-oled
 
 # Trackpad
