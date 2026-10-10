@@ -1,4 +1,6 @@
 #include "SAA_pins.dtsi"
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 
 / {
     saa_tb_spi: spi-three-wire {
@@ -36,6 +38,9 @@
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&trackball>;
+        // Right TB mounting is rotated 180 degrees: correct both axes.
+        input-processors = <&zip_xy_transform
+            (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
     };
 };
 
