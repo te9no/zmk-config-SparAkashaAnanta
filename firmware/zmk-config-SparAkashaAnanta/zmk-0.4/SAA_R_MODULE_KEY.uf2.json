@@ -1,10 +1,10 @@
 {
   "artifact": {
     "name": "SAA_R_MODULE_KEY.uf2",
-    "sha256": "d2bd656424ee79c43feb227134c292a477adfee6faef7e41491a167cfa243af1"
+    "sha256": "f360ed681b9add99ed5aa22528026f6a492eb46a7f39af711c30e223ac2a1152"
   },
   "generated": {
-    ".config": "8b05c600720e60dd55f4cfad928deec54e158610cf2914862c22eab4bfba64d1",
+    ".config": "8aa6bf879edec8aec3c5f25663ff749a6481e3a069150ecb9811a16637a18269",
     "zephyr.dts": "00d8f0a9b8954df780755fe82ac4d75b406977b7eb0f37d79926e608c0e3f91a"
   },
   "inputs": {
@@ -436,7 +436,7 @@
         "untracked": {}
       },
       "zmk-nice-oled": {
-        "commit": "537666b5aca8c04276f3d2e9d614eb31c6d5be7e",
+        "commit": "c511d7f64ba0f186051943d027333d247ad8e206",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -461,7 +461,7 @@
       }
     },
     "source": {
-      "commit": "a24b8da26a648643e897bb9e99260395d3669812",
+      "commit": "6a891f160e485a9fc4bf2636e0456e639c176df3",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -473,7 +473,7 @@
       "untracked": {}
     }
   },
-  "run_id": "38047620884",
+  "run_id": "38053629298",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_R_MODULE_KEY",
