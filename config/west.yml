@@ -42,6 +42,14 @@ manifest:
       path: modules/zmk-input-processor-keybind
 
 # DYA Studio Runtime Processors
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+      revision: 38530962eb7061b60efcb98e84585cfb1f0cb6de
+      path: modules/zmk-feature-runtime-macro
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+      revision: d9490e7b5d41c516221d131241009e81740efcee
+      path: modules/zmk-feature-runtime-combo
     - name: zmk-module-runtime-input-processor
       revision: 72387b5212264d26d704dbc43c765f6485470a77
       url: https://github.com/te9no/zmk-module-runtime-input-processor

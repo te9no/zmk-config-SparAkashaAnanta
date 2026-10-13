@@ -4,6 +4,7 @@
 #include <dt-bindings/zmk/zip_dynamic_scale.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include "SAA.dtsi"
+#include <behaviors/runtime_macro.dtsi>
 
 /* Keep only the logging/boot-trigger and Studio CDC interfaces. */
 &board_cdc_acm_uart {
