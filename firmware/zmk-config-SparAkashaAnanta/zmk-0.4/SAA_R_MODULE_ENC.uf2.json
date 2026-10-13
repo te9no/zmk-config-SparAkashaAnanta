@@ -1,11 +1,11 @@
 {
   "artifact": {
     "name": "SAA_R_MODULE_ENC.uf2",
-    "sha256": "a4d95d8f96532caf96155b69ae0b6d9a33c61c20a1532d0af3283b668d14d751"
+    "sha256": "fe8991cd89fe2e56e6be0ac28c9cc6b171fba61b59ed56cc5414078ac3da6986"
   },
   "generated": {
-    ".config": "e2fb6e00ad6230991b0a2caa6c46144ed35691cca3e4be7a0c45e0ab4c42948b",
-    "zephyr.dts": "7f65d78f4fdba2314b0365f4d984f839678fe5483d840fbe10f7af6b81059fce"
+    ".config": "92f40e69804d735945885dd1e5b4acd8eec055746dfddbc8e9ccb855107f6369",
+    "zephyr.dts": "3bf7b99b2681a3cbb5040228b667ef9441418c72b21f25141f05831f36fa2f57"
   },
   "inputs": {
     "dependencies": {
@@ -393,6 +393,18 @@
         "dirty": false,
         "untracked": {}
       },
+      "zmk-feature-runtime-combo": {
+        "commit": "d9490e7b5d41c516221d131241009e81740efcee",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-runtime-macro": {
+        "commit": "38530962eb7061b60efcb98e84585cfb1f0cb6de",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
       "zmk-input-processor-keybind": {
         "commit": "10ad463f2e3c7a7dfb4b7cffd6bddd0e9e8b5bae",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -461,7 +473,7 @@
       }
     },
     "source": {
-      "commit": "6a891f160e485a9fc4bf2636e0456e639c176df3",
+      "commit": "3e6a6eadff7ba4f60bd2cd6e2159e5712227991c",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -473,7 +485,7 @@
       "untracked": {}
     }
   },
-  "run_id": "38053629298",
+  "run_id": "38410411353",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_R_MODULE_ENC",
