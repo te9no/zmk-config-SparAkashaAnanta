@@ -30,8 +30,8 @@
 		keys  //                     w   h    x    y     rot    rx    ry
 			= <&key_physical_attrs 100 100  149 (-183)    1500   149 (-183)>
 			, <&key_physical_attrs 100 100  252 (-200)    1500   152 (-200)>
-			, <&key_physical_attrs 100 100  454 (-209)    1500   254 (-209)>
 			, <&key_physical_attrs 100 100  358 (-243)    1500    58 (-243)>
+			, <&key_physical_attrs 100 100  454 (-209)    1500   254 (-209)>
 			, <&key_physical_attrs 100 100  566 (-235)    1500   166 (-235)>
 			, <&key_physical_attrs 100 100  671 (-235)    1500   171 (-235)>
 			, <&key_physical_attrs 100 100  987  205 (-1500) (-113)   205>
@@ -42,8 +42,8 @@
 			, <&key_physical_attrs 100 100 1499  256 (-1500) (-101)   256>
 			, <&key_physical_attrs 100 100  129 (-69)     500   129 (-169)>
 			, <&key_physical_attrs 100 100  229 (-69)     500   129 (-169)>
-			, <&key_physical_attrs 100 100  428 (-60)     500   228 (-160)>
 			, <&key_physical_attrs 100 100  329 (-78)     500    29 (-178)>
+			, <&key_physical_attrs 100 100  428 (-60)     500   228 (-160)>
 			, <&key_physical_attrs 100 100  533 (-52)     500   133 (-152)>
 			, <&key_physical_attrs 100 100  636 (-35)     500   136 (-135)>
 			, <&key_physical_attrs 100 100  971  113  (-500) (-129)    13>

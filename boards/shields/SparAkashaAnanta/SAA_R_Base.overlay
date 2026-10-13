@@ -4,6 +4,11 @@
 #include <dt-bindings/zmk/zip_dynamic_scale.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include "SAA.dtsi"
+
+/* Keep only the logging/boot-trigger and Studio CDC interfaces. */
+&board_cdc_acm_uart {
+    status = "disabled";
+};
 #include <input/processors/runtime-input-processor.dtsi>
 
 &default_transform {
