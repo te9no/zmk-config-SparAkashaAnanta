@@ -39,7 +39,19 @@ def patch(source):
 '''
     if source.count(marker) != 1:
         raise ValueError("Expected one motion reporting hook")
-    return source.replace(marker, guard + marker)
+    source = source.replace(marker, guard + marker)
+    old = '''        uint8_t perf = value & 0x0F; // reset bit[3..0] to 0x0 (normal operation)
+        if (enabled) {
+            perf |= 0xF0; // set bit[3..0] to 0xF (force awake)
+        }'''
+    if 'static int pmw3610_set_performance' in source:
+        if source.count(old) != 1:
+            raise ValueError("Expected performance control hook")
+        source = source.replace(old, '''        /* Match efog normal-run mode; avoid forced-run activity transitions.
+         * Studio frame capture's separate force-run path is unchanged. */
+        ARG_UNUSED(enabled);
+        uint8_t perf = 0x00;''')
+    return source
 
 
 if __name__ == "__main__":

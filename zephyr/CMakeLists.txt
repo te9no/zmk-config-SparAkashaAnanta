@@ -3,6 +3,31 @@ if(CONFIG_ZMK_SPLIT_ROLE_CENTRAL AND CONFIG_ZMK_RUNTIME_COMBO AND CONFIG_ZMK_BEH
   zephyr_library_sources(combo_settings_order.c)
 endif()
 
+# Generate a keyboard-local scaler; never edit the shared west module.
+if(CONFIG_ZMK_RUNTIME_INPUT_PROCESSOR)
+  get_target_property(saa_sources app SOURCES)
+  set(saa_scaler_found FALSE)
+  foreach(source IN LISTS saa_sources)
+    if(source MATCHES "zmk-module-runtime-input-processor/src/pointing/input_processor_runtime.c$")
+      set(saa_scaler_found TRUE)
+      set(patched_scaler "${CMAKE_CURRENT_BINARY_DIR}/saa_runtime_scaling.c")
+      set(scaler_script "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/patch_runtime_scaling.py")
+      execute_process(COMMAND ${PYTHON_EXECUTABLE} ${scaler_script} ${source} ${patched_scaler}
+                      RESULT_VARIABLE patch_result)
+      if(NOT patch_result EQUAL 0)
+        message(FATAL_ERROR "Ananta scaler: pinned source changed; review required")
+      endif()
+      list(REMOVE_ITEM saa_sources ${source})
+      list(APPEND saa_sources ${patched_scaler})
+      set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${source} ${scaler_script})
+    endif()
+  endforeach()
+  if(NOT saa_scaler_found)
+    message(FATAL_ERROR "Ananta runtime scaler source not found")
+  endif()
+  set_property(TARGET app PROPERTY SOURCES ${saa_sources})
+endif()
+
 # Generate a keyboard-local guarded driver; never edit the shared west module.
 if(CONFIG_PMW3610)
   get_target_property(saa_sources app SOURCES)

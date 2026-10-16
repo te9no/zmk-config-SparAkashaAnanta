@@ -13,6 +13,15 @@
 #define SCROLL 4
 #define BT 5
 
+// Resolve layer holds when another key is tapped, instead of always waiting
+// for the full timer. Preserve tap intent during rapid typing.
+&lt {
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <175>;
+    require-prior-idle-ms = <150>;
+};
+
 &mt {
     flavor = "balanced";
     tapping-term-ms = <280>;
