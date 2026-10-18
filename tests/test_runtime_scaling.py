@@ -54,5 +54,7 @@ int main(void) {
     def test_layer_tap(self):
         keymap = (ROOT / 'config/SAA.keymap').read_text()
         block = keymap.split('&lt {', 1)[1].split('};', 1)[0]
-        self.assertIn('flavor = "balanced"', block)
+        self.assertIn('flavor = "tap-preferred"', block)
+        self.assertIn('tapping-term-ms = <350>', block)
+        self.assertIn('quick-tap-ms = <200>', block)
         self.assertIn('require-prior-idle-ms = <150>', block)

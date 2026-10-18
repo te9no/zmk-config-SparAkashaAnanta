@@ -13,12 +13,12 @@
 #define SCROLL 4
 #define BT 5
 
-// Resolve layer holds when another key is tapped, instead of always waiting
-// for the full timer. Preserve tap intent during rapid typing.
+// Favor thumb Space taps during overlapping typing. Layer holds resolve at
+// 350 ms; quick repeated taps stay Space. This applies to every &lt binding.
 &lt {
-    flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
+    flavor = "tap-preferred";
+    tapping-term-ms = <350>;
+    quick-tap-ms = <200>;
     require-prior-idle-ms = <150>;
 };
 

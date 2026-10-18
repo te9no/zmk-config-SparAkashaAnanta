@@ -67,6 +67,24 @@ manifest:
       url: https://github.com/cormoran/zmk-module-settings-rpc
       path: modules/zmk-module-settings-rpc
 
+# DYA Studio diagnostics (pinned, shared with the validated Equinox integration)
+    - name: zmk-feature-device-info
+      remote: cormoran
+      revision: 8cedd2dd9f04e19ea5a17b94914dd47a09d8db11
+      path: modules/zmk-feature-device-info
+    - name: zmk-feature-watchdog
+      remote: cormoran
+      revision: 84ad14c6c3645dc40b23f45d08ab45418655f912
+      path: modules/zmk-feature-watchdog
+    - name: zmk-feature-kscan-diagnostics
+      remote: cormoran
+      revision: 1432f7fe0cfe903cd7d3c9931ae6bd6f2e1f328e
+      path: modules/zmk-feature-kscan-diagnostics
+    - name: zmk-module-devtool
+      remote: cormoran
+      revision: 9938a2c73c06d6e65ba2c0b68c9aa044a467eafc
+      path: modules/zmk-module-devtool
+
 # Module for physical layout
     - name: zmk-feature-module-physical-layout
       remote: cormoran

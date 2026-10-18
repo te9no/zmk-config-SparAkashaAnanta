@@ -35,7 +35,8 @@
             evt-type = <INPUT_EV_REL>;
             x-input-code = <INPUT_REL_X>;
             y-input-code = <INPUT_REL_Y>;
-            disable-burst-read;
+            // Like Solstice, read motion in one CS-held burst. The GPIO
+            // three-wire controller switches SDIO to input after the address.
             settings-id = "saa-rtb";
             force-awake;
         };
