@@ -1,11 +1,11 @@
 {
   "artifact": {
     "name": "SAA_R_MODULE_TPD.uf2",
-    "sha256": "91152a43c9d5a4e7bdcaa4029d398d701045ba7644a7fc4a63846ceec594f5ed"
+    "sha256": "a040fc6a9162a9f82accad3d2ff5e20ad1cfabd27d239727a8458e634166cc0c"
   },
   "generated": {
-    ".config": "fc49b72ca6238e572962fb93512107448efe742865b1e8d38da0e21a2cdc8d37",
-    "zephyr.dts": "f4159f1118b02bdf15c499bb671636b6ff3aa7c05a65aee6b706fb44320450f2"
+    ".config": "a6dbe468ec884a748061cc01bb932dc32a788de4c7609f8a3e6e7a2d0a0ae1d4",
+    "zephyr.dts": "ec3b3892b0170a7ce3ad5fda1117567599d3e8f2950b3c05e7ead0b78c95ae97"
   },
   "inputs": {
     "dependencies": {
@@ -387,6 +387,18 @@
         "dirty": false,
         "untracked": {}
       },
+      "zmk-feature-device-info": {
+        "commit": "8cedd2dd9f04e19ea5a17b94914dd47a09d8db11",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-kscan-diagnostics": {
+        "commit": "1432f7fe0cfe903cd7d3c9931ae6bd6f2e1f328e",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
       "zmk-feature-module-physical-layout": {
         "commit": "4f18de45dc27820725d267916b4cdacc0e0b6cf9",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -401,6 +413,12 @@
       },
       "zmk-feature-runtime-macro": {
         "commit": "38530962eb7061b60efcb98e84585cfb1f0cb6de",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-watchdog": {
+        "commit": "84ad14c6c3645dc40b23f45d08ab45418655f912",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -431,6 +449,12 @@
       },
       "zmk-module-ble-management": {
         "commit": "57738cc4fc6ba80e82a7ac57741a0339cb186cd4",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-devtool": {
+        "commit": "9938a2c73c06d6e65ba2c0b68c9aa044a467eafc",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -473,7 +497,7 @@
       }
     },
     "source": {
-      "commit": "d538c8fb634b98bf68ee5fb9ed700d733ddd7768",
+      "commit": "65af0ba1f543a0c0c65d9410820963983cb88697",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -485,7 +509,7 @@
       "untracked": {}
     }
   },
-  "run_id": "38567569525",
+  "run_id": "39115843957",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_R_MODULE_TPD",

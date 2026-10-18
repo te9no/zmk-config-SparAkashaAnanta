@@ -1,11 +1,11 @@
 {
   "artifact": {
     "name": "SAA_R_MODULE_JOY_IQS.uf2",
-    "sha256": "dd5a075723d6f9f6f2dd84fb9ca530d91b8bcf9ccd70b82b121c51a99b9ac778"
+    "sha256": "2c66c159bd76d93d526dc73b68c0232ed4e9f5a80875349540d3380c0ffee5a3"
   },
   "generated": {
-    ".config": "ba534d7553100e351d842346fdaae0bf8c99eb2c30810582da93318b05ed38c5",
-    "zephyr.dts": "2ae1e69f40e83a1e853eda8981ee1ed5512f206fdfce15e9e50376028a2c9b9a"
+    ".config": "11fe74bf345e22769efea4a3b812c6e25da9a212ad2e6cae1dd26cb2c47f57c5",
+    "zephyr.dts": "e286b8496f3f4ac2abf02375c99d7b0105c4732a3554181b272c2b63bbe42d12"
   },
   "inputs": {
     "dependencies": {
@@ -387,6 +387,18 @@
         "dirty": false,
         "untracked": {}
       },
+      "zmk-feature-device-info": {
+        "commit": "8cedd2dd9f04e19ea5a17b94914dd47a09d8db11",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-kscan-diagnostics": {
+        "commit": "1432f7fe0cfe903cd7d3c9931ae6bd6f2e1f328e",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
       "zmk-feature-module-physical-layout": {
         "commit": "4f18de45dc27820725d267916b4cdacc0e0b6cf9",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -401,6 +413,12 @@
       },
       "zmk-feature-runtime-macro": {
         "commit": "38530962eb7061b60efcb98e84585cfb1f0cb6de",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-watchdog": {
+        "commit": "84ad14c6c3645dc40b23f45d08ab45418655f912",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -431,6 +449,12 @@
       },
       "zmk-module-ble-management": {
         "commit": "57738cc4fc6ba80e82a7ac57741a0339cb186cd4",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-devtool": {
+        "commit": "9938a2c73c06d6e65ba2c0b68c9aa044a467eafc",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -473,7 +497,7 @@
       }
     },
     "source": {
-      "commit": "d538c8fb634b98bf68ee5fb9ed700d733ddd7768",
+      "commit": "65af0ba1f543a0c0c65d9410820963983cb88697",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -485,7 +509,7 @@
       "untracked": {}
     }
   },
-  "run_id": "38567569525",
+  "run_id": "39115843957",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_R_MODULE_JOY_IQS",

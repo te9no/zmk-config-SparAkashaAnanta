@@ -4,7 +4,7 @@
     "sha256": "7fb25c285de1e62338d095a965da8f1fd014db8881945678a5ce7600a8fad2e5"
   },
   "generated": {
-    ".config": "249ccf81bbb96a7e886ad9352b513c5f7da515e30c8bf933de419013e3967d02",
+    ".config": "6d0aa4be91ac3d1f003d9979fbee6067acc6fbbde1fc932d84e654ef8fec285b",
     "zephyr.dts": "0eb5fc92284a6f5c281aaf1efacf50fdf6666fa5f6d2121bb23675b52ef8152b"
   },
   "inputs": {
@@ -387,6 +387,18 @@
         "dirty": false,
         "untracked": {}
       },
+      "zmk-feature-device-info": {
+        "commit": "8cedd2dd9f04e19ea5a17b94914dd47a09d8db11",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-kscan-diagnostics": {
+        "commit": "1432f7fe0cfe903cd7d3c9931ae6bd6f2e1f328e",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
       "zmk-feature-module-physical-layout": {
         "commit": "4f18de45dc27820725d267916b4cdacc0e0b6cf9",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -401,6 +413,12 @@
       },
       "zmk-feature-runtime-macro": {
         "commit": "38530962eb7061b60efcb98e84585cfb1f0cb6de",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-watchdog": {
+        "commit": "84ad14c6c3645dc40b23f45d08ab45418655f912",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -431,6 +449,12 @@
       },
       "zmk-module-ble-management": {
         "commit": "57738cc4fc6ba80e82a7ac57741a0339cb186cd4",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-devtool": {
+        "commit": "9938a2c73c06d6e65ba2c0b68c9aa044a467eafc",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -473,7 +497,7 @@
       }
     },
     "source": {
-      "commit": "d538c8fb634b98bf68ee5fb9ed700d733ddd7768",
+      "commit": "65af0ba1f543a0c0c65d9410820963983cb88697",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -485,7 +509,7 @@
       "untracked": {}
     }
   },
-  "run_id": "38567569525",
+  "run_id": "39115843957",
   "schema": 1,
   "target": {
     "board": "xiao_ble//zmk",
