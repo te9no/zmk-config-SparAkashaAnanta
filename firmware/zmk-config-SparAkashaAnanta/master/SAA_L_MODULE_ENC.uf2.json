@@ -1,11 +1,11 @@
 {
   "artifact": {
     "name": "SAA_L_MODULE_ENC.uf2",
-    "sha256": "7b785114bb69b9dadd8c0ffacdbbf9664b39f572aa35fd07c2c38c209d043ecc"
+    "sha256": "aba6126d6379cd1e39292f95d086429565f891b612dfa060c9441530c8594c1d"
   },
   "generated": {
     ".config": "6369f3a512e28423efc02ffaa2a42eac1fca2ce69404047ad45903664b4cc145",
-    "zephyr.dts": "270255e9509a54d78a6d8411f2e3bae28e6343122390bd66b14ecbba4a27dbcb"
+    "zephyr.dts": "3305dbf16eb2b21d8567897ff1b79785d52246e64328c003059c71b1cf4a3a26"
   },
   "inputs": {
     "dependencies": {
@@ -347,7 +347,7 @@
       }
     },
     "source": {
-      "commit": "4d780f799b667347ee6a64895446b04120ff3843",
+      "commit": "e1f6e454a9dd82307361c35074812c3b9762b17f",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -359,7 +359,7 @@
       "untracked": {}
     }
   },
-  "run_id": "39435321574",
+  "run_id": "39443071813",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_L_MODULE_ENC",

@@ -1,11 +1,11 @@
 {
   "artifact": {
     "name": "SAA_L_MODULE_JOY.uf2",
-    "sha256": "c49c4a6d44e988222ffeea30b157dc756185a14263bc9142e94b0f00d15343b4"
+    "sha256": "89b4ab2a24df41a4e484d5e71843c0033b3b00bb10ba83fc534a1587bed0790a"
   },
   "generated": {
     ".config": "7486e5271af07275937045e9ccc115e7760aeed1cd1fc60923fb9437b8de9322",
-    "zephyr.dts": "7c6db732dd2e5a4c38417bffe055e1d898ee9dfb68b9723d02c40af575469361"
+    "zephyr.dts": "1e64e2fcdb619f43e0a1fb5c9aa9476541b0e9fb47d53b6a0cc74f0b9401ff64"
   },
   "inputs": {
     "dependencies": {
@@ -347,7 +347,7 @@
       }
     },
     "source": {
-      "commit": "4d780f799b667347ee6a64895446b04120ff3843",
+      "commit": "e1f6e454a9dd82307361c35074812c3b9762b17f",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -359,7 +359,7 @@
       "untracked": {}
     }
   },
-  "run_id": "39435321574",
+  "run_id": "39443071813",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_L_MODULE_JOY",
