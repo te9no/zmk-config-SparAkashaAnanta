@@ -954,13 +954,13 @@ svg.physical-layout { font-family: ui-monospace, SFMono-Regular, Consolas, monos
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
 <text class="tap" x="26" y="26">TRANS</text>
 </g>
-<g class="key keypos-13 transparent" transform="translate(91.136 123.796) rotate(5 -52 -52)">
+<g class="key keypos-13 " transform="translate(91.136 123.796) rotate(5 -52 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="26">HOME</text>
 </g>
 <g class="key keypos-14 " transform="translate(194.616 128.476) rotate(5 -104 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">UP</text>
+<text class="tap" x="26" y="26">UP_ARROW</text>
 </g>
 <g class="key keypos-15 " transform="translate(143.136 119.116) rotate(5 -156 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
@@ -970,9 +970,9 @@ svg.physical-layout { font-family: ui-monospace, SFMono-Regular, Consolas, monos
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
 <text class="tap" x="26" y="26">RIGHT_ARROW</text>
 </g>
-<g class="key keypos-17 transparent" transform="translate(302.776 141.476) rotate(5 -260 -52)">
+<g class="key keypos-17 " transform="translate(302.776 141.476) rotate(5 -260 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">TRANS</text>
+<text class="tap" x="26" y="26">END</text>
 </g>
 <g class="key keypos-18 " transform="translate(476.976 218.436) rotate(-5 -572 -52)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
