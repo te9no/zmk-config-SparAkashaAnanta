@@ -100,11 +100,11 @@
         mouse_layer {
             label = "Mouse";
             bindings = <
-&trans    &trans          &kp LS(LG(NUMBER_4))    &kp LS(LC(TAB))  &kp LC(TAB)              &kp LS(LG(N5))          &trans     &kp LA(LEFT_ARROW)       &mkp MB3        &kp LA(RIGHT_ARROW)     &trans  &trans
-&trans    &trans          &kp UP_ARROW            &kp LEFT_ARROW   &kp RIGHT_ARROW          &trans                  &trans     &mkp MB1                 &kp UP_ARROW    &mkp MB2                &trans  &trans
-&trans    &trans          &kp LG(LS(LEFT_ARROW))  &kp DOWN_ARROW   &kp LS(LG(RIGHT_ARROW))  &trans                  &trans     &kp LEFT_ARROW           &kp DOWN_ARROW  &kp RIGHT_ARROW         &trans  &trans
-&trans    &trans          &trans                  &trans           &trans                   &trans                  &trans     &trans                   &trans          &trans
-&kp LEFT  &kp LA(LG(UP))  &kp SPACE               &kp DOWN         &kp RIGHT                &kp LA(LG(LEFT_ARROW))  &kp PG_UP  &kp LA(LG(RIGHT_ARROW))  &kp PG_DN       &kp LA(LG(DOWN_ARROW))
+&trans    &trans          &kp LS(TAB)             &kp LS(LG(NUMBER_4))  &kp LC(TAB)              &kp LS(LG(N5))          &trans     &kp LA(LEFT_ARROW)       &mkp MB3        &kp LA(RIGHT_ARROW)     &trans  &trans
+&trans    &trans          &kp UP_ARROW            &kp LEFT_ARROW        &kp RIGHT_ARROW          &trans                  &trans     &mkp MB1                 &kp UP_ARROW    &mkp MB2                &trans  &trans
+&trans    &trans          &kp LG(LS(LEFT_ARROW))  &kp DOWN_ARROW        &kp LS(LG(RIGHT_ARROW))  &trans                  &trans     &kp LEFT_ARROW           &kp DOWN_ARROW  &kp RIGHT_ARROW         &trans  &trans
+&trans    &trans          &trans                  &trans                &trans                   &trans                  &trans     &trans                   &trans          &trans
+&kp LEFT  &kp LA(LG(UP))  &kp SPACE               &kp DOWN              &kp RIGHT                &kp LA(LG(LEFT_ARROW))  &kp PG_UP  &kp LA(LG(RIGHT_ARROW))  &kp PG_DN       &kp LA(LG(DOWN_ARROW))
 &kp A     &kp B
             >;
 
