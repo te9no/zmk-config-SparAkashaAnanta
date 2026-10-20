@@ -72,10 +72,10 @@
         function_layer {
             label = "Fnc";
             bindings = <
-&trans    &kp EXCLAMATION  &kp HASH      &kp AT_SIGN       &kp DOLLAR  &kp PERCENT     &kp CARET  &kp AMPERSAND  &kp ASTERISK   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans
+&trans    &kp EXCLAMATION  &kp AT_SIGN   &kp HASH          &kp DOLLAR  &kp PERCENT     &kp CARET  &kp AMPERSAND  &kp ASTERISK   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans
 &trans    &kp LESS_THAN    &kp QUESTION  &kp GREATER_THAN  &kp PLUS    &kp UNDERSCORE  &kp EQUAL  &kp MINUS      &kp BACKSLASH  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &trans
 &trans    &trans           &trans        &trans            &trans      &kp PIPE        &kp TILDE  &kp GRAVE      &kp SQT        &kp LEFT_BRACE        &kp RIGHT_BRACE        &trans
-&trans    &trans           &kp LALT      &trans            &trans      &trans          &trans     &trans         &trans         &trans
+&trans    &trans           &kp LALT      &trans            &trans      &trans          &trans     &kp ESC        &trans         &trans
 &kp LEFT  &kp UP           &kp SPACE     &kp DOWN          &kp RIGHT   &kp HOME        &kp PG_UP  &kp ENTER      &kp PG_DN      &kp END
 &kp A     &kp B
             >;
@@ -86,7 +86,7 @@
         num_layer {
             label = "Num";
             bindings = <
-&trans    &kp EQUAL  &kp N8        &kp N7        &kp N9        &kp PLUS      &kp F1         &kp F2     &kp F3     &kp F4   &kp F5   &trans
+&trans    &kp EQUAL  &kp N8        &kp N7        &kp N9        &kp PLUS      &kp F1         &kp F2     &kp F3     &kp F4   &kp F5   &kp F6
 &trans    &kp MINUS  &kp N5        &kp NUMBER_4  &kp NUMBER_6  &kp ASTERISK  &kp F7         &kp F8     &kp F9     &kp F10  &kp F11  &kp F12
 &trans    &kp N0     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans        &kp RIGHT_GUI  &trans     &trans     &trans   &trans   &trans
 &trans    &trans     &trans        &trans        &trans        &trans        &trans         &trans     &trans     &trans
@@ -100,11 +100,11 @@
         mouse_layer {
             label = "Mouse";
             bindings = <
-&trans    &trans          &kp LS(TAB)             &kp LS(LG(NUMBER_4))  &kp LC(TAB)              &kp LS(LG(N5))          &trans     &kp LA(LEFT_ARROW)       &mkp MB3        &kp LA(RIGHT_ARROW)     &trans  &trans
-&trans    &trans          &kp UP_ARROW            &kp LEFT_ARROW        &kp RIGHT_ARROW          &trans                  &trans     &mkp MB1                 &kp UP_ARROW    &mkp MB2                &trans  &trans
-&trans    &trans          &kp LG(LS(LEFT_ARROW))  &kp DOWN_ARROW        &kp LS(LG(RIGHT_ARROW))  &trans                  &trans     &kp LEFT_ARROW           &kp DOWN_ARROW  &kp RIGHT_ARROW         &trans  &trans
-&trans    &trans          &trans                  &trans                &trans                   &trans                  &trans     &trans                   &trans          &trans
-&kp LEFT  &kp LA(LG(UP))  &kp SPACE               &kp DOWN              &kp RIGHT                &kp LA(LG(LEFT_ARROW))  &kp PG_UP  &kp LA(LG(RIGHT_ARROW))  &kp PG_DN       &kp LA(LG(DOWN_ARROW))
+&trans    &trans          &kp LS(TAB)             &kp LS(LG(NUMBER_4))  &kp LC(TAB)              &kp LS(LG(N5))          &kp LG(LEFT_ARROW)  &kp LA(LEFT_ARROW)       &mkp MB3        &kp LA(RIGHT_ARROW)     &kp RG(RIGHT_ARROW)  &trans
+&trans    &trans          &kp UP_ARROW            &kp LEFT_ARROW        &kp RIGHT_ARROW          &trans                  &kp LS(LC(TAB))     &mkp MB1                 &kp UP_ARROW    &mkp MB2                &kp RC(TAB)          &trans
+&trans    &trans          &kp LG(LS(LEFT_ARROW))  &kp DOWN_ARROW        &kp LS(LG(RIGHT_ARROW))  &trans                  &trans              &kp LEFT_ARROW           &kp DOWN_ARROW  &kp RIGHT_ARROW         &trans               &trans
+&trans    &trans          &trans                  &trans                &trans                   &trans                  &trans              &trans                   &trans          &trans
+&kp LEFT  &kp LA(LG(UP))  &kp SPACE               &kp DOWN              &kp RIGHT                &kp LA(LG(LEFT_ARROW))  &kp PG_UP           &kp LA(LG(RIGHT_ARROW))  &kp PG_DN       &kp LA(LG(DOWN_ARROW))
 &kp A     &kp B
             >;
 
