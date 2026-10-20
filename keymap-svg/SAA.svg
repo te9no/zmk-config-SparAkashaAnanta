@@ -911,11 +911,11 @@ svg.physical-layout { font-family: ui-monospace, SFMono-Regular, Consolas, monos
 </g>
 <g class="key keypos-2 " transform="translate(158.216 33.316) rotate(15 -156 0)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">LS(LG(NUMBER_4))</text>
+<text class="tap" x="26" y="26">LS(TAB)</text>
 </g>
 <g class="key keypos-3 " transform="translate(208.136 50.996) rotate(15 -104 0)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
-<text class="tap" x="26" y="26">LS(LC(TAB))</text>
+<text class="tap" x="26" y="26">LS(LG(NUMBER_4))</text>
 </g>
 <g class="key keypos-4 " transform="translate(266.376 37.476) rotate(15 -208 0)">
 <rect x="0" y="0" width="52" height="52" rx="6" ry="6"/>
