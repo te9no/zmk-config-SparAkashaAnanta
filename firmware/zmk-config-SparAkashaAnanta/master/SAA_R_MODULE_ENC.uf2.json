@@ -5,7 +5,7 @@
   },
   "generated": {
     ".config": "bf09ef00f00c7a7acd9d4b29f801a4ebc57cde10eb2f6fb54ffc11810afc1fe9",
-    "zephyr.dts": "998680fb10bad21646ea2136d1706b439610fc1ef080f5bd3c8739f570de2a70"
+    "zephyr.dts": "c8b6c6bf0d06d851c849c94180a80015ee1b1e9c9d6506f0dbec0137123662a6"
   },
   "inputs": {
     "dependencies": {
@@ -347,7 +347,7 @@
       }
     },
     "source": {
-      "commit": "c296ebb4d1ca50aae6f6558e9026f106be9b8b5a",
+      "commit": "de320f31cf556c0c9a8af10400d6c55f7e3fc34d",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -359,7 +359,7 @@
       "untracked": {}
     }
   },
-  "run_id": "39396807620",
+  "run_id": "39428669584",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_R_MODULE_ENC",
