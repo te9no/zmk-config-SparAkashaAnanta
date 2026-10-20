@@ -1,0 +1,370 @@
+{
+  "artifact": {
+    "name": "SAA_R_MODULE_ENC.uf2",
+    "sha256": "7f27de5899c2f3be65573ba53d4ec8c2930fa1bfb0f191f6c95a99830b8abbad"
+  },
+  "generated": {
+    ".config": "bf09ef00f00c7a7acd9d4b29f801a4ebc57cde10eb2f6fb54ffc11810afc1fe9",
+    "zephyr.dts": "998680fb10bad21646ea2136d1706b439610fc1ef080f5bd3c8739f570de2a70"
+  },
+  "inputs": {
+    "dependencies": {
+      "acpica": {
+        "commit": "0333c2af13179f9b33d495cf7cb9a509f751cbb1",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "canopennode": {
+        "commit": "dec12fa3f0d790cafa8414a4c2930ea71ab72ffd",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "cmsis": {
+        "commit": "5a00331455dd74e31e80efa383a489faea0590e3",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "cmsis-dsp": {
+        "commit": "ff7b5fd1ea5f094665c090c343ec44e74dc0b193",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "cmsis-nn": {
+        "commit": "0c8669d81381ccf3b1a01d699f3b68b50134a99f",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "fatfs": {
+        "commit": "427159bf95ea49b7680facffaa29ad506b42709b",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_ambiq": {
+        "commit": "0a7c99325aa73a1ef777501da91c2c6608661e56",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_atmel": {
+        "commit": "5ab43007eda3f380c125f957f03638d2e8d1144d",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_espressif": {
+        "commit": "31fc5758f3507f8f0af00b1dea1a0df7af99bfc0",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_ethos_u": {
+        "commit": "90ada2ea5681b2a2722a10d2898eac34c2510791",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_gigadevice": {
+        "commit": "2994b7dde8b0b0fa9b9c0ccb13474b6a486cddc3",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_intel": {
+        "commit": "b3b43d4e3da7ba483611bbbea7ef8af92c69df31",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_nordic": {
+        "commit": "884c4d61746bc35fbd379c169fc87ddb56c6461d",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_nuvoton": {
+        "commit": "3e0a4c4d3328b2f72b164219add19d5308b53cb5",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_quicklogic": {
+        "commit": "b3a66fe6d04d87fd1533a5c8de51d0599fcd08d0",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_renesas": {
+        "commit": "a6cf2af9140e014fbbc48d2b6deb802231dd369f",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_rpi_pico": {
+        "commit": "fba7162cc7bee06d0149622bbcaac4e41062d368",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_stm32": {
+        "commit": "89ef0a3383edebf661073073bcdf6e2836fe90ee",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_telink": {
+        "commit": "38573af589173259801ae6c2b34b7d4c9e626746",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "hal_wurthelektronik": {
+        "commit": "24ca9873c3d608fad1fea0431836bc8f144c132e",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "liblc3": {
+        "commit": "448f3de31f49a838988a162ef1e23a89ddf2d2ed",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "libmetal": {
+        "commit": "b91611a6f47dd29fb24c46e5621e797557f80ec6",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "littlefs": {
+        "commit": "ca583fd297ceb48bced3c2548600dc615d67af24",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "lvgl": {
+        "commit": "8a6a2d1d29d17d1e4bdc94c243c146a39d635fdd",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "mbedtls": {
+        "commit": "c38dc78d9a8dcbe43b898cc1171ab33ba3e6fc26",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "mipi-sys-t": {
+        "commit": "a819419603a2dfcb47f7f39092e1bc112e45d1ef",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "nanopb": {
+        "commit": "8c60555d6277a0360c876bd85d491fc4fb0cd74a",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "nrf_hw_models": {
+        "commit": "f4595802d32d103718bf50b3d390b7a450895843",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "open-amp": {
+        "commit": "42b7c577714b8f22ce82a901e19c1814af4609a8",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "percepio": {
+        "commit": "a3728efccc47dd372f40e6313589ca4c5cc7d5e9",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "picolibc": {
+        "commit": "d07c38ff051386f8e09a143ea0a6c1d6d66dd1d8",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "segger": {
+        "commit": "9d0191285956cef43daf411edc2f1a7788346def",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "tinycrypt": {
+        "commit": "3e9a49d2672ec01435ffbf0d788db6d95ef28de0",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "trusted-firmware-a": {
+        "commit": "421dc050278287839f5c70019bd6aec617f2bbdb",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "uoscore-uedhoc": {
+        "commit": "5fe2cb613bd7e4590bd1b00c2adf181ac0229379",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zcbor": {
+        "commit": "67fd8bb88d3136738661fa8bb5f9989103f4599e",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zephyr": {
+        "commit": "dacab4875df72109b96cc8977547a0dc04875bcd",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk": {
+        "commit": "dc5b3d5b15ccbfac85c167c57fb3ab1485fdf7f0",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-analog-input-driver": {
+        "commit": "c145ba92368ba4db7deefbca45c3cb8876a8961f",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-behavior-runtime-sensor-rotate": {
+        "commit": "8b1125ed676c1f5e14145d217984f33d0ebdcef4",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-driver-animation": {
+        "commit": "fa0479ec3b2fe04a96d9244e620d3c5dd2cfb280",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-driver-ext-power-transient": {
+        "commit": "92b00e3acb438df77c374a2f79857a8406c41bed",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-driver-iqs9151-rpc": {
+        "commit": "e9c4c8700cf86d1ed02d2f5dd1a0c3be941da0aa",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-feature-module-physical-layout": {
+        "commit": "4f18de45dc27820725d267916b4cdacc0e0b6cf9",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-input-processor-keybind": {
+        "commit": "10ad463f2e3c7a7dfb4b7cffd6bddd0e9e8b5bae",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-layout-shift": {
+        "commit": "c7f0c6b199548b542dd543e8a0bf3e2c8941780f",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-analoginput-rpc": {
+        "commit": "e065461e907fa924c0029e1d4c94cec1d9093e17",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-battery-nrf-vddh-oversampling": {
+        "commit": "59fc126f859d4e7700186c9906e4645379763c34",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-ble-management": {
+        "commit": "851661cd21f2aded8ec649da86e01a207dc4b973",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-cirque-trackpad": {
+        "commit": "f4388ca7403e533875beeb3fc3fd3de948fbd26c",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-runtime-input-processor": {
+        "commit": "8a595c561e32e793ac6862017455f3afcc9e4afb",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-module-settings-rpc": {
+        "commit": "78f86df9e6c5edaf57bef3ccbd7f360cfdf49291",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-nice-oled": {
+        "commit": "472c6cacd741a4e400dc7e3e36067a4564162cc9",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-pmw3610-driver": {
+        "commit": "42e0a8557a3adc43231fef4234f23e530034e427",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-rgbled-widget": {
+        "commit": "8756cb7b8114069fa3c25c6f6c990f24988fceff",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
+      "zmk-studio-messages": {
+        "commit": "89b81d2e587fce807b668dff2a6967a40beef421",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      }
+    },
+    "source": {
+      "commit": "c296ebb4d1ca50aae6f6558e9026f106be9b8b5a",
+      "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dirty": false,
+      "untracked": {}
+    },
+    "workspace_tools": {
+      "commit": "a49f67f5ab5392d45bb3209d68f0f17594f62d9a",
+      "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dirty": false,
+      "untracked": {}
+    }
+  },
+  "run_id": "39396807620",
+  "schema": 1,
+  "target": {
+    "artifact-name": "SAA_R_MODULE_ENC",
+    "board": "seeeduino_xiao_ble",
+    "shield": "SAA_R_Base SAA_R_ENC rgbled_adapter nice_oled",
+    "snippet": "zmk-usb-logging studio-rpc-usb-uart"
+  }
+}
