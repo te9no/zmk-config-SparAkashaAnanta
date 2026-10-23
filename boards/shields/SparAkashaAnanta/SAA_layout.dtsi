@@ -74,16 +74,18 @@
 			, <&key_physical_attrs 100 100 1397 (-179)    1500  (-3) (-479)>
 			, <&key_physical_attrs 100 100 1500 (-214)    1500     0 (-514)>
 			, <&key_physical_attrs 100 100 1603 (-248)    1500     3 (-548)>
-			, <&key_physical_attrs  50  50  725  325       0     0     0>
-			, <&key_physical_attrs  50  50  925  325       0     0     0>
+			// Positions 46..55 follow matrix/keymap order, not visual row order.
+			// Each hand: left, up, press, down, right.
 			, <&key_physical_attrs  50  50  675  375       0     0     0>
+			, <&key_physical_attrs  50  50  725  325       0     0     0>
 			, <&key_physical_attrs  50  50  725  375       0     0     0>
+			, <&key_physical_attrs  50  50  725  425       0     0     0>
 			, <&key_physical_attrs  50  50  775  375       0     0     0>
 			, <&key_physical_attrs  50  50  875  375       0     0     0>
+			, <&key_physical_attrs  50  50  925  325       0     0     0>
 			, <&key_physical_attrs  50  50  925  375       0     0     0>
-			, <&key_physical_attrs  50  50  975  375       0     0     0>
-			, <&key_physical_attrs  50  50  725  425       0     0     0>
 			, <&key_physical_attrs  50  50  925  425       0     0     0>
+			, <&key_physical_attrs  50  50  975 375       0     0     0>
 			, <&key_physical_attrs 100 100  335  300       0     0     0>
 			, <&key_physical_attrs 100 100 1260  300       0     0     0>
 			;

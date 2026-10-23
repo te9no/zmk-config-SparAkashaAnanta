@@ -12,6 +12,17 @@ attrs = [
     for value in re.findall(r"<&key_physical_attrs\s+([^>]+)>", dts)
 ]
 assert len(keys) == len(attrs) == 58
+# Matrix positions and keymap bindings group the five-way switches by hand.
+# A visually row-sorted coordinate list can agree with JSON yet target wrong keys.
+fiveway = [
+    (675, 375), (725, 325), (725, 375), (725, 425), (775, 375),
+    (875, 375), (925, 325), (925, 375), (925, 425), (975, 375),
+]
+assert [(p[2], p[3]) for p in attrs[46:56]] == fiveway, 'Five-way key position mismatch'
+matrix = re.search(r'map\s*=\s*<([^>]+)>', dts).group(1)
+rc = [(int(r), int(c)) for r, c in re.findall(r'RC\(\s*(\d+),\s*(\d+)\)', matrix)]
+assert rc[46:56] == [(3, 5), (2, 5), (4, 5), (1, 5), (0, 5),
+                     (1, 11), (3, 11), (4, 11), (0, 11), (2, 11)]
 previous = (-1, -1)
 for index, (key, physical) in enumerate(zip(keys, attrs)):
     position = (key["row"], key["col"])
