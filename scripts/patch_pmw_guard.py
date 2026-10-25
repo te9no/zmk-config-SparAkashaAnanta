@@ -54,6 +54,43 @@ def patch(source):
     return source
 
 
+def isolate_motion_work(source):
+    submit = '    k_work_submit(&data->trigger_work);'
+    init = '    k_work_init(&data->trigger_work, pmw3610_work_callback);'
+    callback = 'static void pmw3610_gpio_callback('
+    report = '    pmw3610_report_data(dev);\n    pmw3610_set_interrupt(dev, true);'
+    for marker in (submit, init, callback, report):
+        if source.count(marker) != 1:
+            raise ValueError('Expected exactly one PMW motion queue hook: ' + marker)
+    declarations = '''/* Ananta comparison: motion SPI must not occupy the key scan sysworkq.
+ * Preemptible priority leaves the cooperative key/system queue ahead of us.
+ * Started during serialized device init, before motion interrupts are enabled. */
+K_THREAD_STACK_DEFINE(saa_pmw_stack, 2048);
+static struct k_work_q saa_pmw_queue;
+static bool saa_pmw_queue_started;
+
+'''
+    source = source.replace(callback, declarations + callback)
+    source = source.replace(submit, '    k_work_submit_to_queue(&saa_pmw_queue, &data->trigger_work);')
+    # The old shared queue implicitly serialized motion against activity work.
+    # Keep the full motion transaction protected when moving to another thread.
+    # Zephyr mutexes are recursive; report_data also takes this same mutex.
+    source = source.replace(report, '''    k_mutex_lock(&data->lock, K_FOREVER);
+    pmw3610_report_data(dev);
+    if (!data->capture_active) {
+        pmw3610_set_interrupt(dev, true);
+    }
+    k_mutex_unlock(&data->lock);''')
+    source = source.replace(init, '''    if (!saa_pmw_queue_started) {
+        k_work_queue_start(&saa_pmw_queue, saa_pmw_stack,
+                           K_THREAD_STACK_SIZEOF(saa_pmw_stack), 5, NULL);
+        k_thread_name_set(&saa_pmw_queue.thread, "saa_pmw_motion");
+        saa_pmw_queue_started = true;
+    }
+''' + init)
+    return source
+
+
 if __name__ == "__main__":
-    Path(sys.argv[2]).write_text(patch(Path(sys.argv[1]).read_text()))
+    Path(sys.argv[2]).write_text(isolate_motion_work(patch(Path(sys.argv[1]).read_text())))
 
