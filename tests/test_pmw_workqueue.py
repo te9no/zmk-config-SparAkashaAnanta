@@ -23,6 +23,7 @@ static void work(void) {
         self.assertIn('k_work_init_delayable(&data->init_work, pmw3610_async_init)', result)
         self.assertIn('k_mutex_lock(&data->lock, K_FOREVER);', result)
         self.assertIn('if (!data->capture_active)', result)
+        self.assertIn('K_THREAD_STACK_SIZEOF(saa_pmw_stack), 4, NULL)', result)
 
     def test_missing_or_duplicate_hooks_fail_closed(self):
         for source in ('', '    k_work_submit(&data->trigger_work);' * 2):

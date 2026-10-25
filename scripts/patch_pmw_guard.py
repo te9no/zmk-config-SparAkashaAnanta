@@ -30,12 +30,6 @@ def patch(source):
         }
         return 0;
     }
-    static int64_t sample_log_time;
-    if ((x || y) && now - sample_log_time >= 1000) {
-        sample_log_time = now;
-        LOG_INF("PMW sample motion=%02x squal=%u raw=%d/%d",
-                buf[0], buf[4], x, y);
-    }
 '''
     if source.count(marker) != 1:
         raise ValueError("Expected one motion reporting hook")
@@ -63,7 +57,9 @@ def isolate_motion_work(source):
         if source.count(marker) != 1:
             raise ValueError('Expected exactly one PMW motion queue hook: ' + marker)
     declarations = '''/* Ananta comparison: motion SPI must not occupy the key scan sysworkq.
- * Preemptible priority leaves the cooperative key/system queue ahead of us.
+ * Priority 4 preempts the display queue (5), while the input queue (0)
+ * and cooperative key/system queue remain ahead of us. No time slicing is
+ * configured, so matching display priority can delay motion after a key redraw.
  * Started during serialized device init, before motion interrupts are enabled. */
 K_THREAD_STACK_DEFINE(saa_pmw_stack, 2048);
 static struct k_work_q saa_pmw_queue;
@@ -83,7 +79,7 @@ static bool saa_pmw_queue_started;
     k_mutex_unlock(&data->lock);''')
     source = source.replace(init, '''    if (!saa_pmw_queue_started) {
         k_work_queue_start(&saa_pmw_queue, saa_pmw_stack,
-                           K_THREAD_STACK_SIZEOF(saa_pmw_stack), 5, NULL);
+                           K_THREAD_STACK_SIZEOF(saa_pmw_stack), 4, NULL);
         k_thread_name_set(&saa_pmw_queue.thread, "saa_pmw_motion");
         saa_pmw_queue_started = true;
     }
@@ -91,6 +87,22 @@ static bool saa_pmw_queue_started;
     return source
 
 
+def preserve_pending_motion(source):
+    old = '''        // purge accumulated delta, if last sampled had not been reported on last report tick
+        if (now - data->last_smp_time >= report_interval_min_ms) {
+            data->dx = 0;
+            data->dy = 0;
+        }'''
+    new = '''        /* A delayed sample does not invalidate previously measured movement.
+         * Keep it for the next report; the report interval check below still
+         * limits output frequency. Invalid-burst guards remain unchanged. */
+'''
+    if source.count(old) != 1:
+        raise ValueError("Expected one PMW pending-motion purge")
+    return source.replace(old, new)
+
+
 if __name__ == "__main__":
-    Path(sys.argv[2]).write_text(isolate_motion_work(patch(Path(sys.argv[1]).read_text())))
+    Path(sys.argv[2]).write_text(preserve_pending_motion(
+        isolate_motion_work(patch(Path(sys.argv[1]).read_text()))))
 
