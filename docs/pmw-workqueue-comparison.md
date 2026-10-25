@@ -42,11 +42,15 @@ timing separately rather than declaring the issue resolved.
 
 The follow-up defaults disable right-TB AML and assign base-layer position 45
 (the ordinary bottom-right Right Arrow key, not the five-way switch) to
-`&mo MOUSE`. Layer 3 keeps that position transparent, so releasing the key
-returns to the prior layer. This is immediate momentary switching, not LT.
+`&lt MOUSE RIGHT`. A tap sends Right Arrow; a hold activates Mouse using the
+existing 350 ms tap-preferred LT configuration. Layer 3 keeps that position
+transparent. Mouse-layer Comma, Dot and Up send left, middle and right clicks;
+the old J/K/L click positions are transparent again.
 
 Existing Studio settings override both defaults. On an already configured
 device, export settings first, disable mouse processor AML and save, then
-assign position 45 on Def to momentary layer 3 and save. Preserve unrelated
+assign position 45 on Def to LT layer 3 / Right Arrow, and Mouse positions
+32/33/34 to left/middle/right click. Restore Mouse positions 19/20/21 to
+transparent if using the old J/K/L clicks. Save. Preserve unrelated
 bindings and parameters; do not use settings_reset. Firmware build success
 alone does not demonstrate these saved settings were changed on the device.
