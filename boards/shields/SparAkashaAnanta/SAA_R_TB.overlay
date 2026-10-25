@@ -5,7 +5,8 @@
 
 // Defaults are editable through DYA Studio; persisted user settings win.
 &mouse_runtime_input_processor {
-    temp-layer-enabled;
+    // Manual mouse layer via the bottom-right key; no automatic activation.
+    /delete-property/ temp-layer-enabled;
     temp-layer = <3>;
 };
 

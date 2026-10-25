@@ -37,3 +37,16 @@ image against this candidate under the same connection conditions:
 
 If typing improves but A/I inversion remains, investigate split transport
 timing separately rather than declaring the issue resolved.
+
+## Manual mouse-layer follow-up
+
+The follow-up defaults disable right-TB AML and assign base-layer position 45
+(the ordinary bottom-right Right Arrow key, not the five-way switch) to
+`&mo MOUSE`. Layer 3 keeps that position transparent, so releasing the key
+returns to the prior layer. This is immediate momentary switching, not LT.
+
+Existing Studio settings override both defaults. On an already configured
+device, export settings first, disable mouse processor AML and save, then
+assign position 45 on Def to momentary layer 3 and save. Preserve unrelated
+bindings and parameters; do not use settings_reset. Firmware build success
+alone does not demonstrate these saved settings were changed on the device.
