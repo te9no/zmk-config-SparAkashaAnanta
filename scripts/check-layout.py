@@ -22,7 +22,16 @@ assert [(p[2], p[3]) for p in attrs[46:56]] == fiveway, 'Five-way key position m
 matrix = re.search(r'map\s*=\s*<([^>]+)>', dts).group(1)
 rc = [(int(r), int(c)) for r, c in re.findall(r'RC\(\s*(\d+),\s*(\d+)\)', matrix)]
 assert rc[46:56] == [(3, 5), (2, 5), (4, 5), (1, 5), (0, 5),
-                     (1, 11), (3, 11), (4, 11), (0, 11), (2, 11)]
+                     (3, 11), (2, 11), (4, 11), (1, 11), (0, 11)]
+
+# Hardware report: with the old transform, physical L/U/D/R triggered
+# logical U/R/L/D respectively; press was correct. Preserve logical slots
+# and saved bindings, correcting electrical -> logical mapping only.
+old_right = [(1, 11), (3, 11), (4, 11), (0, 11), (2, 11)]
+observed_old_slots = {"left": 1, "up": 4, "press": 2, "down": 0, "right": 3}
+for logical_slot, direction in enumerate(("left", "up", "press", "down", "right")):
+    electrical = old_right[observed_old_slots[direction]]
+    assert rc.index(electrical) == 51 + logical_slot, direction
 previous = (-1, -1)
 for index, (key, physical) in enumerate(zip(keys, attrs)):
     position = (key["row"], key["col"])
