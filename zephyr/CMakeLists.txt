@@ -57,7 +57,8 @@ if(CONFIG_PMW3610)
 endif()
 
 # Bound per-type drain loops on the shared wireless HID worker.
-if(CONFIG_ZMK_BLE AND CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
+function(saa_patch_hog)
+  get_property(hog_script GLOBAL PROPERTY SAA_HOG_PATCH_SCRIPT)
   get_target_property(saa_sources app SOURCES)
   set(saa_hog_found FALSE)
   foreach(source IN LISTS saa_sources)
@@ -65,7 +66,6 @@ if(CONFIG_ZMK_BLE AND CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
       set(saa_hog_found TRUE)
       get_filename_component(hog_source "${source}" ABSOLUTE BASE_DIR "${APPLICATION_SOURCE_DIR}")
       set(patched_hog "${CMAKE_CURRENT_BINARY_DIR}/saa_hog.c")
-      set(hog_script "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/patch_hog_fairness.py")
       execute_process(COMMAND ${PYTHON_EXECUTABLE} ${hog_script} ${hog_source} ${patched_hog}
                       RESULT_VARIABLE patch_result)
       if(NOT patch_result EQUAL 0)
@@ -80,4 +80,10 @@ if(CONFIG_ZMK_BLE AND CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     message(FATAL_ERROR "Ananta HOG source not found")
   endif()
   set_property(TARGET app PROPERTY SOURCES ${saa_sources})
+endfunction()
+if(CONFIG_ZMK_BLE AND CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
+  set_property(GLOBAL PROPERTY SAA_HOG_PATCH_SCRIPT
+               "${CMAKE_CURRENT_SOURCE_DIR}/../scripts/patch_hog_fairness.py")
+  # Core app sources are added after Zephyr loads external modules.
+  cmake_language(DEFER DIRECTORY "${APPLICATION_SOURCE_DIR}" CALL saa_patch_hog)
 endif()
