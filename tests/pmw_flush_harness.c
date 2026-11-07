@@ -31,7 +31,7 @@ struct pixart_runtime_config {
 };
 struct pixart_config { bool disable_burst_read; int evt_type, x_input_code, y_input_code; };
 struct pixart_data {
-    bool ready, capture_active, sw_smart_flag;
+    bool ready, capture_active, sw_smart_flag, saa_sync_pending;
     int lock;
     struct pixart_runtime_config runtime;
     int32_t dx,dy;

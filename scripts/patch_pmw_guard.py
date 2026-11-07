@@ -82,7 +82,7 @@ static bool saa_pmw_queue_started;
         data->dx = 0;
         data->dy = 0;
     }
-    if (!data->capture_active && (data->dx || data->dy)) {
+    if (!data->capture_active && (data->dx || data->dy || data->saa_sync_pending)) {
         /* Flush the final small movement even without a new motion IRQ.
          * Keep sampling fresh motion during the reporting interval. */
         int64_t remaining = (int64_t)data->runtime.report_interval_min_ms -
@@ -122,6 +122,35 @@ def preserve_pending_motion(source):
     return source.replace(old, new)
 
 
+def retain_rejected_input(source):
+    old = '''        data->dx = 0;
+        data->dy = 0;
+        if (have_x) {
+            input_report(dev, config->evt_type, config->x_input_code, rx, !have_y, K_NO_WAIT);
+        }
+        if (have_y) {
+            input_report(dev, config->evt_type, config->y_input_code, ry, true, K_NO_WAIT);
+        }'''
+    new = '''        /* Retain rejected axes and any remainder beyond int16 range.
+         * A successfully queued X without sync is completed by the retried Y.
+         * The delayed worker retries remaining movement without another IRQ. */
+        if (have_x && input_report(dev, config->evt_type, config->x_input_code,
+                                   rx, !have_y, K_NO_WAIT) == 0) {
+            data->dx -= rx;
+            data->saa_sync_pending = have_y;
+        }
+        if ((have_y || data->saa_sync_pending) && input_report(dev, config->evt_type, config->y_input_code,
+                                   ry, true, K_NO_WAIT) == 0) {
+            data->dy -= ry;
+            data->saa_sync_pending = false;
+        }'''
+    if source.count(old) != 1:
+        raise ValueError("Expected one PMW input emission block")
+    source = source.replace(old, new)
+    return source.replace('if (have_x || have_y) {',
+                          'if (have_x || have_y || data->saa_sync_pending) {')
+
+
 if __name__ == "__main__":
     # Private headers are copied beside the generated driver so the shared
     # module and its other builds keep their original work item layout.
@@ -131,8 +160,8 @@ if __name__ == "__main__":
     old = 'struct k_work trigger_work;'
     if header.count(old) != 1:
         raise ValueError('Expected one private motion work item')
-    (output_dir / 'pixart.h').write_text(header.replace(old, 'struct k_work_delayable trigger_work;'))
+    (output_dir / 'pixart.h').write_text(header.replace(old, 'struct k_work_delayable trigger_work;\n    bool saa_sync_pending;'))
     (output_dir / 'pmw3610.h').write_text((source_dir / 'pmw3610.h').read_text())
-    Path(sys.argv[2]).write_text(preserve_pending_motion(
-        isolate_motion_work(patch(Path(sys.argv[1]).read_text()))))
+    Path(sys.argv[2]).write_text(retain_rejected_input(preserve_pending_motion(
+        isolate_motion_work(patch(Path(sys.argv[1]).read_text())))))
 

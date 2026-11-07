@@ -12,7 +12,7 @@ from test_pmw_guard import guard
 class MotionFlush(unittest.TestCase):
     def test_real_report_and_scheduled_callback(self):
         source = Path(os.environ["PMW_SOURCE"]).read_text()
-        source = guard.preserve_pending_motion(guard.isolate_motion_work(guard.patch(source)))
+        source = guard.retain_rejected_input(guard.preserve_pending_motion(guard.isolate_motion_work(guard.patch(source))))
         report = source[source.index("static int pmw3610_report_data("):
                         source.index("static void pmw3610_gpio_callback(")]
         # Queue declarations between functions are supplied by the harness.
