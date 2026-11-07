@@ -78,7 +78,7 @@ static bool saa_pmw_queue_started;
     # Zephyr mutexes are recursive; report_data also takes this same mutex.
     source = source.replace(report, '''    k_mutex_lock(&data->lock, K_FOREVER);
     int err = pmw3610_report_data(dev);
-    if (err < 0) {
+    if (err < 0 || data->capture_active) {
         data->dx = 0;
         data->dy = 0;
     }

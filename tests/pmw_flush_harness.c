@@ -108,7 +108,7 @@ int main(void) {
     // Capture owns the IRQ. The timer must neither poll nor enable it.
     data.capture_active=true; irq_enabled=false; data.dx=3;
     pmw3610_work_callback(&data.trigger_work.work);
-    assert(!irq_enabled && due==0);
+    assert(!irq_enabled && due==0 && data.dx==0 && data.dy==0);
     data.capture_active=false; data.dx=0;
     // Disabled rate limiter reports immediately.
     data.runtime.report_interval_min_ms=0; motion(-1,-1,true);
