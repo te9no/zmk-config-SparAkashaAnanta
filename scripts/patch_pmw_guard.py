@@ -20,7 +20,7 @@ def patch(source):
         all_ff = all_ff && buf[i] == 0xff;
     }
     static int64_t guard_log_time;
-    if (!(buf[0] & BIT(7)) || all_ff) {
+    if (all_ff) {
         data->dx = 0;
         data->dy = 0;
         if ((x || y || all_ff) && now - guard_log_time >= 1000) {
@@ -29,6 +29,11 @@ def patch(source):
                     buf[0], buf[4], x, y, all_ff);
         }
         return 0;
+    }
+    /* MOT clear invalidates this sample, not previously measured movement. */
+    if (!(buf[0] & BIT(7))) {
+        x = 0;
+        y = 0;
     }
 '''
     if source.count(marker) != 1:
@@ -57,7 +62,7 @@ def isolate_motion_work(source):
         if source.count(marker) != 1:
             raise ValueError('Expected exactly one PMW motion queue hook: ' + marker)
     declarations = '''/* Ananta comparison: motion SPI must not occupy the key scan sysworkq.
- * Priority 4 preempts the display queue (5), while the input queue (0)
+ * Priority 9 yields to radio host threads (7/8), while the input queue (0)
  * and cooperative key/system queue remain ahead of us. No time slicing is
  * configured, so matching display priority can delay motion after a key redraw.
  * Started during serialized device init, before motion interrupts are enabled. */
@@ -67,23 +72,37 @@ static bool saa_pmw_queue_started;
 
 '''
     source = source.replace(callback, declarations + callback)
-    source = source.replace(submit, '    k_work_submit_to_queue(&saa_pmw_queue, &data->trigger_work);')
+    source = source.replace(submit, '    k_work_reschedule_for_queue(&saa_pmw_queue, &data->trigger_work, K_NO_WAIT);')
     # The old shared queue implicitly serialized motion against activity work.
     # Keep the full motion transaction protected when moving to another thread.
     # Zephyr mutexes are recursive; report_data also takes this same mutex.
     source = source.replace(report, '''    k_mutex_lock(&data->lock, K_FOREVER);
-    pmw3610_report_data(dev);
-    if (!data->capture_active) {
+    int err = pmw3610_report_data(dev);
+    if (err < 0) {
+        data->dx = 0;
+        data->dy = 0;
+    }
+    if (!data->capture_active && (data->dx || data->dy)) {
+        /* IRQ remains disabled until the pending report is drained. This
+         * also flushes the final small movement when no new motion arrives. */
+        int64_t remaining = (int64_t)data->runtime.report_interval_min_ms -
+                            (k_uptime_get() - data->last_rpt_time);
+        k_work_reschedule_for_queue(&saa_pmw_queue, &data->trigger_work,
+                                    K_MSEC(MAX(remaining, 1)));
+    } else if (!data->capture_active) {
         pmw3610_set_interrupt(dev, true);
     }
     k_mutex_unlock(&data->lock);''')
     source = source.replace(init, '''    if (!saa_pmw_queue_started) {
         k_work_queue_start(&saa_pmw_queue, saa_pmw_stack,
-                           K_THREAD_STACK_SIZEOF(saa_pmw_stack), 4, NULL);
+                           K_THREAD_STACK_SIZEOF(saa_pmw_stack), 9, NULL);
         k_thread_name_set(&saa_pmw_queue.thread, "saa_pmw_motion");
         saa_pmw_queue_started = true;
     }
-''' + init)
+''' + init.replace('k_work_init(', 'k_work_init_delayable('))
+    source = source.replace(
+        'CONTAINER_OF(work, struct pixart_data, trigger_work)',
+        'CONTAINER_OF(k_work_delayable_from_work(work), struct pixart_data, trigger_work)')
     return source
 
 
@@ -103,6 +122,16 @@ def preserve_pending_motion(source):
 
 
 if __name__ == "__main__":
+    # Private headers are copied beside the generated driver so the shared
+    # module and its other builds keep their original work item layout.
+    source_dir = Path(sys.argv[1]).parent
+    output_dir = Path(sys.argv[2]).parent
+    header = (source_dir / 'pixart.h').read_text()
+    old = 'struct k_work trigger_work;'
+    if header.count(old) != 1:
+        raise ValueError('Expected one private motion work item')
+    (output_dir / 'pixart.h').write_text(header.replace(old, 'struct k_work_delayable trigger_work;'))
+    (output_dir / 'pmw3610.h').write_text((source_dir / 'pmw3610.h').read_text())
     Path(sys.argv[2]).write_text(preserve_pending_motion(
         isolate_motion_work(patch(Path(sys.argv[1]).read_text()))))
 

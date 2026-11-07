@@ -42,8 +42,8 @@ static int check(uint8_t motion, bool ff, int16_t x, int16_t y, struct state *da
 }
 int main(void) {
     struct state s = {10, -20};
-    assert(check(0, false, 100, -100, &s) == 0);
-    assert(s.dx == 0 && s.dy == 0);
+    assert(check(0, false, 100, -100, &s) == 1);
+    assert(s.dx == 10 && s.dy == -20);
     s.dx = 10; s.dy = -20;
     assert(check(0xff, true, -1, -1, &s) == 0);
     assert(s.dx == 0 && s.dy == 0);

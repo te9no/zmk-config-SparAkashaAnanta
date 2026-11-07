@@ -2,7 +2,7 @@ name: Ananta Bluetooth recovery prerelease build
 on:
   workflow_dispatch:
   push:
-    branches: [feat/bt-recovery]
+    branches: [feat/bt-recovery, codex/ananta-input-motion-fix]
 permissions:
   contents: read
 jobs:
@@ -35,6 +35,10 @@ jobs:
           python3 ../config-repo/scripts/apply-bt-recovery.py zmk
           sh modules/zmk-module-bt-recovery/tests/run.sh
           python3 modules/zmk-module-bt-recovery/tests/test_bridge.py zmk
+      - name: Test input and motion regressions
+        if: matrix.target == 'SAA_R_MODULE_TB'
+        run: |
+          PMW_SOURCE="$GITHUB_WORKSPACE/west-workspace/modules/zmk-driver-pmw3610-with-custom-studio-rpc/src/pmw3610.c" python3 -m unittest discover -s config-repo/tests -v
       - name: Build and verify
         working-directory: west-workspace
         run: python3 ../config-repo/scripts/build-bt-recovery.py ${{ matrix.target }}

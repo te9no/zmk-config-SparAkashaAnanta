@@ -18,12 +18,12 @@ static void work(void) {
 '''
         result = guard.isolate_motion_work(source)
         self.assertNotIn('k_work_submit(&data->trigger_work)', result)
-        self.assertIn('k_work_submit_to_queue(&saa_pmw_queue, &data->trigger_work)', result)
-        self.assertLess(result.index('k_work_queue_start('), result.index('k_work_init(&data->trigger_work'))
+        self.assertIn('k_work_reschedule_for_queue(&saa_pmw_queue, &data->trigger_work, K_NO_WAIT)', result)
+        self.assertLess(result.index('k_work_queue_start('), result.index('k_work_init_delayable(&data->trigger_work'))
         self.assertIn('k_work_init_delayable(&data->init_work, pmw3610_async_init)', result)
         self.assertIn('k_mutex_lock(&data->lock, K_FOREVER);', result)
-        self.assertIn('if (!data->capture_active)', result)
-        self.assertIn('K_THREAD_STACK_SIZEOF(saa_pmw_stack), 4, NULL)', result)
+        self.assertIn('else if (!data->capture_active)', result)
+        self.assertIn('K_THREAD_STACK_SIZEOF(saa_pmw_stack), 9, NULL)', result)
 
     def test_missing_or_duplicate_hooks_fail_closed(self):
         for source in ('', '    k_work_submit(&data->trigger_work);' * 2):
