@@ -83,13 +83,14 @@ static bool saa_pmw_queue_started;
         data->dy = 0;
     }
     if (!data->capture_active && (data->dx || data->dy)) {
-        /* IRQ remains disabled until the pending report is drained. This
-         * also flushes the final small movement when no new motion arrives. */
+        /* Flush the final small movement even without a new motion IRQ.
+         * Keep sampling fresh motion during the reporting interval. */
         int64_t remaining = (int64_t)data->runtime.report_interval_min_ms -
                             (k_uptime_get() - data->last_rpt_time);
         k_work_reschedule_for_queue(&saa_pmw_queue, &data->trigger_work,
                                     K_MSEC(MAX(remaining, 1)));
-    } else if (!data->capture_active) {
+    }
+    if (!data->capture_active) {
         pmw3610_set_interrupt(dev, true);
     }
     k_mutex_unlock(&data->lock);''')

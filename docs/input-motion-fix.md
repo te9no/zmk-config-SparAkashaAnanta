@@ -9,8 +9,8 @@ additional paths found during the input-order and small-motion investigation.
 - A sample with MOT clear contributes zero new motion and preserves previously
   measured pending movement. An all-ones bus response still clears it.
 - A per-device delayed work item flushes pending movement at the report deadline.
-  The motion IRQ stays disabled during this bounded wait. After draining, the
-  IRQ is re-enabled. No periodic polling is scheduled when movement is empty.
+  The motion IRQ is re-enabled so fresh movement can still be sampled during
+  this bounded wait. No periodic polling is scheduled when movement is empty.
 - Capture owns the IRQ while active. Read errors discard pending movement and
   terminate the delayed retry. Private generated headers keep the shared driver
   checkout intact.

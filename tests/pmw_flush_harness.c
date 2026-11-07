@@ -82,23 +82,26 @@ int main(void) {
     struct device dev={.data=&data,.config=&cfg}; data.dev=&dev;
     now_ms=105; motion(1,-2,true);
     pmw3610_work_callback(&data.trigger_work.work);
-    assert(sent_x==0 && sent_y==0 && data.dx==1 && due==114 && !irq_enabled);
+    assert(sent_x==0 && sent_y==0 && data.dx==1 && due==114 && irq_enabled);
+    now_ms=107; motion(1,-1,true);
+    pmw3610_work_callback(&data.trigger_work.work);
+    assert(due==114 && data.dx==2 && irq_enabled);
     // No further physical motion. Timer must flush once, without a new IRQ.
     now_ms=due; due=0; motion(500,500,false);
     pmw3610_work_callback(&data.trigger_work.work);
-    assert(sent_x==1 && sent_y==-2 && data.dx==0 && due==0 && irq_enabled);
+    assert(sent_x==2 && sent_y==-3 && data.dx==0 && due==0 && irq_enabled);
     // New measured motion before the deadline joins the pending report.
     now_ms=115; motion(-3,4,true); irq_enabled=false;
     pmw3610_work_callback(&data.trigger_work.work);
     assert(due==128 && data.dx==-3);
     now_ms=128; due=0; motion(2,-1,true);
     pmw3610_work_callback(&data.trigger_work.work);
-    assert(sent_x==0 && sent_y==1 && due==0);
+    assert(sent_x==1 && sent_y==0 && due==0);
     // Invalid bus response and read errors terminate retries.
     now_ms=129; motion(2,2,true); pmw3610_work_callback(&data.trigger_work.work);
     now_ms=due; due=0; memset(sample,255,sizeof(sample));
     pmw3610_work_callback(&data.trigger_work.work);
-    assert(data.dx==0 && due==0 && sent_x==0);
+    assert(data.dx==0 && due==0 && sent_x==1);
     now_ms=143; motion(2,2,true); pmw3610_work_callback(&data.trigger_work.work);
     now_ms=144; motion(1,1,true); pmw3610_work_callback(&data.trigger_work.work);
     now_ms=due; due=0; read_error=-EIO;
