@@ -2,7 +2,7 @@ name: Ananta wireless recovery prerelease build
 on:
   workflow_dispatch:
   push:
-    branches: [feat/bt-recovery, codex/ananta-input-motion-fix, codex/ananta-hid-fairness]
+    branches: [feat/bt-recovery, codex/ananta-input-motion-fix, codex/ananta-hid-fairness, codex/ananta-key-state-recovery]
 permissions:
   contents: read
 jobs:
