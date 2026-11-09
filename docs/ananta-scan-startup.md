@@ -54,3 +54,19 @@ Existing Studio scan statistics subscribe to processed position events; they
 are not independent raw GPIO measurements. Further diagnosis needs either raw
 scan-vs-delivery traces during a failure or an accurate circuit model. Do not
 clear the user's persisted keymap/combos as a speculative workaround.
+
+## Renode follow-up
+
+The earlier host-only validation has now been supplemented with
+[`renode_scan_startup`](../tests/renode_scan_startup/README.md). Both original and
+patched production selector/main functions ran on nRF52840 Renode with actual
+Zephyr scheduling, PM and settings handler dispatch. The baseline recorded 32
+pre-restoration scans and one pre-registration scan, losing the startup-held
+press in the modeled scanner. The fixed version recorded zero for both and
+correctly delivered 26 transitions, including release, layout change and suspend/
+resume. Both runs reached their expected `ALL_TESTS_PASS` assertions.
+
+The scanner is mocked and settings use no flash backend. This verifies lifecycle
+ordering, not the physical circuit, actual saved settings, RF delivery, full
+firmware startup or the unresolved five-way symptom. Firmware source is unchanged
+from `6faeece`; this follow-up adds tests and evidence only.
