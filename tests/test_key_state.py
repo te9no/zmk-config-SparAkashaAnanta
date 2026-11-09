@@ -1,9 +1,11 @@
 """Check exact pinned production patch sites, not only the standalone harness."""
 import importlib.util
 import os
+import sys
 from pathlib import Path
 import unittest
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
 spec = importlib.util.spec_from_file_location("key_patch", ROOT / "scripts/patch_key_state.py")
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)

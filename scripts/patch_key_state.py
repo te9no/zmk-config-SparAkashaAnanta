@@ -2,14 +2,20 @@
 import hashlib
 from pathlib import Path
 import sys
+sys.dont_write_bytecode = True
+from patch_scan_startup import MAIN_SHA, physical as patch_physical_startup, main as patch_main_startup
 ROOT=Path(__file__).resolve().parents[1]
-HASH={
+HASH={"main.c": MAIN_SHA,
 "physical_layouts.c":"eccce3df9ca6cba0cb70e85dfafe70baa3535f0d66a418fdbe59fac4d9ae8ed2",
 "central.c":"f53e47e276e98aeb2757c4633bbd201a48462274b0a6c777c6eb8589b15f23c0",
 "service.c":"434844179c06edf11cc96d87675f7fada7e1f211cacfb226c69438350ad749b7"}
 def patch(source,name):
     if hashlib.sha256(source.encode()).hexdigest()!=HASH[name]:
         raise ValueError("Key state source changed: "+name)
+    if name=="main.c":
+        return patch_main_startup(source)
+    if name=="physical_layouts.c":
+        source=patch_physical_startup(source)
     if name=="service.c":
         start=source.index("K_MSGQ_DEFINE(position_state_msgq,")
         end=source.index("static int zmk_split_bt_position_pressed(",start)
