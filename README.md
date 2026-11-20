@@ -2,7 +2,7 @@
 
 [今回の左右 UF2 を ZIP でダウンロード](firmware/downloads/Ananta-ZeroShift-common-r01.zip)。同じ ZIP の左右を対応する側に書き込み、設定した側を再起動してください。
 
-左右とも、下部には PMW3610 トラックボール、アナログスティック、エンコーダ、1u キー、PAT9125（R02 I²C）、LPPS（ADS1220）、Cirque タッチパッドから1つを、上部には IQS9151 を装着できます。どちらのスロットもオフにできます。初期設定は左右とも上下オフです。
+左右とも、下部には PMW3610 トラックボール、アナログスティック、エンコーダ、1u キー、PAT9125（R02 I²C、回転は縦スクロール）、LPPS（ADS1220）、Cirque タッチパッドから1つを、上部には IQS9151 を装着できます。どちらのスロットもオフにできます。初期設定は左右とも上下オフです。
 
 1. 左に `SAA-ZeroShift-left.uf2`、右に `SAA-ZeroShift-right.uf2` を書き込みます。
 2. 右の親機を USB または BLE で [ZeroShift Web UI](https://te9no.github.io/zmk-feature-zeroshift/) に接続します。設定する側を選び、下部と上部を選んで保存します。
