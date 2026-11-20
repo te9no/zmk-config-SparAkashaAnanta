@@ -18,7 +18,7 @@ async function reset(side) {
   await delay(1800);
 }
 const off = ["off", "off"];
-const lowers = ["pmw3610", "stick", "encoder", "key", "tpd", "off"];
+const lowers = ["pmw3610", "stick", "encoder", "key", "tpd", "lpps", "pat9125", "off"];
 const uppers = ["iqs", "off"];
 
 async function profile(side, requested) {
@@ -49,13 +49,14 @@ for (const side of ["left", "right"]) {
       const modes = [lower, upper];
       check(await profile(side, modes), modes, previous);
       await reset(side);
-      check(await profile(side), modes, modes);
+      const active = [lower === "pat9125" ? "off" : lower, upper];
+      check(await profile(side), modes, active);
       check(await profile(other), off, off);
       console.log(side, lower, upper, "PASS");
-      previous = modes;
+      previous = active;
     }
   }
 }
 await client.close();
 socket.destroy();
-console.log("24/24 reboot cases passed");
+console.log("32/32 reboot cases passed");
