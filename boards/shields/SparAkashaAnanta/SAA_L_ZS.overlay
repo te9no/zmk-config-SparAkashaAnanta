@@ -7,11 +7,15 @@
 #include "SAA_L_JOY.overlay"
 #undef left_encoder
 #include "SAA_L_TB.overlay"
+#ifdef SAA_SIM_TWI
+#define TPD_BUS i2c0
+#else
 #define TPD_BUS tpd_bus
+#endif
 #include "SAA_L_tpd_device.dtsi"
 #undef TPD_BUS
 
-/ { aliases { module-trackball = <&trackball2>; }; };
+/ { aliases { module-trackball = &trackball2; }; };
 &sensors { triggers-per-rotation = <10>; };
 &joy_encoder { steps = <30>; };
 &anin0 { zephyr,deferred-init; };

@@ -5,8 +5,3 @@
 &oled { status = "disabled"; };
 &iqs9151 { irq-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>; };
 &i2c0 { zephyr,deferred-init; };
-/delete-node/ &glidepoint;
-#define TPD_BUS i2c0
-#include "../../boards/shields/SparAkashaAnanta/SAA_L_tpd_device.dtsi"
-#undef TPD_BUS
-&glidepoint { zephyr,deferred-init; };

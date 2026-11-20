@@ -27,7 +27,7 @@ static bool handle(const zmk_custom_CallRequest *raw, pb_callback_t *encode) {
         modes[1] = req.operation.set.inner;
     }
     struct zeroshift_state state;
-    
+
     resp->error = !req.right ? saa_remote_profile(write ? modes : NULL, &state)
                             : zeroshift_profile(write ? modes : NULL, &state);
     if (!resp->error) {
