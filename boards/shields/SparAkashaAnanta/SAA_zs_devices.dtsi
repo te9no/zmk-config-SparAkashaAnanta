@@ -1,0 +1,27 @@
+/ {
+    module_encoder: module-encoder {
+        compatible = "saa,deferred-ec11", "alps,ec11";
+        zephyr,deferred-init;
+    };
+    joy_encoder: stick-encoder {
+        compatible = "saa,deferred-ec11", "alps,ec11";
+        zephyr,deferred-init;
+    };
+    module_key: module-key {
+        compatible = "gpio-keys";
+        zephyr,deferred-init;
+        key {
+            gpios = DIRECT_KEY_GPIOS;
+            zephyr,code = <INPUT_KEY_A>;
+        };
+    };
+    tpd_bus: lower-touchpad-bus {
+        compatible = "gpio-i2c";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        sda-gpios = P0_03_GPIOS((GPIO_OPEN_DRAIN | GPIO_PULL_UP));
+        scl-gpios = P0_28_GPIOS((GPIO_OPEN_DRAIN | GPIO_PULL_UP));
+        clock-frequency = <100000>;
+        zephyr,deferred-init;
+    };
+};

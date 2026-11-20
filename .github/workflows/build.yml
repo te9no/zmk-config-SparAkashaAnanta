@@ -18,6 +18,9 @@ on:
   push:
     paths:
       - "config/**"
+      - "CMakeLists.txt"
+      - "src/**"
+      - "dts/**"
       - "boards/**"
       - "snippets/**"
       - "build.yaml"

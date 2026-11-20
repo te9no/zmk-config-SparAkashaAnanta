@@ -1,0 +1,14 @@
+#include "../../tests/renode/uart.overlay"
+#include "../../tests/renode/wired.dtsi"
+/ { chosen { zmk,studio-rpc-uart = &uart0; }; };
+
+/* Renode provides I2C devices on TWI0/1. Use TWI0 for the emulated lower pad. */
+&oled { status = "disabled"; };
+&iqs9151 { irq-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>; };
+&i2c0 { zephyr,deferred-init; };
+/delete-node/ &glidepoint;
+#define TPD_BUS i2c0
+#include "../../boards/shields/SparAkashaAnanta/SAA_R_tpd_device.dtsi"
+#undef TPD_BUS
+&glidepoint { zephyr,deferred-init; };
+/delete-node/ &bootloader_trigger;

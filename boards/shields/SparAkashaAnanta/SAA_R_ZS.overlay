@@ -1,0 +1,24 @@
+#include "SAA_pins.dtsi"
+#include "SAA_zs_devices.dtsi"
+#define right_encoder module_encoder
+#include "SAA_R_ENC.overlay"
+#undef right_encoder
+#define right_encoder joy_encoder
+#include "SAA_R_JOY.overlay"
+#undef right_encoder
+#include "SAA_R_TB.overlay"
+#define TPD_BUS tpd_bus
+#include "SAA_R_tpd_device.dtsi"
+#undef TPD_BUS
+
+/ { aliases { module-trackball = <&trackball>; }; };
+&sensors { triggers-per-rotation = <10>; };
+&joy_encoder { steps = <30>; };
+&anin0 { zephyr,deferred-init; };
+&saa_tb_spi { zephyr,deferred-init; };
+&trackball { zephyr,deferred-init; };
+&glidepoint { zephyr,deferred-init; };
+&default_transform { rows = <7>; };
+&layout_SAA { kscan = <&kscan1>; };
+&kscan0 { status = "disabled"; };
+&kscan2 { status = "disabled"; };

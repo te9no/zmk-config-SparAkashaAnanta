@@ -7,14 +7,6 @@
     pinctrl-1 = <&tpd_i2c1_sleep>;
     pinctrl-names = "default", "sleep";
     clock-frequency = <100000>;
-
-    glidepoint: glidepoint@2a {
-        compatible = "cirque,pinnacle";
-        reg = <0x2a>;
-        status = "okay";
-        data-ready-gpios = TPD_DR_GPIOS;
-        sensitivity = "2x";
-    };
 };
 
 &pinctrl {
@@ -36,16 +28,6 @@
     };
 };
 
-/ {
-    split_inputs {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        trackpad_split: trackpad_split@3 {
-            compatible = "zmk,input-split";
-            status = "okay";
-            device = <&glidepoint>;
-            reg = <3>;
-        };
-    };
-};
+#define TPD_BUS i2c1
+#include "SAA_L_tpd_device.dtsi"
+#undef TPD_BUS

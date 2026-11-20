@@ -1,0 +1,16 @@
+&TPD_BUS {
+    glidepoint: glidepoint@2a {
+        compatible = "cirque,pinnacle";
+        reg = <0x2a>;
+        status = "okay";
+        data-ready-gpios = TPD_DR_GPIOS;
+        sensitivity = "2x";
+    };
+};
+/ {
+    trackpad_listener: trackpad_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&glidepoint>;
+    };
+};
