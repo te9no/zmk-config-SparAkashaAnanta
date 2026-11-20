@@ -26,3 +26,11 @@
 &layout_SAA { kscan = <&kscan1>; };
 &kscan0 { status = "disabled"; };
 &kscan2 { status = "disabled"; };
+
+#include "zeroshift_dial.dtsi"
+#include "zeroshift_lpps.dtsi"
+/ {
+    split_inputs { left_lpps: lpps@5 { compatible = "zmk,input-split"; reg = <5>; }; };
+    left_lpps_listener { compatible = "zmk,input-listener"; device = <&left_lpps>; };
+    local_lpps_listener { compatible = "zmk,input-listener"; device = <&lpps_axis>; };
+};

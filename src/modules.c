@@ -7,7 +7,7 @@
 #include <zeroshift/profile.h>
 
 #define DEV(label) DEVICE_DT_GET(DT_NODELABEL(label))
-enum module_mode { OFF, TB, JOY, ENC, KEY, TPD, IQS };
+enum module_mode { OFF, TB, JOY, ENC, KEY, TPD, IQS, LPPS, PAT };
 BUILD_ASSERT(ZEROSHIFT_SLOT_COUNT == 2);
 ZMK_MATRIX_TRANSFORM_EXTERN(DT_NODELABEL(default_transform));
 
@@ -38,13 +38,29 @@ static int start_encoder(const struct device *dev) {
     return err ? err : sensor_trigger_set(dev, &trigger, rotation);
 }
 
+/* The R02 optical dial reports X counts. Keep fractional degrees across reports. */
+static void dial_event(struct input_event *event, void *unused) {
+    static int32_t remainder;
+    if (event->type != INPUT_EV_REL || event->code != INPUT_REL_X) return;
+    int64_t scaled = (int64_t)event->value * 360 + remainder;
+    int32_t degrees = scaled / 1892;
+    remainder = scaled % 1892;
+    if (degrees) {
+        raise_zmk_sensor_event((struct zmk_sensor_event){
+            .sensor_index = IS_ENABLED(CONFIG_SHIELD_SAA_R_Base), .channel_data_size = 1,
+            .channel_data = {{.value = {.val1 = degrees}, .channel = SENSOR_CHAN_ROTATION}},
+            .timestamp = k_uptime_get()});
+    }
+}
+INPUT_CALLBACK_DEFINE(DEV(module_dial), dial_event, NULL);
+
 static int start_on_bus(const struct device *bus, const struct device *device) {
     int err = device_init(bus);
     return err ? err : device_init(device);
 }
 
 bool zeroshift_mode_supported(size_t slot, uint8_t mode) {
-    return (slot == 0 && mode <= TPD) || (slot == 1 && (mode == OFF || mode == IQS));
+    return (slot == 0 && (mode <= TPD || mode == PAT || mode == LPPS)) || (slot == 1 && (mode == OFF || mode == IQS));
 }
 
 int zeroshift_start_mode(size_t slot, uint8_t mode) {
@@ -59,6 +75,13 @@ int zeroshift_start_mode(size_t slot, uint8_t mode) {
     case KEY: return device_init(DEV(module_key));
     case TPD: return start_on_bus(DEVICE_DT_GET(DT_BUS(DT_NODELABEL(glidepoint))), DEV(glidepoint));
     case IQS: return start_on_bus(DEV(i2c1), DEV(iqs9151));
+    case LPPS:
+        err = start_on_bus(DEV(lpps_spi), DEV(adc_ads1220));
+        return err ? err : device_init(DEV(lpps_axis));
+    case PAT: {
+        int ret = start_on_bus(DEV(dial_bus), DEV(module_dial));
+        return ret ? ret : device_init(DEV(module_key));
+    }
     default: return -EINVAL;
     }
 }

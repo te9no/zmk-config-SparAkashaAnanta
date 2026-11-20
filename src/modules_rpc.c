@@ -32,7 +32,7 @@ static bool handle(const zmk_custom_CallRequest *raw, pb_callback_t *encode) {
                             : zeroshift_profile(write ? modes : NULL, &state);
     if (!resp->error) {
         resp->has_supported = true;
-        resp->supported = (cagime_Modes){BIT(6) - 1, BIT(0) | BIT(6)};
+        resp->supported = (cagime_Modes){(BIT(6) - 1) | BIT(7) | BIT(8), BIT(0) | BIT(6)};
         resp->has_saved = resp->has_active = true;
         resp->saved = (cagime_Modes){state.saved[0], state.saved[1]};
         resp->active = (cagime_Modes){state.active[0], state.active[1]};

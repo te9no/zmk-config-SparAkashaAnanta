@@ -7,6 +7,10 @@ manifest:
     - name: cormoran
       url-base: https://github.com/cormoran
   projects:
+    - name: ads1220-zephyr-module
+      url: https://github.com/te9no/ads1220-zephyr-module
+      revision: a6f156fa605c9fac93b7a81889134c674dcc8e2c
+      path: modules/ads1220-zephyr-module
     - name: zmk-feature-zeroshift
       remote: te9no
       revision: 16a58f1f8de889a3a98ba8c450e312697e4b9050
