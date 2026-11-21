@@ -1,6 +1,6 @@
 # SparAkashaAnanta ZeroShift
 
-[今回の左右 UF2 を ZIP でダウンロード](firmware/downloads/Ananta-ZeroShift-common-r01.zip)。同じ ZIP の左右を対応する側に書き込み、設定した側を再起動してください。
+[今回の左右 UF2 を ZIP でダウンロード](firmware/downloads/Ananta-ZeroShift-master-r01.zip)。同じ ZIP の左右を対応する側に書き込み、設定した側を再起動してください。
 
 左右とも、下部には PMW3610 トラックボール、アナログスティック、エンコーダ、1u キー、PAT9125（R02 I²C、回転は縦スクロール）、LPPS（ADS1220）、Cirque タッチパッドから1つを、上部には IQS9151 を装着できます。どちらのスロットもオフにできます。初期設定は左右とも上下オフです。
 

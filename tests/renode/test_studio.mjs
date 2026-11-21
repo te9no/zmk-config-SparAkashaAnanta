@@ -57,6 +57,8 @@ for (const side of ["left", "right"]) {
     }
   }
 }
+monitor.close();
+process.stdin.pause();
 await client.close();
 socket.destroy();
 console.log("32/32 reboot cases passed");
