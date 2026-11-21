@@ -14,9 +14,13 @@ manifest:
     - name: zmk-feature-zeroshift
       remote: te9no
       revision: 666ec6e8f91a2130e32c30cfc805c555de6a1d47
+    - name: zmk-module-bt-recovery
+      url: https://github.com/te9no/zmk-module-bt-recovery
+      revision: 7e76381d90856a42e739cebf66752afebbe78748
+      path: modules/zmk-module-bt-recovery
     - name: zmk
-      remote: cormoran
-      revision: e5c9b6915b56801193e359dd9bad4a167ce0d1b8
+      url: https://github.com/te9no/zmk
+      revision: 7687cece804d509e70da98e16d963e3f7c88ac71
       import: app/west.yml
 
 # ZMK RGB LED Widget
