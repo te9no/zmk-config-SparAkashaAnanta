@@ -4,7 +4,7 @@
     "sha256": "c772507a60f6ec668738d6082c437f1b88d857508b6d4e69eea067a0e13b589b"
   },
   "generated": {
-    ".config": "ffd1c823746c7ff795ef5fd958e7e2bb4c5f9f4a1e573a7f5a3bc5efe92cd988",
+    ".config": "4fa9f25eceb1e06d5cc8b62c7024fd49d4d0042147d9bab2681417de37f4ed42",
     "zephyr.dts": "5da95c841797a4c64ae7383c903a8d55bcc9276a29ec5a36a7c4aecf0f2b7121"
   },
   "inputs": {
@@ -435,6 +435,12 @@
         "dirty": false,
         "untracked": {}
       },
+      "zmk-module-bt-recovery": {
+        "commit": "7e76381d90856a42e739cebf66752afebbe78748",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "dirty": false,
+        "untracked": {}
+      },
       "zmk-module-runtime-input-processor": {
         "commit": "72387b5212264d26d704dbc43c765f6485470a77",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -473,7 +479,7 @@
       }
     },
     "source": {
-      "commit": "3e6a6eadff7ba4f60bd2cd6e2159e5712227991c",
+      "commit": "168ef9db1c700373c85f689d2b7d427a920acd71",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -485,7 +491,7 @@
       "untracked": {}
     }
   },
-  "run_id": "38410411353",
+  "run_id": "44961993551",
   "schema": 1,
   "target": {
     "artifact-name": "SAA_L_MODULE_JOY",
