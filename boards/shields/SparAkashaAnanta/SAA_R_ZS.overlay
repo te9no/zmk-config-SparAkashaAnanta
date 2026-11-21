@@ -1,12 +1,12 @@
 #include "SAA_pins.dtsi"
 #include "SAA_zs_devices.dtsi"
 #define right_encoder module_encoder
-#include "SAA_R_ENC.overlay"
+#include "enc_r.dtsi"
 #undef right_encoder
 #define right_encoder joy_encoder
-#include "SAA_R_JOY.overlay"
+#include "joy_r.dtsi"
 #undef right_encoder
-#include "SAA_R_TB.overlay"
+#include "tb_r.dtsi"
 #ifdef SAA_SIM_TWI
 #define TPD_BUS i2c0
 #else

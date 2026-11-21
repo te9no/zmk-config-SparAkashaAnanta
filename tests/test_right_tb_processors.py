@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class RightTrackball(unittest.TestCase):
     def test_runtime_and_scroll_paths(self):
-        source = (ROOT / "boards/shields/SparAkashaAnanta/SAA_R_TB.overlay").read_text()
+        source = (ROOT / "boards/shields/SparAkashaAnanta/tb_r.dtsi").read_text()
         self.assertIn("temp-layer = <3>", source)
         self.assertIn("temp-layer-enabled;", source)
         listener = source.split("trackball_listener: trackball_listener", 1)[1]

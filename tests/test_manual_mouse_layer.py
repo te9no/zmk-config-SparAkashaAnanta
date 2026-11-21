@@ -19,5 +19,5 @@ class ManualMouseLayer(unittest.TestCase):
                          ['&trans', '&trans', '&trans'])
 
     def test_no_default_aml(self):
-        text = (ROOT / 'boards/shields/SparAkashaAnanta/SAA_R_TB.overlay').read_text()
+        text = (ROOT / 'boards/shields/SparAkashaAnanta/tb_r.dtsi').read_text()
         self.assertIn('/delete-property/ temp-layer-enabled;', text)
