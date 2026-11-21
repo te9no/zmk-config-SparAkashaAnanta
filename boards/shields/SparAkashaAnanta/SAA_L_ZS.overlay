@@ -48,3 +48,6 @@
         };
     };
 };
+
+#include "iqs9151.dtsi"
+#include "iqs9151_split.dtsi"

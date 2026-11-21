@@ -56,3 +56,6 @@
         device = <&module_dial_split>;
     };
 };
+
+#include "iqs9151.dtsi"
+#include "iqs9151_local.dtsi"

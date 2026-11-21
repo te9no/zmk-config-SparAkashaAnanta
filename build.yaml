@@ -1,9 +1,9 @@
 include:
   - board: xiao_ble//zmk
     shield: SAA_L_Base SAA_L_ZS rgbled_adapter nice_oled
-    snippet: IQS IQS_Split saa-zs battery-voltage-divider-oversampling zmk-usb-logging
+    snippet: saa-zs battery-voltage-divider-oversampling zmk-usb-logging
     artifact-name: SAA-ZeroShift-left
   - board: xiao_ble//zmk
     shield: SAA_R_Base SAA_R_ZS rgbled_adapter nice_oled
-    snippet: IQS IQS_Local saa-zs battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
+    snippet: saa-zs battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart
     artifact-name: SAA-ZeroShift-right
