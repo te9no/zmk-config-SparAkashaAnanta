@@ -34,3 +34,6 @@ endchoice
 endif # LVGL
 
 endif # SHIELD_SAA_L_Base || SHIELD_SAA_R_Base
+
+config ZMK_ZEROSHIFT_STUDIO
+    default y if SHIELD_SAA_R_ZS && ZMK_STUDIO_RPC && !ZMK_SETTINGS_RESET_ON_START

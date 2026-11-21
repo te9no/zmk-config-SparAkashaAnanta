@@ -13,7 +13,7 @@ manifest:
       path: modules/ads1220-zephyr-module
     - name: zmk-feature-zeroshift
       remote: te9no
-      revision: 16a58f1f8de889a3a98ba8c450e312697e4b9050
+      revision: 666ec6e8f91a2130e32c30cfc805c555de6a1d47
     - name: zmk
       remote: cormoran
       revision: e5c9b6915b56801193e359dd9bad4a167ce0d1b8
