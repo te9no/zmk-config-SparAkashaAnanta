@@ -57,5 +57,4 @@
     };
 };
 
-#include "iqs9151.dtsi"
-#include "iqs9151_local.dtsi"
+#define SAA_IQS_ROUTE "iqs9151_local.dtsi"

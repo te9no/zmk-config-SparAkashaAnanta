@@ -49,5 +49,4 @@
     };
 };
 
-#include "iqs9151.dtsi"
-#include "iqs9151_split.dtsi"
+#define SAA_IQS_ROUTE "iqs9151_split.dtsi"

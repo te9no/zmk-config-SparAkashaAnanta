@@ -32,5 +32,8 @@
         };
     };
 };
+
+#include SAA_IQS_ROUTE
+
 &i2c1 { zephyr,deferred-init; };
 &iqs9151 { zephyr,deferred-init; };

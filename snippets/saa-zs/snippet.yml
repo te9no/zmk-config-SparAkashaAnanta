@@ -1,3 +1,4 @@
 name: saa-zs
 append:
   EXTRA_CONF_FILE: modules.conf
+  EXTRA_DTC_OVERLAY_FILE: modules.overlay
