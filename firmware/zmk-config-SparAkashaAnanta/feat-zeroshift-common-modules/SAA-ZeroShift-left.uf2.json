@@ -430,7 +430,7 @@
         "untracked": {}
       },
       "zmk-feature-zeroshift": {
-        "commit": "16a58f1f8de889a3a98ba8c450e312697e4b9050",
+        "commit": "666ec6e8f91a2130e32c30cfc805c555de6a1d47",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -509,7 +509,7 @@
       }
     },
     "source": {
-      "commit": "80d0765e6808dce9a0d110a2f9ee06e15c202f38",
+      "commit": "4c303439cf97a69fa4ba540a683d30773dc920ec",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -521,12 +521,12 @@
       "untracked": {}
     }
   },
-  "run_id": "44760771044",
+  "run_id": "44962614327",
   "schema": 1,
   "target": {
     "artifact-name": "SAA-ZeroShift-left",
     "board": "xiao_ble//zmk",
     "shield": "SAA_L_Base SAA_L_ZS rgbled_adapter nice_oled",
-    "snippet": "IQS IQS_Split saa-zs battery-voltage-divider-oversampling zmk-usb-logging"
+    "snippet": "saa-zs battery-voltage-divider-oversampling zmk-usb-logging"
   }
 }

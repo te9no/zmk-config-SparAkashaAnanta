@@ -1,10 +1,10 @@
 {
   "artifact": {
     "name": "SAA-ZeroShift-right.uf2",
-    "sha256": "5ceba7a03d11a0e76f2e1e35d979b166d89a7b76d519b791747a94c63a682f10"
+    "sha256": "d2bcc6aea330a4fb4d845596c4660be68f7e39d06335c499d08aeac7adc35f4d"
   },
   "generated": {
-    ".config": "382a172886aece232e3bcad72d849cec12e1ababe8889f8f552a3359d7631e5f",
+    ".config": "6e100535dfb8cadf8277ee19bc59bfc35f96909a6c6d543c1aed1cfbfe540f6d",
     "zephyr.dts": "de5b70a002a79dd6db7202414d63e7356896677abb3eabc381010fdd98190758"
   },
   "inputs": {
@@ -430,7 +430,7 @@
         "untracked": {}
       },
       "zmk-feature-zeroshift": {
-        "commit": "16a58f1f8de889a3a98ba8c450e312697e4b9050",
+        "commit": "666ec6e8f91a2130e32c30cfc805c555de6a1d47",
         "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "dirty": false,
         "untracked": {}
@@ -509,7 +509,7 @@
       }
     },
     "source": {
-      "commit": "80d0765e6808dce9a0d110a2f9ee06e15c202f38",
+      "commit": "4c303439cf97a69fa4ba540a683d30773dc920ec",
       "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "dirty": false,
       "untracked": {}
@@ -521,12 +521,12 @@
       "untracked": {}
     }
   },
-  "run_id": "44760771044",
+  "run_id": "44962614327",
   "schema": 1,
   "target": {
     "artifact-name": "SAA-ZeroShift-right",
     "board": "xiao_ble//zmk",
     "shield": "SAA_R_Base SAA_R_ZS rgbled_adapter nice_oled",
-    "snippet": "IQS IQS_Local saa-zs battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart"
+    "snippet": "saa-zs battery-voltage-divider-oversampling zmk-usb-logging studio-rpc-usb-uart"
   }
 }
