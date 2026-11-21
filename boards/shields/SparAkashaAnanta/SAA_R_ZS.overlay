@@ -1,0 +1,58 @@
+#include "SAA_pins.dtsi"
+#include "SAA_zs_devices.dtsi"
+#define right_encoder module_encoder
+#include "SAA_R_ENC.overlay"
+#undef right_encoder
+#define right_encoder joy_encoder
+#include "SAA_R_JOY.overlay"
+#undef right_encoder
+#include "SAA_R_TB.overlay"
+#ifdef SAA_SIM_TWI
+#define TPD_BUS i2c0
+#else
+#define TPD_BUS tpd_bus
+#endif
+#include "SAA_R_tpd_device.dtsi"
+#undef TPD_BUS
+
+/ { aliases { module-trackball = &trackball; }; };
+&sensors { triggers-per-rotation = <10>; };
+&joy_encoder { steps = <30>; };
+&anin0 { zephyr,deferred-init; };
+&saa_tb_spi { zephyr,deferred-init; };
+&trackball { zephyr,deferred-init; };
+&glidepoint { zephyr,deferred-init; };
+&default_transform { rows = <7>; };
+&layout_SAA { kscan = <&kscan1>; };
+&kscan0 { status = "disabled"; };
+&kscan2 { status = "disabled"; };
+
+#include "zeroshift_dial.dtsi"
+#include "zeroshift_lpps.dtsi"
+/ {
+    split_inputs { left_lpps: lpps@5 { compatible = "zmk,input-split"; reg = <5>; }; };
+    left_lpps_listener { compatible = "zmk,input-listener"; device = <&left_lpps>; };
+    local_lpps_listener { compatible = "zmk,input-listener"; device = <&lpps_axis>; };
+};
+
+/ {
+    module_scroll: module-dial-scroll {
+        compatible = "zmk,optical-dial-scroll";
+        #input-processor-cells = <0>;
+    };
+    split_inputs {
+        module_dial_split: module-dial@6 {
+            compatible = "zmk,input-split";
+            reg = <6>;
+        };
+    };
+    module_local_wheel {
+        compatible = "zmk,input-listener";
+        device = <&module_dial>;
+        input-processors = <&module_scroll>;
+    };
+    module_remote_wheel {
+        compatible = "zmk,input-listener";
+        device = <&module_dial_split>;
+    };
+};

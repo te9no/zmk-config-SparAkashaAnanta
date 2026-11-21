@@ -1,0 +1,3 @@
+name: saa-zs
+append:
+  EXTRA_DTC_OVERLAY_FILE: modules.overlay

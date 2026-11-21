@@ -1,0 +1,75 @@
+add_subdirectory(zephyr)
+
+if(CONFIG_ZMK_ZEROSHIFT)
+  target_sources(app PRIVATE src/modules.c src/modules_relay.c)
+  if(CONFIG_ZMK_STUDIO_RPC)
+    list(APPEND CMAKE_MODULE_PATH ${ZEPHYR_BASE}/modules/nanopb)
+    include(nanopb)
+    set(NANOPB_GENERATE_CPP_APPEND_PATH TRUE)
+    set(NANOPB_GENERATE_CPP_STANDALONE OFF)
+    zephyr_library()
+    nanopb_generate_cpp(proto_srcs proto_hdrs RELPATH ${ZEPHYR_ZMK_FEATURE_ZEROSHIFT_MODULE_DIR} ${ZEPHYR_ZMK_FEATURE_ZEROSHIFT_MODULE_DIR}/proto/modules.proto)
+    target_include_directories(${ZEPHYR_CURRENT_LIBRARY} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+    target_sources(${ZEPHYR_CURRENT_LIBRARY} PRIVATE ${proto_srcs} ${proto_hdrs})
+    target_include_directories(app PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/proto)
+    add_dependencies(app ${ZEPHYR_CURRENT_LIBRARY})
+    target_sources(app PRIVATE src/modules_rpc.c)
+  endif()
+endif()
+
+if(CONFIG_ZMK_STUDIO_RPC AND SNIPPET MATCHES "saa-sim-right")
+  target_sources(app PRIVATE tests/renode/uart_endpoint.c)
+endif()
+
+if(CONFIG_ZMK_ZEROSHIFT AND (CONFIG_SHIELD_SAA_L_Base OR CONFIG_SHIELD_SAA_R_Base) AND NOT CONFIG_ZMK_SETTINGS_RESET_ON_START)
+  zephyr_linker_sources(ROM_START SORT_KEY 0x2volume src/uf2_volume_id.ld)
+endif()
+
+# The pinned split central uses zero as both a valid input ID and an unset marker.
+if(CONFIG_ZMK_ZEROSHIFT AND CONFIG_ZMK_SPLIT_ROLE_CENTRAL AND CONFIG_ZMK_INPUT_SPLIT AND CONFIG_ZMK_SPLIT_BLE)
+  function(patch_split_input_discovery)
+    set(dir "${APPLICATION_SOURCE_DIR}/src/split/bluetooth")
+    set(original "${dir}/central.c")
+    set(patched "${CMAKE_CURRENT_BINARY_DIR}/split_central_fixed.c")
+    get_target_property(sources app SOURCES)
+    list(FIND sources "${original}" index)
+    if(index EQUAL -1)
+      message(FATAL_ERROR "Split input source not found")
+    endif()
+    file(READ "${original}" code)
+    macro(replace_split_fragment before after)
+      string(FIND "${code}" "${before}" pos)
+      if(pos EQUAL -1)
+        message(FATAL_ERROR "Review split input ID patch against pinned ZMK")
+      endif()
+      string(REPLACE "${before}" "${after}" code "${code}")
+    endmacro()
+    replace_split_fragment("uint8_t reg;\n};" "uint8_t reg;\n    bool reg_known;\n};")
+    replace_split_fragment("!peripheral_input_slots[i].reg);" "!peripheral_input_slots[i].reg_known);")
+    replace_split_fragment("peripheral_input_slots[i].reg = 0;" "peripheral_input_slots[i].reg_known = false;")
+    replace_split_fragment("input_slot->reg = cpf->description;" "input_slot->reg = cpf->description;\n                input_slot->reg_known = true;")
+    replace_split_fragment("zmk_input_split_peripheral_disconnected(peripheral_input_slots[i].reg);"
+                           "if (peripheral_input_slots[i].reg_known) {\n                zmk_input_split_peripheral_disconnected(peripheral_input_slots[i].reg);\n            }")
+    # One ATT reply can hold several attributes. When switching queries, stop
+    # parsing the old reply before its next attribute reaches the new handler.
+    replace_split_fragment("switch (params->type) {"
+                           "const uint8_t original_type = params->type;\n    const struct bt_uuid *original_uuid = params->uuid;\n    switch (params->type) {")
+    replace_split_fragment("    bool subscribed = slot->run_behavior_handle"
+[=[    if (params->type != original_type || params->uuid != original_uuid) {
+        int err = bt_gatt_discover(conn, params);
+        if (err) {
+            LOG_ERR("Failed to continue split discovery: %d", err);
+        }
+        return BT_GATT_ITER_STOP;
+    }
+
+    bool subscribed = slot->run_behavior_handle]=])
+    file(WRITE "${patched}" "${code}")
+    list(REMOVE_AT sources ${index})
+    list(APPEND sources "${patched}")
+    set_property(TARGET app PROPERTY SOURCES "${sources}")
+    set_source_files_properties("${patched}" PROPERTIES INCLUDE_DIRECTORIES "${dir}")
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${original}")
+  endfunction()
+  cmake_language(DEFER DIRECTORY "${APPLICATION_SOURCE_DIR}" CALL patch_split_input_discovery)
+endif()

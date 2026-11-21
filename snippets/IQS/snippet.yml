@@ -1,0 +1,5 @@
+name: IQS
+append:
+  EXTRA_DTC_OVERLAY_FILE: IQS.overlay
+  EXTRA_CONF_FILE: IQS.conf
+  
