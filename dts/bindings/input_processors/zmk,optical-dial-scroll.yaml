@@ -1,3 +1,0 @@
-description: Convert optical dial counts to vertical wheel steps
-compatible: "zmk,optical-dial-scroll"
-include: ip_zero_param.yaml

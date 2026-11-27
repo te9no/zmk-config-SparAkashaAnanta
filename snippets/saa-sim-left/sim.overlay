@@ -1,7 +1,0 @@
-#include "../../tests/renode/uart.overlay"
-#include "../../tests/renode/wired.dtsi"
-
-/* Renode provides I2C devices on TWI0/1. Use TWI0 for the emulated lower pad. */
-&oled { status = "disabled"; };
-&iqs9151 { irq-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>; };
-&i2c0 { zephyr,deferred-init; };

@@ -1,68 +1,62 @@
-#include "SAA_pins.dtsi"
-#include <input/processors.dtsi>
-#include <dt-bindings/zmk/input_transform.h>
-#include <input/processors/runtime-input-processor.dtsi>
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 3)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 3)>;
+        };
+    };
 
-// Defaults are editable through DYA Studio; persisted user settings win.
-&mouse_runtime_input_processor {
-    // Manual mouse layer via the bottom-right key; no automatic activation.
-    /delete-property/ temp-layer-enabled;
-    temp-layer = <3>;
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 3)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 3)>;
+            low-power-enable;
+        };
+    };
 };
 
+/*input-split*/
 / {
-    saa_tb_spi: spi-three-wire {
-        compatible = "te9no,spi-three-wire-gpio";
-        status = "okay";
+    split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
 
-        sck-gpios = P1_13_GPIOS(GPIO_ACTIVE_HIGH);
-        sdio-gpios = P0_03_GPIOS(GPIO_ACTIVE_HIGH);
-        cs-gpios = TB_CS_GPIOS;
-
-        turnaround-delay-us = <4>;
-        select-delay-us = <1>;
-        deselect-delay-us = <4>;
-        recovery-delay-us = <30>;
-
-        trackball: trackball@0 {
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
             status = "okay";
-            compatible = "cormoran,pmw3610";
+            device = <&trackball>;
             reg = <0>;
-            spi-max-frequency = <2000000>;
-            irq-gpios = TB_IRQ_GPIOS;
-            cpi = <800>;
-            evt-type = <INPUT_EV_REL>;
-            x-input-code = <INPUT_REL_X>;
-            y-input-code = <INPUT_REL_Y>;
-            // Like Solstice, read motion in one CS-held burst. The GPIO
-            // three-wire controller switches SDIO to input after the address.
-            settings-id = "saa-rtb";
-            force-awake;
         };
     };
 
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         status = "okay";
-        device = <&trackball>;
-        // Right TB mounting is rotated 180 degrees: correct both axes.
-        input-processors = <&zip_xy_transform
-            (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-            <&mouse_runtime_input_processor>;
-
-        // Override the entire chain: do not activate AML while scrolling.
-        scroll {
-            layers = <1 4>;
-            input-processors = <&zip_xy_transform
-                (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-                <&zip_xy_to_scroll_mapper>,
-                <&scroll_runtime_input_processor>;
-        };
+        device = <&trackball_split>;
     };
+
 };
 
-&spi2 {
-    status = "disabled";
+&spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios =  <&xiao_d 7 GPIO_ACTIVE_LOW>;
+
+    trackball: pd@0 {
+        status = "okay";
+        compatible = "pixart,pmw3610";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        irq-gpios = <&gpio0 28 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        cpi = <800>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        force-awake;
+    };
 };

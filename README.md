@@ -1,16 +1,6 @@
-# SparAkashaAnanta ZeroShift
-
-[今回の左右 UF2 を ZIP でダウンロード](firmware/downloads/Ananta-ZeroShift-master-r01.zip)。同じ ZIP の左右を対応する側に書き込み、設定した側を再起動してください。
-
-左右とも、下部には PMW3610 トラックボール、アナログスティック、エンコーダ、1u キー、PAT9125（R02 I²C、回転は縦スクロール）、LPPS（ADS1220）、Cirque タッチパッドから1つを、上部には IQS9151 を装着できます。どちらのスロットもオフにできます。初期設定は左右とも上下オフです。
-
-1. 左に `SAA-ZeroShift-left.uf2`、右に `SAA-ZeroShift-right.uf2` を書き込みます。
-2. 右の親機を USB または BLE で [ZeroShift Web UI](https://te9no.github.io/zmk-feature-zeroshift/) に接続します。設定する側を選び、下部と上部を選んで保存します。
-3. 設定した側の電源を切ってモジュールを交換し、再起動します。右を再起動したら Web UI に再接続し、保存値と起動中の値を確認します。
-
-USB 製品名は左が `SAA-ZS-L`、右が `SAA-ZS-R` です。ダブルリセット後のディスク名にも同じ名前を出すには、基板に合う XIAO ブートローダー 0.11.0-volume3 が必要です。対象基板と更新手順はブートローダー試験版の README にあります。
-
 ﻿# SparAkashaAnanta - スパラカシャ・アナンタ
+
+[![Build ZMK firmware](https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/te9no/zmk-config-SparAkashaAnanta/actions/workflows/build.yml?query=branch%3Amaster)
 
 ```
                                                 ########                                                                                                
