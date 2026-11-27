@@ -1,10 +1,10 @@
-#include "SAA_pins.dtsi"
-
 /delete-node/ &kscan2;
 
 / {
     kscan2: kscan2 {
         compatible = "zmk,kscan-gpio-direct";
-        input-gpios = DIRECT_KEY_GPIOS;
+        input-gpios
+            = <&gpio1 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
     };
 };

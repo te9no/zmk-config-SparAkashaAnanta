@@ -18,15 +18,10 @@ on:
   push:
     paths:
       - "config/**"
-      - "CMakeLists.txt"
-      - "src/**"
-      - "dts/**"
       - "boards/**"
       - "snippets/**"
       - "build.yaml"
       - "zephyr/module.yml"
-      - "zephyr/**"
-      - "scripts/**"
       - ".github/workflows/build.yml"
 
 permissions:

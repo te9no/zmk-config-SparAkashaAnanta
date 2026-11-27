@@ -1,4 +1,0 @@
-name: saa-sim-right
-append:
-  EXTRA_DTC_OVERLAY_FILE: sim.overlay
-  EXTRA_CONF_FILE: sim.conf

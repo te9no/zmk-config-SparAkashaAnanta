@@ -1,3 +1,0 @@
-name: IQS_Split
-append:
-  EXTRA_DTC_OVERLAY_FILE: IQS_Split.overlay
